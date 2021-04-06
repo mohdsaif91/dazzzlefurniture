@@ -1,0 +1,12 @@
+
+
+@media (max-width:1024px) {
+    .width-80{
+        width:80%
+    }    
+    .dropdown-menu-right{
+        left:10%
+    }
+}
+
+/* input */

@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 
 // Layout Types
 import { DefaultLayout } from "./layouts";
@@ -12,14 +11,12 @@ import Errors from "./views/Errors";
 import ComponentsOverview from "./views/ComponentsOverview";
 import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
+import SignIn from "./auth/SignIn";
+import AdminHome from "./adminComponents/AdminHome";
+import AddProduct from "./adminComponents/AddProduct";
+import AddCategory from "./adminComponents/AddCategory";
 
 export default [
-  {
-    path: "/",
-    exact: true,
-    layout: DefaultLayout,
-    component: () => <Redirect to="/blog-overview" />
-  },
   {
     path: "/blog-overview",
     layout: DefaultLayout,
@@ -51,8 +48,13 @@ export default [
     component: Tables
   },
   {
-    path: "/blog-posts",
+    path: "/",
+    exact: true,
     layout: DefaultLayout,
     component: BlogPosts
-  }
+  },
+  { path: "/signIn", layout: DefaultLayout, component: SignIn },
+  { path: "/adminHome", layout: DefaultLayout, component: AdminHome },
+  { path: "/addProduct", layout: DefaultLayout, component: AddProduct },
+  { path: "/addCategory", layout: DefaultLayout, component: AddCategory }
 ];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ListGroup,
   ListGroupItem,
@@ -12,7 +12,15 @@ import {
   Button
 } from "shards-react";
 
+import { AdminContext } from "../context/state/AdminState";
+
 export default function AddProduct() {
+  const {
+    category: { category }
+  } = useContext(AdminContext);
+
+  const actualCategory = category === undefined ? [] : category;
+
   return (
     <ListGroup flush>
       <ListGroupItem className="p-3">
@@ -33,9 +41,9 @@ export default function AddProduct() {
                   <label htmlFor="feInputState">Category</label>
                   <FormSelect id="feInputState">
                     <option>Choose...</option>
-                    <option>Kitchen</option>
-                    <option>Bed Room</option>
-                    <option>Interior</option>
+                    {actualCategory.map(m => (
+                      <option>{m.categoryName}</option>
+                    ))}
                   </FormSelect>
                 </Col>
               </Row>

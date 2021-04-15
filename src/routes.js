@@ -54,7 +54,7 @@ export default [
     component: BlogPosts
   },
   { path: "/signIn", layout: DefaultLayout, component: SignIn },
-  { path: "/adminHome", layout: DefaultLayout, component: AdminHome },
-  { path: "/addProduct", layout: DefaultLayout, component: AddProduct },
-  { path: "/addCategory", layout: DefaultLayout, component: AddCategory }
+  { path: "/adminHome/admin", layout: DefaultLayout, component: AdminHome },
+  { path: "/addProduct/admin", layout: DefaultLayout, component: AddProduct },
+  { path: "/addCategory/admin", layout: DefaultLayout, component: AddCategory }
 ];

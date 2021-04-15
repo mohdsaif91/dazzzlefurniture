@@ -3,17 +3,17 @@ export default function() {
     {
       title: "Home",
       htmlBefore: '<i class="material-icons">home</i>',
-      to: "/adminHome"
+      to: "/adminHome/admin"
     },
     {
-      title: "Add Category",
+      title: "Category",
       htmlBefore: '<i class="material-icons">category</i>',
-      to: "/addCategory"
+      to: "/addCategory/admin"
     },
     {
-      title: "Add Product",
+      title: "Product",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/addProduct"
+      to: "/addProduct/admin"
     }
   ];
 }

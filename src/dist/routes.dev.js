@@ -69,15 +69,15 @@ var _default = [{
   layout: _layouts.DefaultLayout,
   component: _SignIn.default
 }, {
-  path: "/adminHome",
+  path: "/adminHome/admin",
   layout: _layouts.DefaultLayout,
   component: _AdminHome.default
 }, {
-  path: "/addProduct",
+  path: "/addProduct/admin",
   layout: _layouts.DefaultLayout,
   component: _AddProduct.default
 }, {
-  path: "/addCategory",
+  path: "/addCategory/admin",
   layout: _layouts.DefaultLayout,
   component: _AddCategory.default
 }];

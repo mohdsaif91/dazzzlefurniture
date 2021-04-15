@@ -8,12 +8,21 @@ import { AdminContext } from "../../../context/state/AdminState";
 export default function SidebarNavItems() {
   const [items, setItem] = useState(Store.getSidebarItems());
   const [adminItems, setAdminItems] = useState(Store.getAdminNavItems());
-  const { adminAccess } = useContext(AdminContext);
+  const {
+    adminAccess,
+    adminLogOut,
+    getCategoryCount,
+    refreshLogin
+  } = useContext(AdminContext);
 
   useEffect(() => {
     Store.addChangeListener(onChange);
+    console.log(window.location.href.split("/").pop(), "<>? URL");
+    if (window.location.href.split("/").pop() === "admin") {
+      refreshLogin();
+    }
     return () => Store.addChangeListener(onChange);
-  }, []);
+  }, [adminAccess.login]);
 
   const onChange = () => {
     setItem({
@@ -21,11 +30,8 @@ export default function SidebarNavItems() {
       navItems: Store.getSidebarItems()
     });
   };
-  // console.log(adminItems, "<>?", items, "<>? NavItems ");
 
-  const navItem = adminAccess ? adminItems : items;
-
-  console.log(navItem, "<>?");
+  const navItem = adminAccess.login ? adminItems : items;
 
   return (
     <div className="nav-wrapper">

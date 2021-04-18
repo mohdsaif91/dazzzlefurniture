@@ -4,3 +4,9 @@
 .carousel-image{
     height: 14rem;
 }
+.content-center{
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}

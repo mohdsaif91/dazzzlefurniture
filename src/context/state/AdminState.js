@@ -1,10 +1,16 @@
 import React, { createContext, useReducer } from "react";
 import AdminReducer from "../reducers/AdminReducer";
-import { AuthLogin, AddCategory, getCountCategory } from "../../api";
+import {
+  AuthLogin,
+  AddCategory,
+  getCountCategory,
+  updateCategory
+} from "../../api";
 
 const initialState = {
   adminAccess: { message: "", login: false },
-  category: {}
+  category: {},
+  showLoading: false
 };
 
 //create createContext
@@ -51,9 +57,37 @@ export const AdminProvider = ({ children }) => {
     });
   };
   const addMethodCategory = async data => {
+    dispatch({
+      type: "START_LOADING",
+      data: true
+    });
     await AddCategory(data)
       .then(res => {
         console.log(res);
+        if (res.status === 201) {
+          getCountCategory()
+            .then(res => {
+              if (res.status === 200) {
+                dispatch({
+                  type: "GET_CATEGORY_COUNT",
+                  data: res.data
+                });
+                dispatch({
+                  type: "STOP_LOADING",
+                  data: false
+                });
+              }
+            })
+            .catch(err => {
+              dispatch({
+                type: "GET_CATEGORY_COUNT_FAIL",
+                data: {
+                  sucessfull: false,
+                  message: err
+                }
+              });
+            });
+        }
       })
       .catch(error => console.log(error));
   };
@@ -78,16 +112,24 @@ export const AdminProvider = ({ children }) => {
       });
   };
 
+  const updateEditCategory = async updatedData => {
+    await updateCategory(updatedData)
+      .then(res => {})
+      .catch(error => console.log(error));
+  };
+
   return (
     <AdminContext.Provider
       value={{
         adminAccess: state.adminAccess,
         category: state.category,
+        showLoading: state.showLoading,
         adminLogin,
         adminLogOut,
         refreshLogin,
         addMethodCategory,
-        getCategoryCount
+        getCategoryCount,
+        updateEditCategory
       }}
     >
       {children}

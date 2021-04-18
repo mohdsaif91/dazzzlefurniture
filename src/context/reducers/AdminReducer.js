@@ -20,6 +20,17 @@ export default (state, action) => {
         ...state,
         category: action.data
       };
+    case "START_LOADING":
+      console.log("reducer <>? ", action.data);
+      return {
+        ...state,
+        showLoading: action.data
+      };
+    case "STOP_LOADING":
+      return {
+        ...state,
+        showLoading: action.data
+      };
     default:
       return state;
   }

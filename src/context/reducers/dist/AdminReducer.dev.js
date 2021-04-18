@@ -33,6 +33,17 @@ var _default = function _default(state, action) {
         category: action.data
       });
 
+    case "START_LOADING":
+      console.log("reducer <>? ", action.data);
+      return _objectSpread({}, state, {
+        showLoading: action.data
+      });
+
+    case "STOP_LOADING":
+      return _objectSpread({}, state, {
+        showLoading: action.data
+      });
+
     default:
       return state;
   }

@@ -21,11 +21,17 @@ const initialData = {
   userName: "",
   password: ""
 };
+
+const adminLoading = {
+  login: false
+};
+
 export default function SignIn() {
   const [login, setLogin] = useState({ ...initialData });
+  const [loading, setLoading] = useState({ ...adminLoading });
   const [auth, setAuth] = useState(false);
   const history = useHistory();
-  const { adminAccess, adminLogin } = useContext(AdminContext);
+  const { adminAccess, adminLogin, showLoading } = useContext(AdminContext);
 
   useEffect(() => {
     console.log(adminAccess);
@@ -34,7 +40,9 @@ export default function SignIn() {
     } else if (adminAccess.message === "loginFailed" && !adminAccess.login) {
       setAuth(true);
     }
-  }, [adminAccess.login]);
+    // showLoading ? setLoading(true) : setLoading(false);
+    setLoading({ ...loading, login: showLoading.flage });
+  }, [adminAccess.login, showLoading]);
 
   const authLogiIn = () => {
     adminLogin(login);
@@ -80,7 +88,16 @@ export default function SignIn() {
               </FormGroup>
               <ListGroupItem className="d-flex px-3 border-0">
                 <Button theme="accent" size="md" onClick={() => authLogiIn()}>
-                  <i className="material-icons">login</i> Log in
+                  {loading.login ? (
+                    <img
+                      className="loading-image"
+                      src="https://www.mybloggerguides.com/wp-content/uploads/2016/07/Loading5.gif"
+                    />
+                  ) : (
+                    <span>
+                      <i className="material-icons">login</i> Log in
+                    </span>
+                  )}
                 </Button>
                 <Button outline theme="danger" size="md" className="ml-auto">
                   <i className="material-icons">file_copy</i> forget password

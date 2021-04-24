@@ -1,16 +1,29 @@
 import React, { createContext, useReducer } from "react";
+
 import AdminReducer from "../reducers/AdminReducer";
 import {
   AuthLogin,
   AddCategory,
   getCountCategory,
-  updateCategory
+  updateCategory,
+  deleteCategoryById
 } from "../../api";
+import {
+  startLoading,
+  stopLoading,
+  adminLoginAction,
+  getCategoryCountAction,
+  getCategoryCountFail,
+  adminLogoutAction,
+  loginFailAction,
+  deleteSucessfull,
+  deleteUnSucessfull
+} from "../actions/adminActions";
 
 const initialState = {
   adminAccess: { message: "", login: false },
   category: {},
-  showLoading: false
+  showLoading: { category: false, adminLogin: false }
 };
 
 //create createContext
@@ -19,73 +32,45 @@ export const AdminContext = createContext(initialState);
 //Provider Component
 export const AdminProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AdminReducer, initialState);
-
+  console.log(state, "<>? ADMIN ?");
   //Actions
   const adminLogin = async data => {
+    dispatch(startLoading("adminLogin"));
     await AuthLogin(data)
       .then(res => {
         if (res.status === 200) {
-          dispatch({
-            type: "ADMIN_LOGIN",
-            data: { message: "loginSucessfull", login: true }
-          });
+          dispatch(adminLoginAction());
+          dispatch(stopLoading("adminLogin"));
         }
       })
       .catch(error => {
-        dispatch({
-          type: "LOGIN_FAIL",
-          data: {
-            message: "loginFailed",
-            login: false
-          }
-        });
+        dispatch(loginFailAction());
       });
   };
 
   const refreshLogin = () => {
-    dispatch({
-      type: "ADMIN_LOGIN",
-      data: { message: "loginSucessfull", login: true }
-    });
+    dispatch(adminLoginAction());
   };
-  const ab = "";
 
   const adminLogOut = () => {
-    dispatch({
-      type: "ADMIN_LOGOUT",
-      data: false
-    });
+    dispatch(adminLogoutAction());
   };
+
   const addMethodCategory = async data => {
-    dispatch({
-      type: "START_LOADING",
-      data: true
-    });
+    dispatch(startLoading("category"));
     await AddCategory(data)
       .then(res => {
         console.log(res);
         if (res.status === 201) {
           getCountCategory()
             .then(res => {
+              dispatch(stopLoading("category"));
               if (res.status === 200) {
-                dispatch({
-                  type: "GET_CATEGORY_COUNT",
-                  data: res.data
-                });
-                dispatch({
-                  type: "STOP_LOADING",
-                  data: false
-                });
+                dispatch(getCategoryCountAction(res.data));
               }
             })
             .catch(err => {
-              dispatch({
-                type: "GET_CATEGORY_COUNT_FAIL",
-                data: {
-                  sucessfull: false,
-                  message: err
-                }
-              });
+              dispatch(getCategoryCountFail(err));
             });
         }
       })
@@ -95,27 +80,35 @@ export const AdminProvider = ({ children }) => {
     await getCountCategory()
       .then(res => {
         if (res.status === 200) {
-          dispatch({
-            type: "GET_CATEGORY_COUNT",
-            data: res.data
-          });
+          console.log(res.data.category, "<>?");
+          dispatch(getCategoryCountAction(res.data));
         }
       })
       .catch(err => {
-        dispatch({
-          type: "GET_CATEGORY_COUNT_FAIL",
-          data: {
-            sucessfull: false,
-            message: err
-          }
-        });
+        dispatch(getCategoryCountFail(err));
       });
   };
 
   const updateEditCategory = async updatedData => {
+    dispatch(startLoading("update"));
     await updateCategory(updatedData)
-      .then(res => {})
+      .then(res => {
+        dispatch(stopLoading("update"));
+        getCategoryCount();
+      })
       .catch(error => console.log(error));
+  };
+
+  const deleteCategory = async (id, imageName) => {
+    await deleteCategoryById(id, imageName)
+      .then(res => {
+        if (res.status === 200) {
+          dispatch(deleteSucessfull(res.data));
+        } else {
+          throw res;
+        }
+      })
+      .catch(err => {});
   };
 
   return (
@@ -129,7 +122,8 @@ export const AdminProvider = ({ children }) => {
         refreshLogin,
         addMethodCategory,
         getCategoryCount,
-        updateEditCategory
+        updateEditCategory,
+        deleteCategory
       }}
     >
       {children}

@@ -17,7 +17,6 @@ export default function SidebarNavItems() {
 
   useEffect(() => {
     Store.addChangeListener(onChange);
-    console.log(window.location.href.split("/").pop(), "<>? URL");
     if (window.location.href.split("/").pop() === "admin") {
       refreshLogin();
     }

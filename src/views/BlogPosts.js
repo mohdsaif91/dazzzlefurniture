@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Row,
@@ -173,11 +173,24 @@ export default function BlogPosts() {
   const [data, setData] = useState({ ...initialData });
   const { PostsListOne, PostsListTwo, PostsListThree, PostsListFour } = data;
 
+  const { getCategoryCount, category } = useContext(AdminContext);
+
+  useEffect(() => {
+    if (!category.category) {
+      getCategoryCount();
+    }
+  }, [category]);
+
   const viewCategory = () => {
     console.log("hi clicked <>?");
   };
-  const { adminAccess } = useContext(AdminContext);
-  console.log(adminAccess, "<>?");
+
+  console.log("<>?");
+
+  const expand = () => {
+    console.log("hi clicked me");
+  };
+
   return (
     <Container fluid className="main-content-container px-4">
       {/* Page Header */}
@@ -245,7 +258,32 @@ export default function BlogPosts() {
           </Col>
         ))}
       </Row>
-
+      {/* --- */}
+      <div style={{ width: "100%", margin: "20px auto", textAlign: "center" }}>
+        <div
+          className="expander-container"
+          style={{
+            backgroundImage: 'url("http://lorempixel.com/g/220/220/people/")'
+          }}
+        >
+          <div
+            id="expandContent"
+            className="expander-content-collapsed"
+            onClick={() => expand}
+          >
+            <h2 id="expandH2" className="expander-inactive">
+              Categories
+            </h2>
+            <div id="expandInfo" className="expander-invisible">
+              <p>Here's a little text that will be shown once expanded</p>
+              <a className="button" href="#">
+                Click to View
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* --- */}
       {/* Second Row of Posts */}
       <Row>
         {PostsListTwo.map((post, idx) => (

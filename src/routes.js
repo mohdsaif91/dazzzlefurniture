@@ -15,6 +15,7 @@ import SignIn from "./auth/SignIn";
 import AdminHome from "./adminComponents/AdminHome";
 import AddProduct from "./adminComponents/AddProduct";
 import AddCategory from "./adminComponents/AddCategory";
+import Categories from "./components/Pages/Categories";
 
 export default [
   {
@@ -56,5 +57,6 @@ export default [
   { path: "/signIn", layout: DefaultLayout, component: SignIn },
   { path: "/adminHome/admin", layout: DefaultLayout, component: AdminHome },
   { path: "/addProduct/admin", layout: DefaultLayout, component: AddProduct },
-  { path: "/addCategory/admin", layout: DefaultLayout, component: AddCategory }
+  { path: "/addCategory/admin", layout: DefaultLayout, component: AddCategory },
+  { path: "/categories", layout: DefaultLayout, component: Categories }
 ];

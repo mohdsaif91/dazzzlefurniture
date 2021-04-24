@@ -31,6 +31,8 @@ var _AddProduct = _interopRequireDefault(require("./adminComponents/AddProduct")
 
 var _AddCategory = _interopRequireDefault(require("./adminComponents/AddCategory"));
 
+var _Categories = _interopRequireDefault(require("./components/Pages/Categories"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Layout Types
@@ -80,5 +82,9 @@ var _default = [{
   path: "/addCategory/admin",
   layout: _layouts.DefaultLayout,
   component: _AddCategory.default
+}, {
+  path: "/categories",
+  layout: _layouts.DefaultLayout,
+  component: _Categories.default
 }];
 exports.default = _default;

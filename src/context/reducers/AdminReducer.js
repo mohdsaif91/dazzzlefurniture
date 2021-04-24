@@ -1,36 +1,48 @@
+import { adminActions } from "../actions/adminActions";
+
 export default (state, action) => {
+  console.log(action, "<>? ACTION");
   switch (action.type) {
-    case "ADMIN_LOGIN":
+    case adminActions.ADMIN_LOGIN:
       return {
         ...state,
         adminAccess: action.data
       };
-    case "ADMIN_LOGOUT":
+    case adminActions.ADMIN_LOGOUT:
       return {
         ...state,
         adminAccess: action.data
       };
-    case "LOGIN_FAIL":
+    case adminActions.LOGIN_FAIL:
       return {
         ...state,
         adminAccess: action.data
       };
-    case "GET_CATEGORY_COUNT":
+    case adminActions.GET_CATEGORY_COUNT:
+      console.log(action.data, "?><");
       return {
         ...state,
         category: action.data
       };
-    case "START_LOADING":
-      console.log("reducer <>? ", action.data);
+    case adminActions.START_LOADING:
       return {
         ...state,
         showLoading: action.data
       };
-    case "STOP_LOADING":
+    case adminActions.STOP_LOADING:
       return {
         ...state,
         showLoading: action.data
       };
+    case adminActions.DELETE_SUCESSFULL:
+      const category = {
+        category: state.category.category.filter(f => f._id !== action.data.id)
+      };
+      return {
+        ...state,
+        category
+      };
+    case adminActions.DELETE_UNSUCESSFULL:
     default:
       return state;
   }

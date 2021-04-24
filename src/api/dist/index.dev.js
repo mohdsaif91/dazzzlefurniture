@@ -9,8 +9,8 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const url = "https://dazzlefurniture.herokuapp.com";
-var url = "http://localhost:5000"; //Admin
+var url = "https://dazzlefurniture.herokuapp.com"; // const url = "http://localhost:5000";
+//Admin
 
 var AuthLogin = function AuthLogin(data) {
   return _axios.default.post("".concat(url, "/v1/login"), data);

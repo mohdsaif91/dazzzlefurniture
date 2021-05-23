@@ -10,17 +10,17 @@ export const adminActions = {
   STOP_LOADING: "STOP_LOADING"
 };
 
-export function startLoading(type) {
+export function startLoading() {
   return {
     type: adminActions.START_LOADING,
-    data: { flag: true, type }
+    data: true
   };
 }
 
-export function stopLoading(type) {
+export function stopLoading() {
   return {
     type: adminActions.STOP_LOADING,
-    data: { flag: false, type }
+    data: false
   };
 }
 
@@ -66,7 +66,6 @@ export function loginFailAction() {
 }
 
 export function deleteSucessfull(data) {
-  // console.log(data, "<>?");
   return {
     type: adminActions.DELETE_SUCESSFULL,
     data

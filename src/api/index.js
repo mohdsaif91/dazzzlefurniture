@@ -13,3 +13,7 @@ export const updateCategory = updatedData =>
   Axios.patch(`${url}/v1/category/updateCategory`, updatedData);
 export const deleteCategoryById = (id, imageName) =>
   Axios.delete(`${url}/v1/category/delete/${id}/${imageName}`);
+
+//product
+export const addProductApi = data => Axios.post(`${url}/v1/product/add`, data);
+export const getProductApi = () => Axios.get(`${url}/v1/product`);

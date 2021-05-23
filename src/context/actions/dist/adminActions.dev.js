@@ -26,23 +26,17 @@ var adminActions = {
 };
 exports.adminActions = adminActions;
 
-function startLoading(type) {
+function startLoading() {
   return {
     type: adminActions.START_LOADING,
-    data: {
-      flag: true,
-      type: type
-    }
+    data: true
   };
 }
 
-function stopLoading(type) {
+function stopLoading() {
   return {
     type: adminActions.STOP_LOADING,
-    data: {
-      flag: false,
-      type: type
-    }
+    data: false
   };
 }
 
@@ -91,7 +85,6 @@ function loginFailAction() {
 }
 
 function deleteSucessfull(data) {
-  // console.log(data, "<>?");
   return {
     type: adminActions.DELETE_SUCESSFULL,
     data: data

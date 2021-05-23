@@ -8,16 +8,14 @@ import { AdminContext } from "../../../context/state/AdminState";
 export default function SidebarNavItems() {
   const [items, setItem] = useState(Store.getSidebarItems());
   const [adminItems, setAdminItems] = useState(Store.getAdminNavItems());
-  const {
-    adminAccess,
-    adminLogOut,
-    getCategoryCount,
-    refreshLogin
-  } = useContext(AdminContext);
+  const { adminAccess, refreshLogin } = useContext(AdminContext);
 
   useEffect(() => {
     Store.addChangeListener(onChange);
-    if (window.location.href.split("/").pop() === "admin") {
+    if (
+      window.location.href.split("/").pop() === "admin" &&
+      !adminAccess.login
+    ) {
       refreshLogin();
     }
     return () => Store.addChangeListener(onChange);
@@ -30,7 +28,11 @@ export default function SidebarNavItems() {
     });
   };
 
-  const navItem = adminAccess.login ? adminItems : items;
+  const navItem = adminAccess.login
+    ? adminItems
+    : Array.isArray(items)
+    ? items
+    : items.navItems;
 
   return (
     <div className="nav-wrapper">

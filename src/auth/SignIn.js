@@ -34,7 +34,6 @@ export default function SignIn() {
   const { adminAccess, adminLogin, showLoading } = useContext(AdminContext);
 
   useEffect(() => {
-    console.log(adminAccess);
     if (adminAccess.login && adminAccess.message === "loginSucessfull") {
       history.push("/adminHome/admin");
     } else if (adminAccess.message === "loginFailed" && !adminAccess.login) {

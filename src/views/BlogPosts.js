@@ -167,7 +167,8 @@ const initialData = {
         "For county now sister engage had season better had waited. Occasional mrs interested far expression directly as regard...",
       date: "29 February 2019"
     }
-  ]
+  ],
+  categoryVisible: false
 };
 export default function BlogPosts() {
   const [data, setData] = useState({ ...initialData });
@@ -181,15 +182,10 @@ export default function BlogPosts() {
     }
   }, [category]);
 
-  const viewCategory = () => {
-    console.log("hi clicked <>?");
-  };
+  const viewCategory = () => {};
 
-  console.log("<>?");
-
-  const expand = () => {
-    console.log("hi clicked me");
-  };
+  const expand = () => {};
+  const categoryData = !category.category ? [] : category.category;
 
   return (
     <Container fluid className="main-content-container px-4">
@@ -260,11 +256,40 @@ export default function BlogPosts() {
       </Row>
       {/* --- */}
       <div style={{ width: "100%", margin: "20px auto", textAlign: "center" }}>
-        <div
+        <Row>
+          <Col lg="12" md="12" sm="12" className="mb-4">
+            <Button
+              size="lg"
+              theme="white"
+              onClick={() =>
+                setData({ ...data, categoryVisible: !data.categoryVisible })
+              }
+            >
+              <i
+                className={
+                  data.categoryVisible ? "fa fa-caret-up" : "fa fa-caret-down"
+                }
+              />{" "}
+              Categories
+            </Button>
+          </Col>
+          <Col lg="1" md="1"></Col>
+
+          <Col lg="10" md="10" sm="12" className="mb-4">
+            {data.categoryVisible &&
+              categoryData.map(({ categoryName }) => (
+                <Button size="sm" theme="white">
+                  {categoryName}
+                </Button>
+              ))}
+          </Col>
+          <Col lg="1" md="1"></Col>
+        </Row>
+        {/* <div
           className="expander-container"
-          style={{
-            backgroundImage: 'url("http://lorempixel.com/g/220/220/people/")'
-          }}
+          // style={{
+          //   backgroundImage: 'url("http://lorempixel.com/g/220/220/people/")'
+          // }}
         >
           <div
             id="expandContent"
@@ -274,14 +299,16 @@ export default function BlogPosts() {
             <h2 id="expandH2" className="expander-inactive">
               Categories
             </h2>
-            <div id="expandInfo" className="expander-invisible">
-              <p>Here's a little text that will be shown once expanded</p>
-              <a className="button" href="#">
-                Click to View
-              </a>
-            </div>
+            {data.categoryVisible && (
+              <div id="expandInfo" className="expander-invisible">
+                <p>Here's a little text that will be shown once expanded</p>
+                <a className="button" href="#">
+                  Click to View
+                </a>
+              </div>
+            )}
           </div>
-        </div>
+        </div> */}
       </div>
       {/* --- */}
       {/* Second Row of Posts */}

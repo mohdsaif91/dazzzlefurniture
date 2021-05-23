@@ -19,6 +19,7 @@ import FormData from "form-data";
 import { AdminContext } from "../context/state/AdminState";
 import PageTitle from "../components/common/PageTitle";
 import infinity from "../assets/Infinity-1s-200px.svg";
+import { getFormData } from "../util";
 
 const initialData = {
   categoryImage: "",
@@ -73,19 +74,10 @@ export default function AddCategory() {
     if (cat === undefined) {
       getCategoryCount();
     }
-    console.log(showLoading, "<>?");
     showLoading.type === "category"
       ? setLoading({ ...loading, create: showLoading.flag })
       : setLoading({ ...loading, update: showLoading.flag });
   }, [cat, showLoading]);
-
-  const getFormData = data => {
-    const formData = new FormData();
-    Object.keys(data).forEach(key => {
-      formData.append(key, data[key]);
-    });
-    return formData;
-  };
 
   const uploadFile = e => {
     e.preventDefault();
@@ -112,7 +104,6 @@ export default function AddCategory() {
   const update = e => {
     e.preventDefault();
     const updatedFormPairKey = getFormData(editcategoryData);
-    console.log(editcategoryData, "<>?");
     updateEditCategory(updatedFormPairKey);
   };
 
@@ -187,7 +178,7 @@ export default function AddCategory() {
                 </Col>
               </Row>
             </div>
-            <div className="mb-5">
+            <div className="mb-5 addProduct">
               <PageTitle
                 sm="4"
                 md="6"

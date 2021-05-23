@@ -22,7 +22,6 @@ export default function UserActions() {
   };
 
   const logout = () => {
-    console.log("<>? logout");
     adminLogOut();
     history.push("/");
   };

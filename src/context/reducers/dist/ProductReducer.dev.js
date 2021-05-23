@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _adminActions = require("../actions/adminActions");
+var _addProductAction = require("../actions/addProductAction");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -15,47 +15,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _default = function _default(state, action) {
   switch (action.type) {
-    case _adminActions.adminActions.ADMIN_LOGIN:
+    case _addProductAction.productAction.GET_PRODUCT_SUCESSFULL:
       return _objectSpread({}, state, {
-        adminAccess: action.data
+        product: action.data
       });
 
-    case _adminActions.adminActions.ADMIN_LOGOUT:
-      return _objectSpread({}, state, {
-        adminAccess: action.data
-      });
-
-    case _adminActions.adminActions.LOGIN_FAIL:
-      return _objectSpread({}, state, {
-        adminAccess: action.data
-      });
-
-    case _adminActions.adminActions.GET_CATEGORY_COUNT:
-      return _objectSpread({}, state, {
-        category: action.data
-      });
-
-    case _adminActions.adminActions.START_LOADING:
-      return _objectSpread({}, state, {
-        showLoading: action.data
-      });
-
-    case _adminActions.adminActions.STOP_LOADING:
-      return _objectSpread({}, state, {
-        showLoading: action.data
-      });
-
-    case _adminActions.adminActions.DELETE_SUCESSFULL:
-      var category = {
-        category: state.category.category.filter(function (f) {
-          return f._id !== action.data.id;
-        })
-      };
-      return _objectSpread({}, state, {
-        category: category
-      });
-
-    case _adminActions.adminActions.DELETE_UNSUCESSFULL:
     default:
       return state;
   }

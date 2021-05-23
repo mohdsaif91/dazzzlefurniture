@@ -1,7 +1,6 @@
 import { adminActions } from "../actions/adminActions";
 
 export default (state, action) => {
-  console.log(action, "<>? ACTION");
   switch (action.type) {
     case adminActions.ADMIN_LOGIN:
       return {
@@ -19,7 +18,6 @@ export default (state, action) => {
         adminAccess: action.data
       };
     case adminActions.GET_CATEGORY_COUNT:
-      console.log(action.data, "?><");
       return {
         ...state,
         category: action.data

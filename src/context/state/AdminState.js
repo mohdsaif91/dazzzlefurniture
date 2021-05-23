@@ -23,7 +23,7 @@ import {
 const initialState = {
   adminAccess: { message: "", login: false },
   category: {},
-  showLoading: { category: false, adminLogin: false }
+  showLoading: false
 };
 
 //create createContext
@@ -32,10 +32,9 @@ export const AdminContext = createContext(initialState);
 //Provider Component
 export const AdminProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AdminReducer, initialState);
-  console.log(state, "<>? ADMIN ?");
   //Actions
   const adminLogin = async data => {
-    dispatch(startLoading("adminLogin"));
+    dispatch(startLoading());
     await AuthLogin(data)
       .then(res => {
         if (res.status === 200) {
@@ -57,14 +56,13 @@ export const AdminProvider = ({ children }) => {
   };
 
   const addMethodCategory = async data => {
-    dispatch(startLoading("category"));
+    dispatch(startLoading());
     await AddCategory(data)
       .then(res => {
-        console.log(res);
         if (res.status === 201) {
           getCountCategory()
             .then(res => {
-              dispatch(stopLoading("category"));
+              dispatch(stopLoading());
               if (res.status === 200) {
                 dispatch(getCategoryCountAction(res.data));
               }
@@ -76,11 +74,13 @@ export const AdminProvider = ({ children }) => {
       })
       .catch(error => console.log(error));
   };
+
   const getCategoryCount = async () => {
+    dispatch(startLoading());
     await getCountCategory()
       .then(res => {
+        dispatch(stopLoading());
         if (res.status === 200) {
-          console.log(res.data.category, "<>?");
           dispatch(getCategoryCountAction(res.data));
         }
       })
@@ -90,18 +90,20 @@ export const AdminProvider = ({ children }) => {
   };
 
   const updateEditCategory = async updatedData => {
-    dispatch(startLoading("update"));
+    dispatch(startLoading());
     await updateCategory(updatedData)
       .then(res => {
-        dispatch(stopLoading("update"));
+        dispatch(stopLoading());
         getCategoryCount();
       })
       .catch(error => console.log(error));
   };
 
   const deleteCategory = async (id, imageName) => {
+    dispatch(startLoading());
     await deleteCategoryById(id, imageName)
       .then(res => {
+        dispatch(stopLoading());
         if (res.status === 200) {
           dispatch(deleteSucessfull(res.data));
         } else {

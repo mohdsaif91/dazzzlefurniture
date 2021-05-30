@@ -5,11 +5,17 @@ import "./main.css";
 
 import * as serviceWorker from "./serviceWorker";
 import { AdminProvider } from "./context/state/AdminState";
+import { ProductProvider } from "./context/state/ProductState";
+import { LoadingProvider } from "./context/state/LoadingState";
 
 ReactDOM.render(
-  <AdminProvider>
-    <App />
-  </AdminProvider>,
+  <LoadingProvider>
+    <AdminProvider>
+      <ProductProvider>
+        <App />
+      </ProductProvider>
+    </AdminProvider>
+  </LoadingProvider>,
   document.getElementById("root")
 );
 

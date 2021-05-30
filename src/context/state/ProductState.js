@@ -1,16 +1,28 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
-import ProductReducer from "../reducers/ProductReducer";
 import {
   getProductSucessfull,
-  deleteProduct,
-  addProductSucess
+  deleteSucessfullProduct,
+  deleteUnsucessfull,
+  addProductSucess,
+  getProductUnSucessfull,
+  updateProductSucess,
+  updateProductUnSucess,
+  startLoading,
+  stopLoading
 } from "../actions/addProductAction";
-import { addProductApi, getProductApi } from "../../api";
-import { startLoading, stopLoading } from "../actions/adminActions";
+import {
+  addProductApi,
+  getProductApi,
+  deleteProductApi,
+  updateProductApi
+} from "../../api";
+// import { startLoading, stopLoading } from "../actions/LoadingAction";
+import ProductReducer from "../reducers/ProductReducer";
+import { LoadingContex } from "./LoadingState";
 
 const initialProductState = {
-  // allProduct: null,
+  allProduct: null,
   productCount: 0
 };
 
@@ -18,30 +30,80 @@ export const ProductContext = createContext(initialProductState);
 
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialProductState);
+  const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
 
   const getProductState = async () => {
-    dispatch(startLoading());
-    await getProductApi().then(res => {
-      if (res.status === 200) {
-        dispatch(getProductSucessfull(res.data));
-      }
-    });
+    startLoadingMeth();
+    await getProductApi()
+      .then(res => {
+        stopLoadingMeth();
+        if (res.status === 200) {
+          dispatch(getProductSucessfull(res.data));
+        } else {
+          dispatch(getProductUnSucessfull(res.data));
+        }
+      })
+      .catch(err => {
+        dispatch(getProductUnSucessfull(err));
+      });
   };
 
   const addProductState = async product => {
-    dispatch(startLoading());
+    startLoadingMeth();
+    // dispatch(startLoading());
     await addProductApi(product).then(res => {
-      dispatch(stopLoading());
+      stopLoadingMeth();
+      // dispatch(stopLoading());
       if (res.status === 201) {
         dispatch(addProductSucess(res.data));
       }
     });
   };
 
-  console.log(state, "?><");
+  const deleteProduct = async (id, imageName) => {
+    // dispatch(startLoading());
+    startLoadingMeth();
+    await deleteProductApi(id, imageName)
+      .then(res => {
+        stopLoadingMeth();
+        // dispatch(stopLoading());
+        if (res.status === 200) {
+          dispatch(deleteSucessfullProduct(res.data));
+        }
+      })
+      .catch(err => dispatch(deleteUnsucessfull(err)));
+  };
+
+  const updateProductState = async updatedData => {
+    // dispatch(startLoading());
+    startLoadingMeth();
+    await updateProductApi(updatedData)
+      .then(res => {
+        stopLoadingMeth();
+        // dispatch(stopLoading());
+        if (res.status === 201) {
+          console.log(res.data, "<>?");
+          dispatch(updateProductSucess(res.data));
+        } else {
+          dispatch(updateProductUnSucess(res.data));
+        }
+      })
+      .catch(err => dispatch(updateProductUnSucess(err)));
+  };
+
+  const allProduct = !state.allProduct ? [] : state.allProduct;
+
   return (
     <ProductContext.Provider
-      value={{ allProduct: state.allProduct, getProductState, addProductState }}
+      value={{
+        allProduct: state.allProduct,
+        error: state.error,
+        showLoading: state.showLoading,
+        getProductState,
+        addProductState,
+        deleteProduct,
+        updateProductState
+      }}
     >
       {children}
     </ProductContext.Provider>

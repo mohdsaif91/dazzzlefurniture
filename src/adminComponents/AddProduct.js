@@ -5,8 +5,8 @@ import { ProductProvider } from "../context/state/ProductState";
 
 export default function AddProduct() {
   return (
-    <ProductProvider>
-      <AddProductComponent />
-    </ProductProvider>
+    // <ProductProvider>
+    <AddProductComponent />
+    // </ProductProvider>
   );
 }

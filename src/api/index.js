@@ -17,3 +17,6 @@ export const deleteCategoryById = (id, imageName) =>
 //product
 export const addProductApi = data => Axios.post(`${url}/v1/product/add`, data);
 export const getProductApi = () => Axios.get(`${url}/v1/product`);
+export const deleteProductApi = (id, imageName) =>
+  Axios.delete(`${url}/v1/product/${id}/${imageName}`);
+export const updateProductApi = data => Axios.patch(`${url}/v1/product`, data);

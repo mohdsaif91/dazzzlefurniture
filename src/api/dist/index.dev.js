@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getProductApi = exports.addProductApi = exports.deleteCategoryById = exports.updateCategory = exports.getCountCategory = exports.AddCategory = exports.AuthLogin = void 0;
+exports.updateProductApi = exports.deleteProductApi = exports.getProductApi = exports.addProductApi = exports.deleteCategoryById = exports.updateCategory = exports.getCountCategory = exports.AddCategory = exports.AuthLogin = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -55,3 +55,15 @@ var getProductApi = function getProductApi() {
 };
 
 exports.getProductApi = getProductApi;
+
+var deleteProductApi = function deleteProductApi(id, imageName) {
+  return _axios.default.delete("".concat(url, "/v1/product/").concat(id, "/").concat(imageName));
+};
+
+exports.deleteProductApi = deleteProductApi;
+
+var updateProductApi = function updateProductApi(data) {
+  return _axios.default.patch("".concat(url, "/v1/product"), data);
+};
+
+exports.updateProductApi = updateProductApi;

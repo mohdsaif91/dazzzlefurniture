@@ -22,16 +22,6 @@ export default (state, action) => {
         ...state,
         category: action.data
       };
-    case adminActions.START_LOADING:
-      return {
-        ...state,
-        showLoading: action.data
-      };
-    case adminActions.STOP_LOADING:
-      return {
-        ...state,
-        showLoading: action.data
-      };
     case adminActions.DELETE_SUCESSFULL:
       const category = {
         category: state.category.category.filter(f => f._id !== action.data.id)
@@ -39,6 +29,18 @@ export default (state, action) => {
       return {
         ...state,
         category
+      };
+    case adminActions.ADD_CATEGORY_SUCESS:
+      return {
+        ...state,
+        error: false,
+        category: [...state.category.category, action.data]
+      };
+    case adminActions.ADD_CATEGORY_UNSUCESS:
+      return {
+        ...state,
+        error: true,
+        category: action.data
       };
     case adminActions.DELETE_UNSUCESSFULL:
     default:

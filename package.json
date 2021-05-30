@@ -19,6 +19,7 @@
     "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-scripts": "2.1.1",
+    "react-tabs": "^3.2.2",
     "react-toastify": "^7.0.3",
     "shards-react": "^1.0.0",
     "shortid": "^2.2.14"

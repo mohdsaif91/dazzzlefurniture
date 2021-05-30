@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, CardBody } from "shards-react";
 import { Carousel } from "react-responsive-carousel";
 
 import { AdminContext } from "../context/state/AdminState";
+import { ProductContext } from "../context/state/ProductState";
 
 export default function AdminHome() {
   const {
@@ -10,12 +11,21 @@ export default function AdminHome() {
     getCategoryCount
   } = useContext(AdminContext);
 
+  const { allProduct, getProductState } = useContext(ProductContext);
+
   useEffect(() => {
+    console.log(allProduct, "<>?");
     if (category === undefined) {
       getCategoryCount();
     }
-  }, [category]);
+    if (allProduct === null) {
+      getProductState();
+    }
+  }, [category, allProduct]);
+
   const actualCategory = category === undefined ? [] : category;
+
+  const actualProduct = allProduct === null ? [] : allProduct;
 
   return (
     <Container fluid className="main-content-container px-4">
@@ -32,7 +42,7 @@ export default function AdminHome() {
           <Card small className="card-post mb-4 mt-4">
             <CardBody>
               <h5 className="card-title">Number of Product</h5>
-              <p className="card-text text-muted">16</p>
+              <p className="card-text text-muted">{actualProduct.length}</p>
             </CardBody>
           </Card>
         </Col>

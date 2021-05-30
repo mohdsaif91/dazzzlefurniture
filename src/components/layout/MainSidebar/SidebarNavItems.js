@@ -7,7 +7,7 @@ import { AdminContext } from "../../../context/state/AdminState";
 
 export default function SidebarNavItems() {
   const [items, setItem] = useState(Store.getSidebarItems());
-  const [adminItems, setAdminItems] = useState(Store.getAdminNavItems());
+  const [adminItems] = useState(Store.getAdminNavItems());
   const { adminAccess, refreshLogin } = useContext(AdminContext);
 
   useEffect(() => {

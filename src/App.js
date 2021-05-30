@@ -4,14 +4,14 @@ import Loading from "react-fullscreen-loading";
 
 import routes from "./routes";
 import withTracker from "./withTracker";
-import { AdminContext } from "./context/state/AdminState";
+import { LoadingContex } from "./context/state/LoadingState";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/shards-dashboards.1.1.0.min.css";
 
 export default () => {
   const [loadingScr, setLoading] = useState(false);
-  const { showLoading } = useContext(AdminContext);
+  const { showLoading } = useContext(LoadingContex);
 
   useEffect(() => {
     setLoading(showLoading);

@@ -44,6 +44,7 @@ const loadingData = {
 export default function AddCategory() {
   const [categoryData, setCategory] = useState({ ...initialData });
   const [loading, setLoading] = useState({ ...loadingData });
+  const [tabShow, setTabShow] = useState(false);
   const [editcategoryData, setEditCategoryData] = useState({ ...editData });
 
   const {
@@ -90,6 +91,7 @@ export default function AddCategory() {
   };
 
   const editCategory = id => {
+    setTabShow(true);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     const edited = cat.find(f => f._id === id);
     setEditCategoryData({
@@ -113,117 +115,139 @@ export default function AddCategory() {
       <ListGroupItem className="p-3">
         <Row className="d-flex flex-row">
           <Col md="6">
-            <div className="mb-5">
-              <PageTitle
-                sm="4"
-                md="6"
-                title="Update Category"
-                className="text-sm-left mt-3"
-              />
-              <div className="form-group mt-3">
-                <label htmlFor="categoryName">Category Name</label>
-                <FormInput
-                  id="categoryName"
-                  type="test"
-                  placeholder="Category Name"
-                  value={editcategoryData.editedcategoryName}
-                  onChange={e =>
-                    setEditCategoryData({
-                      ...editcategoryData,
-                      editedcategoryName: e.target.value
-                    })
-                  }
-                />
-              </div>
-              <div className="custom-file mb-3 mt-4">
-                <label className="custom-file-label" htmlFor="customFile2">
-                  Category Image...
-                </label>
-                <FormInput
-                  type="file"
-                  className="custom-file-input"
-                  id="customFile2"
-                  onChange={e => onFileUpload(e, "imageDisplay")}
-                />
-              </div>
-              <Row>
-                <Col className="d-flex flex-row" sm="12" md="4">
-                  <Card
-                    small
-                    className="card-post mb-2 card-post--aside card-post--1"
-                  >
-                    {editcategoryData.imageName !== "" ? (
-                      <div
-                        className="card-post__image"
-                        style={{
-                          backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/categories/${editcategoryData.imageName}')`
-                        }}
-                      ></div>
-                    ) : null}
-                  </Card>
-                </Col>
-                <Col md="4">
-                  <Button
-                    type="submit"
-                    disabled={editcategoryData.editEnable}
-                    theme={loading.update ? "default" : "info"}
-                    onClick={e => update(e)}
-                  >
-                    {loading.update ? (
-                      <img style={{ height: 93, width: 136 }} src={infinity} />
-                    ) : (
-                      "Update Category"
-                    )}
-                  </Button>
-                </Col>
-              </Row>
-            </div>
-            <div className="mb-5 addProduct">
-              <PageTitle
-                sm="4"
-                md="6"
-                title="Add Category"
-                className="text-sm-left"
-              />
-              <div className="form-group">
-                <label htmlFor="categoryName">Category Name</label>
-                <FormInput
-                  id="categoryName"
-                  type="test"
-                  placeholder="Category Name"
-                  onChange={e =>
-                    setCategory({
-                      ...categoryData,
-                      categoryName: e.target.value,
-                      createEnable: categoryData.categoryImage === null
-                    })
-                  }
-                />
-              </div>
-              <div className="custom-file mb-3 mt-4">
-                <label className="custom-file-label" htmlFor="customFile2">
-                  Category Image...
-                </label>
-                <FormInput
-                  type="file"
-                  className="custom-file-input"
-                  id="customFile2"
-                  onChange={e => onFileUpload(e, "categoryImage")}
-                />
-              </div>
+            <div className="d-flex justify-content-between mb-4">
               <Button
-                type="submit"
-                disabled={categoryData.createEnable}
-                theme={loading.create ? "default" : "primary"}
-                onClick={e => uploadFile(e)}
+                disabled={!tabShow}
+                theme={`${tabShow ? "primary" : "default"}`}
+                className={` ${tabShow ? "btn btn-primary" : ""} mr-5 border`}
               >
-                {loading.create ? (
-                  <img style={{ height: 93, width: 136 }} src={infinity} />
-                ) : (
-                  "Add Category"
-                )}
+                Update Product
+              </Button>
+              <Button
+                theme={`${tabShow ? "" : "primary"}`}
+                onClick={() => setTabShow(false)}
+                className={`btn ${tabShow ? "" : "btn-primary"} border`}
+              >
+                Add Product
               </Button>
             </div>
+            {tabShow ? (
+              <div className="mb-5">
+                <PageTitle
+                  sm="4"
+                  md="6"
+                  title="Update Category"
+                  className="text-sm-left mt-3"
+                />
+                <div className="form-group mt-3">
+                  <label htmlFor="categoryName">Category Name</label>
+                  <FormInput
+                    id="categoryName"
+                    type="test"
+                    placeholder="Category Name"
+                    value={editcategoryData.editedcategoryName}
+                    onChange={e =>
+                      setEditCategoryData({
+                        ...editcategoryData,
+                        editedcategoryName: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div className="custom-file mb-3 mt-4">
+                  <label className="custom-file-label" htmlFor="customFile2">
+                    Category Image...
+                  </label>
+                  <FormInput
+                    type="file"
+                    className="custom-file-input"
+                    id="customFile2"
+                    onChange={e => onFileUpload(e, "imageDisplay")}
+                  />
+                </div>
+                <Row>
+                  <Col className="d-flex flex-row" sm="12" md="4">
+                    <Card
+                      small
+                      className="card-post mb-2 card-post--aside card-post--1"
+                    >
+                      {editcategoryData.imageName !== "" ? (
+                        <div
+                          className="card-post__image"
+                          style={{
+                            backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/categories/${editcategoryData.imageName}')`
+                          }}
+                        ></div>
+                      ) : null}
+                    </Card>
+                  </Col>
+                  <Col md="4">
+                    <Button
+                      type="submit"
+                      disabled={editcategoryData.editEnable}
+                      theme={loading.update ? "default" : "info"}
+                      onClick={e => update(e)}
+                    >
+                      {loading.update ? (
+                        <img
+                          style={{ height: 93, width: 136 }}
+                          src={infinity}
+                        />
+                      ) : (
+                        "Update Category"
+                      )}
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+            ) : (
+              <div className="mb-5 addProduct">
+                <PageTitle
+                  sm="4"
+                  md="6"
+                  title="Add Category"
+                  className="text-sm-left"
+                />
+                <div className="form-group">
+                  <label htmlFor="categoryName">Category Name</label>
+                  <FormInput
+                    id="categoryName"
+                    type="test"
+                    placeholder="Category Name"
+                    onChange={e =>
+                      setCategory({
+                        ...categoryData,
+                        categoryName: e.target.value,
+                        createEnable: categoryData.categoryImage === null
+                      })
+                    }
+                  />
+                </div>
+                <div className="custom-file mb-3 mt-4">
+                  <label className="custom-file-label" htmlFor="customFile2">
+                    Category Image...
+                  </label>
+                  <FormInput
+                    type="file"
+                    className="custom-file-input"
+                    id="customFile2"
+                    onChange={e => onFileUpload(e, "categoryImage")}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  disabled={categoryData.createEnable}
+                  theme={loading.create ? "default" : "primary"}
+                  onClick={e => uploadFile(e)}
+                >
+                  {loading.create ? (
+                    <img style={{ height: 93, width: 136 }} src={infinity} />
+                  ) : (
+                    "Add Category"
+                  )}
+                </Button>
+              </div>
+            )}
           </Col>
           <Col md="6">
             {actualCategory.map(({ imageName, _id, categoryName }, index) => (

@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
 import AdminReducer from "../reducers/AdminReducer";
 import {
@@ -9,16 +9,19 @@ import {
   deleteCategoryById
 } from "../../api";
 import {
-  startLoading,
-  stopLoading,
   adminLoginAction,
   getCategoryCountAction,
   getCategoryCountFail,
   adminLogoutAction,
   loginFailAction,
   deleteSucessfull,
-  deleteUnSucessfull
+  deleteUnSucessfull,
+  addCategorySucess,
+  addCategoryUnSucess
 } from "../actions/adminActions";
+
+import { startLoading, stopLoading } from "../actions/LoadingAction";
+import { LoadingContex } from "./LoadingState";
 
 const initialState = {
   adminAccess: { message: "", login: false },
@@ -32,6 +35,7 @@ export const AdminContext = createContext(initialState);
 //Provider Component
 export const AdminProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AdminReducer, initialState);
+  const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
   //Actions
   const adminLogin = async data => {
     dispatch(startLoading());
@@ -56,30 +60,37 @@ export const AdminProvider = ({ children }) => {
   };
 
   const addMethodCategory = async data => {
-    dispatch(startLoading());
+    startLoadingMeth();
+    // dispatch(startLoading());
     await AddCategory(data)
       .then(res => {
+        stopLoadingMeth();
         if (res.status === 201) {
-          getCountCategory()
-            .then(res => {
-              dispatch(stopLoading());
-              if (res.status === 200) {
-                dispatch(getCategoryCountAction(res.data));
-              }
-            })
-            .catch(err => {
-              dispatch(getCategoryCountFail(err));
-            });
+          dispatch(addCategorySucess(res.data));
+          // getCountCategory()
+          //   .then(res => {
+          //     dispatch(stopLoading());
+          //     if (res.status === 201) {
+          //       dispatch(getCategoryCountAction(res.data));
+          //     }
+          //   })
+          //   .catch(err => {
+          //     dispatch(getCategoryCountFail(err));
+          //   });
+        } else {
+          dispatch(addCategoryUnSucess(res.data));
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => dispatch(addCategoryUnSucess(error)));
   };
 
   const getCategoryCount = async () => {
-    dispatch(startLoading());
+    startLoadingMeth();
+    // dispatch(startLoading());
     await getCountCategory()
       .then(res => {
-        dispatch(stopLoading());
+        stopLoadingMeth();
+        // dispatch(stopLoading());
         if (res.status === 200) {
           dispatch(getCategoryCountAction(res.data));
         }
@@ -94,7 +105,7 @@ export const AdminProvider = ({ children }) => {
     await updateCategory(updatedData)
       .then(res => {
         dispatch(stopLoading());
-        getCategoryCount();
+        // getCategoryCount();
       })
       .catch(error => console.log(error));
   };
@@ -112,6 +123,14 @@ export const AdminProvider = ({ children }) => {
       })
       .catch(err => {});
   };
+
+  // const startLoadingMeth = () => {
+  //   dispatch(startLoading());
+  // };
+
+  // const stopLoadingMeth = () => {
+  //   dispatch(stopLoading());
+  // };
 
   return (
     <AdminContext.Provider

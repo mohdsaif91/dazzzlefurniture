@@ -3,8 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.startLoading = startLoading;
-exports.stopLoading = stopLoading;
 exports.adminLoginAction = adminLoginAction;
 exports.getCategoryCountAction = getCategoryCountAction;
 exports.getCategoryCountFail = getCategoryCountFail;
@@ -12,7 +10,12 @@ exports.adminLogoutAction = adminLogoutAction;
 exports.loginFailAction = loginFailAction;
 exports.deleteSucessfull = deleteSucessfull;
 exports.deleteUnSucessfull = deleteUnSucessfull;
+exports.addCategorySucess = addCategorySucess;
+exports.addCategoryUnSucess = addCategoryUnSucess;
 exports.adminActions = void 0;
+
+var _LoadingAction = require("./LoadingAction");
+
 var adminActions = {
   ADMIN_LOGIN: "ADMIN_LOGIN",
   ADMIN_LOGOUT: "ADMIN_LOGOUT",
@@ -21,24 +24,10 @@ var adminActions = {
   GET_CATEGORY_COUNT: "GET_CATEGORY_COUNT",
   GET_CATEGORY_COUNT_FAIL: "GET_CATEGORY_COUNT_FAIL",
   LOGIN_FAIL: "LOGIN_FAIL",
-  START_LOADING: "START_LOADING",
-  STOP_LOADING: "STOP_LOADING"
+  ADD_CATEGORY_SUCESS: "ADD_CATEGORY_SUCESS",
+  ADD_CATEGORY_UNSUCESS: "ADD_CATEGORY_UNSUCESS"
 };
 exports.adminActions = adminActions;
-
-function startLoading() {
-  return {
-    type: adminActions.START_LOADING,
-    data: true
-  };
-}
-
-function stopLoading() {
-  return {
-    type: adminActions.STOP_LOADING,
-    data: false
-  };
-}
 
 function adminLoginAction() {
   return {
@@ -95,5 +84,19 @@ function deleteUnSucessfull(error) {
   return {
     type: adminActions.DELETE_UNSUCESSFULL,
     data: error
+  };
+}
+
+function addCategorySucess(data) {
+  return {
+    type: adminActions.ADD_CATEGORY_SUCESS,
+    data: data
+  };
+}
+
+function addCategoryUnSucess(data) {
+  return {
+    type: adminActions.ADD_CATEGORY_UNSUCESS,
+    data: data
   };
 }

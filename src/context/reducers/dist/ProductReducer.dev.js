@@ -50,7 +50,7 @@ var _default = function _default(state, action) {
     case _addProductAction.productAction.ADD_PRODUCT_SUCESS:
       return _objectSpread({}, state, {
         error: false,
-        allProduct: [].concat(_toConsumableArray(state.allProduct), [action.data])
+        allProduct: [].concat(_toConsumableArray(state.allProduct || []), [action.data])
       });
 
     case _addProductAction.productAction.ADD_PRODUCT_FAIL:
@@ -71,6 +71,18 @@ var _default = function _default(state, action) {
       return _objectSpread({}, state, {
         error: false,
         allProduct: updatedProducts
+      });
+
+    case _addProductAction.productAction.GOT_PRODUCT_ID_SUCESSFULL:
+      return _objectSpread({}, state, {
+        error: false,
+        lastObjectCount: action.data
+      });
+
+    case _addProductAction.productAction.GOT_PRODUCT_ID_UN_SUCESSFULL:
+      return _objectSpread({}, state, {
+        error: true,
+        lastObjectCount: action.data
       });
 
     default:

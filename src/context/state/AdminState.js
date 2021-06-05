@@ -17,7 +17,9 @@ import {
   deleteSucessfull,
   deleteUnSucessfull,
   addCategorySucess,
-  addCategoryUnSucess
+  addCategoryUnSucess,
+  updateCategorySucess,
+  updateCategoryUnSucess
 } from "../actions/adminActions";
 
 import { startLoading, stopLoading } from "../actions/LoadingAction";
@@ -101,36 +103,35 @@ export const AdminProvider = ({ children }) => {
   };
 
   const updateEditCategory = async updatedData => {
-    dispatch(startLoading());
+    startLoadingMeth();
     await updateCategory(updatedData)
       .then(res => {
-        dispatch(stopLoading());
-        // getCategoryCount();
+        stopLoadingMeth();
+        if (res === 201) {
+          dispatch(updateCategorySucess(res.data));
+        } else {
+          dispatch(updateCategoryUnSucess(res.data));
+        }
       })
-      .catch(error => console.log(error));
+      .catch(error => dispatch(updateCategoryUnSucess(error)));
   };
 
-  const deleteCategory = async (id, imageName) => {
-    dispatch(startLoading());
-    await deleteCategoryById(id, imageName)
+  const deleteCategory = async (id, imageName, categoryName) => {
+    startLoadingMeth();
+    console.log(categoryName, "<>?");
+    await deleteCategoryById(id, imageName, categoryName)
       .then(res => {
-        dispatch(stopLoading());
+        stopLoadingMeth();
         if (res.status === 200) {
           dispatch(deleteSucessfull(res.data));
         } else {
           throw res;
         }
       })
-      .catch(err => {});
+      .catch(err => {
+        dispatch(deleteUnSucessfull(err));
+      });
   };
-
-  // const startLoadingMeth = () => {
-  //   dispatch(startLoading());
-  // };
-
-  // const stopLoadingMeth = () => {
-  //   dispatch(stopLoading());
-  // };
 
   return (
     <AdminContext.Provider
@@ -138,6 +139,7 @@ export const AdminProvider = ({ children }) => {
         adminAccess: state.adminAccess,
         category: state.category,
         showLoading: state.showLoading,
+        categoryCount: state.categoryCount,
         adminLogin,
         adminLogOut,
         refreshLogin,

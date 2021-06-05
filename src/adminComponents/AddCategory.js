@@ -33,7 +33,8 @@ const editData = {
   editEnable: true,
   editedImage: null,
   imageDisplay: "",
-  categoryId: ""
+  categoryId: "",
+  oldCategoryName: ""
 };
 
 const loadingData = {
@@ -86,8 +87,10 @@ export default function AddCategory() {
     addMethodCategory(formDataKeyPair);
   };
 
-  const deleteCategoryMethod = (id, imageName) => {
-    deleteCategory(id, imageName);
+  const deleteCategoryMethod = (id, imageName, categoryName) => {
+    console.log(categoryName, "<>?");
+
+    deleteCategory(id, imageName, categoryName.replace(/ /g, "_"));
   };
 
   const editCategory = id => {
@@ -99,7 +102,8 @@ export default function AddCategory() {
       imageName: edited.imageName,
       editedcategoryName: edited.categoryName,
       editEnable: false,
-      categoryId: id
+      categoryId: id,
+      oldCategoryName: edited.categoryName
     });
   };
 
@@ -269,7 +273,9 @@ export default function AddCategory() {
                   </h5>
                   <div className="mt-5">
                     <Button
-                      onClick={() => deleteCategoryMethod(_id, imageName)}
+                      onClick={() =>
+                        deleteCategoryMethod(_id, imageName, categoryName)
+                      }
                       theme="danger"
                       className="mb-2 mr-1"
                     >

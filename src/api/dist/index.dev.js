@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProductApi = exports.deleteProductApi = exports.getProductApi = exports.addProductApi = exports.deleteCategoryById = exports.updateCategory = exports.getCountCategory = exports.AddCategory = exports.AuthLogin = void 0;
+exports.getProductLatestIdApi = exports.updateProductApi = exports.deleteProductApi = exports.getProductApi = exports.addProductApi = exports.deleteCategoryById = exports.updateCategory = exports.getCountCategory = exports.AddCategory = exports.AuthLogin = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -37,8 +37,8 @@ var updateCategory = function updateCategory(updatedData) {
 
 exports.updateCategory = updateCategory;
 
-var deleteCategoryById = function deleteCategoryById(id, imageName) {
-  return _axios.default.delete("".concat(url, "/v1/category/delete/").concat(id, "/").concat(imageName));
+var deleteCategoryById = function deleteCategoryById(id, imageName, categoryName) {
+  return _axios.default.delete("".concat(url, "/v1/category/delete/").concat(id, "/").concat(imageName, "/").concat(categoryName));
 }; //product
 
 
@@ -50,8 +50,8 @@ var addProductApi = function addProductApi(data) {
 
 exports.addProductApi = addProductApi;
 
-var getProductApi = function getProductApi() {
-  return _axios.default.get("".concat(url, "/v1/product"));
+var getProductApi = function getProductApi(category) {
+  return _axios.default.get("".concat(url, "/v1/product/").concat(category));
 };
 
 exports.getProductApi = getProductApi;
@@ -67,3 +67,9 @@ var updateProductApi = function updateProductApi(data) {
 };
 
 exports.updateProductApi = updateProductApi;
+
+var getProductLatestIdApi = function getProductLatestIdApi() {
+  return _axios.default.get("".concat(url, "/v1/product/Id"));
+};
+
+exports.getProductLatestIdApi = getProductLatestIdApi;

@@ -11,12 +11,14 @@ export const AddCategory = data => Axios.post(`${url}/v1/category/add`, data);
 export const getCountCategory = () => Axios.get(`${url}/v1/category`);
 export const updateCategory = updatedData =>
   Axios.patch(`${url}/v1/category/updateCategory`, updatedData);
-export const deleteCategoryById = (id, imageName) =>
-  Axios.delete(`${url}/v1/category/delete/${id}/${imageName}`);
+export const deleteCategoryById = (id, imageName, categoryName) =>
+  Axios.delete(`${url}/v1/category/delete/${id}/${imageName}/${categoryName}`);
 
 //product
 export const addProductApi = data => Axios.post(`${url}/v1/product/add`, data);
-export const getProductApi = () => Axios.get(`${url}/v1/product`);
+export const getProductApi = category =>
+  Axios.get(`${url}/v1/product/${category}`);
 export const deleteProductApi = (id, imageName) =>
   Axios.delete(`${url}/v1/product/${id}/${imageName}`);
 export const updateProductApi = data => Axios.patch(`${url}/v1/product`, data);
+export const getProductLatestIdApi = () => Axios.get(`${url}/v1/product/Id`);

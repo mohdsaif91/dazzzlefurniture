@@ -29,7 +29,7 @@ export default (state, action) => {
       return {
         ...state,
         error: false,
-        allProduct: [...state.allProduct, action.data]
+        allProduct: [...(state.allProduct || []), action.data]
       };
     case productAction.ADD_PRODUCT_FAIL:
       return {
@@ -50,6 +50,18 @@ export default (state, action) => {
         ...state,
         error: false,
         allProduct: updatedProducts
+      };
+    case productAction.GOT_PRODUCT_ID_SUCESSFULL:
+      return {
+        ...state,
+        error: false,
+        lastObjectCount: action.data
+      };
+    case productAction.GOT_PRODUCT_ID_UN_SUCESSFULL:
+      return {
+        ...state,
+        error: true,
+        lastObjectCount: action.data
       };
     default:
       return state;

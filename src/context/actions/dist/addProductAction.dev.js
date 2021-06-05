@@ -3,6 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.gotProductIdSucessfull = gotProductIdSucessfull;
+exports.gotProductIdUnSucessfull = gotProductIdUnSucessfull;
 exports.getProductSucessfull = getProductSucessfull;
 exports.getProductUnSucessfull = getProductUnSucessfull;
 exports.updateProductSucess = updateProductSucess;
@@ -28,9 +30,25 @@ var productAction = {
   GET_PRODUCT_UNSUCESSFULL: "GET_PRODUCT_UNSUCESSFULL",
   PRODUCT_FAILED: "PRODUCT_FAILED",
   START_LOADING: "START_LOADING",
-  STOP_LOADING: "STOP_LOADING"
+  STOP_LOADING: "STOP_LOADING",
+  GOT_PRODUCT_ID_SUCESSFULL: "GOT_PRODUCT_ID_SUCESSFULL",
+  GOT_PRODUCT_ID_UN_SUCESSFULL: "GOT_PRODUCT_ID_UN_SUCESSFULL"
 };
 exports.productAction = productAction;
+
+function gotProductIdSucessfull(data) {
+  return {
+    type: productAction.GOT_PRODUCT_ID_SUCESSFULL,
+    data: data
+  };
+}
+
+function gotProductIdUnSucessfull(data) {
+  return {
+    type: productAction.GOT_PRODUCT_ID_UN_SUCESSFULL,
+    data: data
+  };
+}
 
 function getProductSucessfull(data) {
   return {

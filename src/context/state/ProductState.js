@@ -8,22 +8,23 @@ import {
   getProductUnSucessfull,
   updateProductSucess,
   updateProductUnSucess,
-  startLoading,
-  stopLoading
+  gotProductIdSucessfull,
+  gotProductIdUnSucessfull
 } from "../actions/addProductAction";
 import {
   addProductApi,
   getProductApi,
   deleteProductApi,
-  updateProductApi
+  updateProductApi,
+  getProductLatestIdApi
 } from "../../api";
-// import { startLoading, stopLoading } from "../actions/LoadingAction";
 import ProductReducer from "../reducers/ProductReducer";
 import { LoadingContex } from "./LoadingState";
 
 const initialProductState = {
   allProduct: null,
-  productCount: 0
+  productCount: 0,
+  lastObjectCount: null
 };
 
 export const ProductContext = createContext(initialProductState);
@@ -32,9 +33,9 @@ export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialProductState);
   const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
 
-  const getProductState = async () => {
+  const getProductState = async category => {
     startLoadingMeth();
-    await getProductApi()
+    await getProductApi(category)
       .then(res => {
         stopLoadingMeth();
         if (res.status === 200) {
@@ -91,7 +92,17 @@ export const ProductProvider = ({ children }) => {
       .catch(err => dispatch(updateProductUnSucess(err)));
   };
 
-  const allProduct = !state.allProduct ? [] : state.allProduct;
+  const getLatestProductId = async () => {
+    startLoadingMeth();
+    await getProductLatestIdApi()
+      .then(res => {
+        stopLoadingMeth();
+        dispatch(gotProductIdSucessfull(res.data));
+      })
+      .catch(err => {
+        dispatch(gotProductIdUnSucessfull(err));
+      });
+  };
 
   return (
     <ProductContext.Provider
@@ -99,10 +110,12 @@ export const ProductProvider = ({ children }) => {
         allProduct: state.allProduct,
         error: state.error,
         showLoading: state.showLoading,
+        lastObjectCount: state.lastObjectCount,
         getProductState,
         addProductState,
         deleteProduct,
-        updateProductState
+        updateProductState,
+        getLatestProductId
       }}
     >
       {children}

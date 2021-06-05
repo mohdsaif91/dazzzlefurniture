@@ -22,8 +22,8 @@ const initialProductState = {
   productName: "",
   productImage: "",
   productCategory: "",
-  productId: 0,
-  products: []
+  products: [],
+  selectedCategory: ""
 };
 const editProductData = {
   editProductName: "",
@@ -42,9 +42,9 @@ export default function AddProductComponent() {
 
   const {
     category: { category },
+    categoryCount,
     getCategoryCount
   } = useContext(AdminContext);
-
   const {
     allProduct,
     getProductState,
@@ -57,14 +57,14 @@ export default function AddProductComponent() {
     if (category === undefined) {
       getCategoryCount();
     }
-    if (allProduct === null) {
-      getProductState();
-    } else {
-      setProduct({ ...product, products: allProduct });
-    }
-  }, [category, allProduct]);
+  }, [category]);
 
-  const actualCategory = category === undefined ? [] : category;
+  useEffect(() => {
+    setProduct({
+      ...product,
+      products: allProduct || []
+    });
+  }, [product.selectedCategory]);
 
   const addProduct = () => {
     addProductState(getFormData(product));
@@ -75,15 +75,10 @@ export default function AddProductComponent() {
   };
 
   const uploadProductImage = (e, type) => {
-    console.log(type, "<>?");
     if (type === "add") {
       setProduct({
         ...product,
-        productImage: e.target.files[0],
-        productId:
-          product.products.length === 0
-            ? 100
-            : product.products[product.products.length - 1].productId + 1
+        productImage: e.target.files[0]
       });
     } else {
       setEdit({
@@ -118,13 +113,24 @@ export default function AddProductComponent() {
     deleteProduct(id, imageName);
   };
 
+  const getProductFromCategory = categoryName => {
+    const category = categoryName.substring(0, categoryName.lastIndexOf(" "));
+    getProductState(category.trim());
+    setProduct({
+      ...product,
+      selectedCategory: categoryName.trim()
+    });
+  };
+
+  const actualCategory = categoryCount === undefined ? [] : categoryCount;
+
   return (
     <ListGroup flush>
       <ListGroupItem className="p-3">
         <Row className="d-flex flex-row">
           {/* updateProduct */}
           <Col md="6">
-            <div className="d-flex justify-content-between mb-4">
+            <div className="d-flex justify-content-around mb-4">
               <Button
                 disabled={!tabShow}
                 theme={`${tabShow ? "primary" : ""}`}
@@ -132,6 +138,22 @@ export default function AddProductComponent() {
               >
                 Update Product
               </Button>
+
+              <FormSelect
+                id="feInputState"
+                className="select-in-mobile"
+                value={edit.newEditCategoryName}
+                onChange={e => getProductFromCategory(e.target.value)}
+              >
+                <option>Select Category</option>
+                {actualCategory.map(m => (
+                  <option className="d-flex justify-content-around">
+                    {m.name}
+                    {"   "} {m.count}
+                  </option>
+                ))}
+              </FormSelect>
+
               <Button
                 theme={`${tabShow ? "" : "primary"}`}
                 onClick={() => setTabShow(false)}
@@ -180,7 +202,7 @@ export default function AddProductComponent() {
                       >
                         <option>Choose...</option>
                         {actualCategory.map(m => (
-                          <option>{m.categoryName}</option>
+                          <option>{m.name}</option>
                         ))}
                       </FormSelect>
                     </Col>
@@ -265,7 +287,7 @@ export default function AddProductComponent() {
                       >
                         <option>Choose...</option>
                         {actualCategory.map(m => (
-                          <option>{m.categoryName}</option>
+                          <option>{m.name}</option>
                         ))}
                       </FormSelect>
                     </Col>
@@ -294,62 +316,74 @@ export default function AddProductComponent() {
             )}
           </Col>
           <Col md="6" sm="12" className="flex-col mt-3">
-            {product.products.map(
-              (
-                { categoryName, productImageName, _id, productId, productName },
-                index
-              ) => (
-                <Card
-                  small
-                  className="card-post mb-2 card-post--aside card-post--1"
-                >
-                  <div
-                    className="card-post__image"
-                    style={{
-                      backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${productImageName}')`
-                    }}
+            {product.products.length !== 0 ? (
+              product.products.map(
+                (
+                  {
+                    categoryName,
+                    productImageName,
+                    _id,
+                    productId,
+                    productName
+                  },
+                  index
+                ) => (
+                  <Card
+                    small
+                    className="card-post mb-2 card-post--aside card-post--1"
                   >
-                    <Badge pill className="card-post__category bg-info">
-                      {categoryName}
-                    </Badge>
-                  </div>
-                  <CardBody>
-                    <h6 className="card-title">
-                      <a className="text-fiord-blue" href="#">
-                        #{index + 1}
-                      </a>
-                    </h6>
-                    <h6 className="card-title">
-                      <a className="text-fiord-blue" href="#">
-                        Name: {productName}
-                      </a>
-                    </h6>
-                    <h6 className="card-title">
-                      <a className="text-fiord-blue" href="#">
-                        ID: {`df${productId}`}
-                      </a>
-                    </h6>
-                    <div className="mt-5">
-                      <Button
-                        onClick={() =>
-                          deleteProductMethod(_id, productImageName)
-                        }
-                        theme="danger"
-                        className="mb-2 mr-1"
-                      >
-                        Delete
-                      </Button>
-                      <Button
-                        onClick={() => editProduct(_id)}
-                        theme="info"
-                        className="mb-2 mr-1"
-                      >
-                        Edit
-                      </Button>
+                    <div
+                      className="card-post__image"
+                      style={{
+                        backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${productImageName}')`
+                      }}
+                    >
+                      <Badge pill className="card-post__category bg-info">
+                        {categoryName}
+                      </Badge>
                     </div>
-                  </CardBody>
-                </Card>
+                    <CardBody>
+                      <h6 className="card-title">
+                        <a className="text-fiord-blue" href="#">
+                          #{index + 1}
+                        </a>
+                      </h6>
+                      <h6 className="card-title">
+                        <a className="text-fiord-blue" href="#">
+                          Name: {productName}
+                        </a>
+                      </h6>
+                      <h6 className="card-title">
+                        <a className="text-fiord-blue" href="#">
+                          ID: {`df${productId}`}
+                        </a>
+                      </h6>
+                      <div className="mt-5">
+                        <Button
+                          onClick={() =>
+                            deleteProductMethod(_id, productImageName)
+                          }
+                          theme="danger"
+                          className="mb-2 mr-1"
+                        >
+                          Delete
+                        </Button>
+                        <Button
+                          onClick={() => editProduct(_id)}
+                          theme="info"
+                          className="mb-2 mr-1"
+                        >
+                          Edit
+                        </Button>
+                      </div>
+                    </CardBody>
+                  </Card>
+                )
               )
+            ) : (
+              <span className="text-danger mt-5">
+                <b>Select the category or Category is empty </b>
+              </span>
             )}
           </Col>
         </Row>

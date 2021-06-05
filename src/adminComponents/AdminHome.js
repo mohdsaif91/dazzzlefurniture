@@ -21,8 +21,8 @@ export default function AdminHome() {
     if (allProduct === null) {
       getProductState();
     }
-  }, [category, allProduct]);
-
+  }, []);
+  // category, allProduct
   const actualCategory = category === undefined ? [] : category;
 
   const actualProduct = allProduct === null ? [] : allProduct;

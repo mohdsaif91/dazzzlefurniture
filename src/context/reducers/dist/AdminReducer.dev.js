@@ -39,8 +39,10 @@ var _default = function _default(state, action) {
       });
 
     case _adminActions.adminActions.GET_CATEGORY_COUNT:
+      var categoryCount = action.data.categoryCount;
       return _objectSpread({}, state, {
-        category: action.data
+        category: action.data,
+        categoryCount: categoryCount
       });
 
     case _adminActions.adminActions.DELETE_SUCESSFULL:
@@ -63,6 +65,21 @@ var _default = function _default(state, action) {
       return _objectSpread({}, state, {
         error: true,
         category: action.data
+      });
+
+    case _adminActions.adminActions.UPDATED_CATEGORY_SUCESS:
+      var updatedValue = action.data;
+      console.log(updatedValue, "<>?");
+      var updatedCat = state.category.filter(function (f) {
+        if (f._id === updatedValue._id) {
+          return updatedValue;
+        } else {
+          return f;
+        }
+      });
+      return _objectSpread({}, state, {
+        error: false,
+        category: updatedCat
       });
 
     case _adminActions.adminActions.DELETE_UNSUCESSFULL:

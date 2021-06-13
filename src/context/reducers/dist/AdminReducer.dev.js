@@ -39,10 +39,13 @@ var _default = function _default(state, action) {
       });
 
     case _adminActions.adminActions.GET_CATEGORY_COUNT:
-      var categoryCount = action.data.categoryCount;
+      var _action$data = action.data,
+          categoryCount = _action$data.categoryCount,
+          productCount = _action$data.productCount;
       return _objectSpread({}, state, {
         category: action.data,
-        categoryCount: categoryCount
+        categoryCount: categoryCount,
+        productCount: productCount
       });
 
     case _adminActions.adminActions.DELETE_SUCESSFULL:
@@ -69,8 +72,7 @@ var _default = function _default(state, action) {
 
     case _adminActions.adminActions.UPDATED_CATEGORY_SUCESS:
       var updatedValue = action.data;
-      console.log(updatedValue, "<>?");
-      var updatedCat = state.category.filter(function (f) {
+      var updatedCat = state.category.category.filter(function (f) {
         if (f._id === updatedValue._id) {
           return updatedValue;
         } else {

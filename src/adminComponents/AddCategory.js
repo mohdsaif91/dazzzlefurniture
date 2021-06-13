@@ -6,15 +6,10 @@ import {
   Col,
   Form,
   FormInput,
-  FormGroup,
   Card,
   CardBody,
-  CardHeader,
-  Button,
-  CardFooter,
-  Badge
+  Button
 } from "shards-react";
-import FormData from "form-data";
 
 import { AdminContext } from "../context/state/AdminState";
 import PageTitle from "../components/common/PageTitle";
@@ -47,6 +42,8 @@ export default function AddCategory() {
   const [loading, setLoading] = useState({ ...loadingData });
   const [tabShow, setTabShow] = useState(false);
   const [editcategoryData, setEditCategoryData] = useState({ ...editData });
+  const [actualCategory, setActualCategory] = useState([]);
+  const [searchCategory, setSearchCategory] = useState("");
 
   const {
     addMethodCategory,
@@ -73,13 +70,31 @@ export default function AddCategory() {
   };
 
   useEffect(() => {
+    setActualCategory(cat || []);
+  }, []);
+
+  useEffect(() => {
+    if (searchCategory !== "") {
+      let filteredArray = [];
+      actualCategory.filter(f => {
+        if (f.categoryName.includes(searchCategory)) {
+          filteredArray.push(f);
+        }
+      });
+      setActualCategory(filteredArray);
+    } else {
+      setActualCategory(cat || []);
+    }
+  }, [searchCategory]);
+
+  useEffect(() => {
     if (cat === undefined) {
       getCategoryCount();
     }
     showLoading.type === "category"
       ? setLoading({ ...loading, create: showLoading.flag })
       : setLoading({ ...loading, update: showLoading.flag });
-  }, [cat, showLoading]);
+  }, [actualCategory, showLoading]);
 
   const uploadFile = e => {
     e.preventDefault();
@@ -88,8 +103,6 @@ export default function AddCategory() {
   };
 
   const deleteCategoryMethod = (id, imageName, categoryName) => {
-    console.log(categoryName, "<>?");
-
     deleteCategory(id, imageName, categoryName.replace(/ /g, "_"));
   };
 
@@ -113,11 +126,22 @@ export default function AddCategory() {
     updateEditCategory(updatedFormPairKey);
   };
 
-  const actualCategory = cat === undefined ? [] : cat;
   return (
     <ListGroup flush>
       <ListGroupItem className="p-3">
         <Row className="d-flex flex-row">
+          <Col md="3" sm="0" />
+          <Col md="6" sm="12">
+            <Form className="add-new-post">
+              <FormInput
+                size="lg"
+                className="mb-3"
+                onChange={e => setSearchCategory(e.target.value)}
+                placeholder="Search for Category"
+              />
+            </Form>
+          </Col>
+          <Col md="3" sm="0" />
           <Col md="6">
             <div className="d-flex justify-content-between mb-4">
               <Button
@@ -125,14 +149,14 @@ export default function AddCategory() {
                 theme={`${tabShow ? "primary" : "default"}`}
                 className={` ${tabShow ? "btn btn-primary" : ""} mr-5 border`}
               >
-                Update Product
+                Update Category
               </Button>
               <Button
                 theme={`${tabShow ? "" : "primary"}`}
                 onClick={() => setTabShow(false)}
                 className={`btn ${tabShow ? "" : "btn-primary"} border`}
               >
-                Add Product
+                Add Category
               </Button>
             </div>
             {tabShow ? (

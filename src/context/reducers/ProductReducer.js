@@ -1,7 +1,6 @@
 import { productAction } from "../actions/addProductAction";
 
 export default (state, action) => {
-  console.log(action, "<>?");
   switch (action.type) {
     case productAction.GET_PRODUCT_SUCESSFULL:
       return {

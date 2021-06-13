@@ -16,6 +16,7 @@ import AdminHome from "./adminComponents/AdminHome";
 import AddProduct from "./adminComponents/AddProduct";
 import AddCategory from "./adminComponents/AddCategory";
 import Categories from "./components/Pages/Categories";
+import Products from "./components/Pages/Products";
 
 export default [
   {
@@ -58,5 +59,6 @@ export default [
   { path: "/adminHome/admin", layout: DefaultLayout, component: AdminHome },
   { path: "/addProduct/admin", layout: DefaultLayout, component: AddProduct },
   { path: "/addCategory/admin", layout: DefaultLayout, component: AddCategory },
-  { path: "/categories", layout: DefaultLayout, component: Categories }
+  { path: "/categories", layout: DefaultLayout, component: Categories },
+  { pathc: "/products", layout: DefaultLayout, component: Products }
 ];

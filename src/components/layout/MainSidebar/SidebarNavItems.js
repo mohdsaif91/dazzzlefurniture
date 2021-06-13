@@ -14,7 +14,7 @@ export default function SidebarNavItems() {
     Store.addChangeListener(onChange);
     if (
       window.location.href.split("/").pop() === "admin" &&
-      !adminAccess.login
+      sessionStorage.getItem("adminAccess")
     ) {
       refreshLogin();
     }

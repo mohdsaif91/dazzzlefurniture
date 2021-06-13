@@ -8,7 +8,8 @@ import { ProductContext } from "../context/state/ProductState";
 export default function AdminHome() {
   const {
     category: { category },
-    getCategoryCount
+    getCategoryCount,
+    productCount
   } = useContext(AdminContext);
 
   const { allProduct, getProductState } = useContext(ProductContext);
@@ -21,11 +22,9 @@ export default function AdminHome() {
     if (allProduct === null) {
       getProductState();
     }
-  }, []);
-  // category, allProduct
-  const actualCategory = category === undefined ? [] : category;
+  }, [category, allProduct]);
 
-  const actualProduct = allProduct === null ? [] : allProduct;
+  const actualCategory = category === undefined ? [] : category;
 
   return (
     <Container fluid className="main-content-container px-4">
@@ -42,7 +41,7 @@ export default function AdminHome() {
           <Card small className="card-post mb-4 mt-4">
             <CardBody>
               <h5 className="card-title">Number of Product</h5>
-              <p className="card-text text-muted">{actualProduct.length}</p>
+              <p className="card-text text-muted">{productCount}</p>
             </CardBody>
           </Card>
         </Col>

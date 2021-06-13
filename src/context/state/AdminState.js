@@ -44,6 +44,7 @@ export const AdminProvider = ({ children }) => {
     await AuthLogin(data)
       .then(res => {
         if (res.status === 200) {
+          sessionStorage.setItem("adminAccess", true);
           dispatch(adminLoginAction());
           dispatch(stopLoading("adminLogin"));
         }
@@ -54,10 +55,12 @@ export const AdminProvider = ({ children }) => {
   };
 
   const refreshLogin = () => {
+    sessionStorage.setItem("adminAccess", true);
     dispatch(adminLoginAction());
   };
 
   const adminLogOut = () => {
+    sessionStorage.setItem("adminAccess", false);
     dispatch(adminLogoutAction());
   };
 
@@ -88,11 +91,9 @@ export const AdminProvider = ({ children }) => {
 
   const getCategoryCount = async () => {
     startLoadingMeth();
-    // dispatch(startLoading());
     await getCountCategory()
       .then(res => {
         stopLoadingMeth();
-        // dispatch(stopLoading());
         if (res.status === 200) {
           dispatch(getCategoryCountAction(res.data));
         }
@@ -107,7 +108,7 @@ export const AdminProvider = ({ children }) => {
     await updateCategory(updatedData)
       .then(res => {
         stopLoadingMeth();
-        if (res === 201) {
+        if (res.status === 201) {
           dispatch(updateCategorySucess(res.data));
         } else {
           dispatch(updateCategoryUnSucess(res.data));
@@ -118,7 +119,6 @@ export const AdminProvider = ({ children }) => {
 
   const deleteCategory = async (id, imageName, categoryName) => {
     startLoadingMeth();
-    console.log(categoryName, "<>?");
     await deleteCategoryById(id, imageName, categoryName)
       .then(res => {
         stopLoadingMeth();
@@ -140,6 +140,7 @@ export const AdminProvider = ({ children }) => {
         category: state.category,
         showLoading: state.showLoading,
         categoryCount: state.categoryCount,
+        productCount: state.productCount,
         adminLogin,
         adminLogOut,
         refreshLogin,

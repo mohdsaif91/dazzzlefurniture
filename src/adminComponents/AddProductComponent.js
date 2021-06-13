@@ -130,7 +130,7 @@ export default function AddProductComponent() {
         <Row className="d-flex flex-row">
           {/* updateProduct */}
           <Col md="6">
-            <div className="d-flex justify-content-around mb-4">
+            <div className="d-flex justify-content-around">
               <Button
                 disabled={!tabShow}
                 theme={`${tabShow ? "primary" : ""}`}
@@ -162,6 +162,19 @@ export default function AddProductComponent() {
                 Add Product
               </Button>
             </div>
+            {/* <Row className="m-4">
+              <Col md="12" sm="12">
+                <div className="d-flex justify-content-center">
+                  <Button
+                    theme="primary"
+                    onClick={() => refreshCategory()}
+                    className="btn btn-danger btn-lg btn-block"
+                  >
+                    Refresh Category
+                  </Button>
+                </div>
+              </Col>
+            </Row> */}
             {tabShow ? (
               // update Product
               <div className="mb-5">

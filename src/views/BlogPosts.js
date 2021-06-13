@@ -16,6 +16,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 import PageTitle from "../components/common/PageTitle";
 import { AdminContext } from "../context/state/AdminState";
+import { ProductContext } from "../context/state/ProductState";
+import { Link, useHistory } from "react-router-dom";
 
 const initialData = {
   // First list of posts.
@@ -175,6 +177,9 @@ export default function BlogPosts() {
   const { PostsListOne, PostsListTwo, PostsListThree, PostsListFour } = data;
 
   const { getCategoryCount, category } = useContext(AdminContext);
+  const { getProductState } = useContext(ProductContext);
+
+  const history = useHistory();
 
   useEffect(() => {
     if (!category.category) {
@@ -184,7 +189,13 @@ export default function BlogPosts() {
 
   const viewCategory = () => {};
 
-  const expand = () => {};
+  const getProduct = e => {
+    getProductState(e.target.id);
+    history.push({
+      pathname: "/product",
+      state: { categoryName: e.target.id }
+    });
+  };
   const categoryData = !category.category ? [] : category.category;
 
   return (
@@ -278,9 +289,16 @@ export default function BlogPosts() {
           <Col lg="10" md="10" sm="12" className="mb-4">
             {data.categoryVisible &&
               categoryData.map(({ categoryName }) => (
-                <Button size="sm" theme="white">
+                // <Link to="/products">
+                <Button
+                  size="sm"
+                  id={categoryName}
+                  onClick={e => getProduct(e)}
+                  theme="white"
+                >
                   {categoryName}
                 </Button>
+                // </Link>
               ))}
           </Col>
           <Col lg="1" md="1"></Col>

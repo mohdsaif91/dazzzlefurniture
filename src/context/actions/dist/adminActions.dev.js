@@ -106,6 +106,7 @@ function addCategoryUnSucess(data) {
 }
 
 function updateCategorySucess(data) {
+  console.log(data, "<>?");
   return {
     type: adminActions.UPDATED_CATEGORY_SUCESS,
     data: data

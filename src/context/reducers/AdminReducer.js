@@ -18,11 +18,12 @@ export default (state, action) => {
         adminAccess: action.data
       };
     case adminActions.GET_CATEGORY_COUNT:
-      const { categoryCount } = action.data;
+      const { categoryCount, productCount } = action.data;
       return {
         ...state,
         category: action.data,
-        categoryCount: categoryCount
+        categoryCount: categoryCount,
+        productCount
       };
     case adminActions.DELETE_SUCESSFULL:
       const category = {
@@ -46,8 +47,7 @@ export default (state, action) => {
       };
     case adminActions.UPDATED_CATEGORY_SUCESS:
       const updatedValue = action.data;
-      console.log(updatedValue, "<>?");
-      const updatedCat = state.category.filter(f => {
+      const updatedCat = state.category.category.filter(f => {
         if (f._id === updatedValue._id) {
           return updatedValue;
         } else {

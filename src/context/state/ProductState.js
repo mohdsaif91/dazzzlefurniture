@@ -9,14 +9,14 @@ import {
   updateProductSucess,
   updateProductUnSucess,
   gotProductIdSucessfull,
-  gotProductIdUnSucessfull
+  gotProductIdUnSucessfull,
 } from "../actions/addProductAction";
 import {
   addProductApi,
   getProductApi,
   deleteProductApi,
   updateProductApi,
-  getProductLatestIdApi
+  getProductLatestIdApi,
 } from "../../api";
 import ProductReducer from "../reducers/ProductReducer";
 import { LoadingContex } from "./LoadingState";
@@ -24,7 +24,7 @@ import { LoadingContex } from "./LoadingState";
 const initialProductState = {
   allProduct: null,
   productCount: 0,
-  lastObjectCount: null
+  lastObjectCount: null,
 };
 
 export const ProductContext = createContext(initialProductState);
@@ -33,10 +33,10 @@ export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialProductState);
   const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
 
-  const getProductState = async category => {
+  const getProductState = async (category) => {
     startLoadingMeth();
     await getProductApi(category)
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
         if (res.status === 200) {
           dispatch(getProductSucessfull(res.data));
@@ -44,15 +44,15 @@ export const ProductProvider = ({ children }) => {
           dispatch(getProductUnSucessfull(res.data));
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(getProductUnSucessfull(err));
       });
   };
 
-  const addProductState = async product => {
+  const addProductState = async (product) => {
     startLoadingMeth();
     // dispatch(startLoading());
-    await addProductApi(product).then(res => {
+    await addProductApi(product).then((res) => {
       stopLoadingMeth();
       // dispatch(stopLoading());
       if (res.status === 201) {
@@ -65,41 +65,38 @@ export const ProductProvider = ({ children }) => {
     // dispatch(startLoading());
     startLoadingMeth();
     await deleteProductApi(id, imageName)
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
         // dispatch(stopLoading());
         if (res.status === 200) {
           dispatch(deleteSucessfullProduct(res.data));
         }
       })
-      .catch(err => dispatch(deleteUnsucessfull(err)));
+      .catch((err) => dispatch(deleteUnsucessfull(err)));
   };
 
-  const updateProductState = async updatedData => {
-    // dispatch(startLoading());
+  const updateProductState = async (updatedData) => {
     startLoadingMeth();
     await updateProductApi(updatedData)
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
-        // dispatch(stopLoading());
         if (res.status === 201) {
-          console.log(res.data, "<>?");
           dispatch(updateProductSucess(res.data));
         } else {
           dispatch(updateProductUnSucess(res.data));
         }
       })
-      .catch(err => dispatch(updateProductUnSucess(err)));
+      .catch((err) => dispatch(updateProductUnSucess(err)));
   };
 
   const getLatestProductId = async () => {
     startLoadingMeth();
     await getProductLatestIdApi()
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
         dispatch(gotProductIdSucessfull(res.data));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(gotProductIdUnSucessfull(err));
       });
   };
@@ -115,7 +112,7 @@ export const ProductProvider = ({ children }) => {
         addProductState,
         deleteProduct,
         updateProductState,
-        getLatestProductId
+        getLatestProductId,
       }}
     >
       {children}

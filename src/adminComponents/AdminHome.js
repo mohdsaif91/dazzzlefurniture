@@ -9,13 +9,12 @@ export default function AdminHome() {
   const {
     category: { category },
     getCategoryCount,
-    productCount
+    productCount,
   } = useContext(AdminContext);
 
   const { allProduct, getProductState } = useContext(ProductContext);
 
   useEffect(() => {
-    console.log(allProduct, "<>?");
     if (category === undefined) {
       getCategoryCount();
     }
@@ -60,7 +59,7 @@ export default function AdminHome() {
               <div
                 className="card-post__image card-image"
                 style={{
-                  backgroundImage: `url(https://www.w3schools.com/howto/img_nature_wide.jpg)`
+                  backgroundImage: `url(https://www.w3schools.com/howto/img_nature_wide.jpg)`,
                 }}
               ></div>
             </Card>
@@ -70,7 +69,7 @@ export default function AdminHome() {
               <div
                 className="card-post__image card-image"
                 style={{
-                  backgroundImage: `url(https://www.w3schools.com/howto/img_fjords_wide.jpg)`
+                  backgroundImage: `url(https://www.w3schools.com/howto/img_fjords_wide.jpg)`,
                 }}
               ></div>
             </Card>

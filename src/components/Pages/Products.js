@@ -47,7 +47,6 @@ export default function Products(props) {
   }, [allProduct]);
 
   const openImage = (image) => {
-    console.log(image, "<>?");
     setModal({
       ...modal,
       showModal: !modal.showModal,
@@ -55,57 +54,45 @@ export default function Products(props) {
     });
   };
 
-  console.log(selectedProduct, "<>?", categoryName, allProduct);
+  // console.log(selectedProduct, "<>?", categoryName, allProduct);
   return (
     <Container fluid className="main-content-container px-4 mt-4">
       <Row>
-        {/* {imgList.map(m=>
-          <Card small className="card-post mb-4">
+        {selectedProduct.map((m) => (
+          <Col lg="4" key={m._id}>
+            <Card small className="card-post mb-4">
               <div
                 className="card-post__image"
                 style={{
-                  backgroundImage: `url(${m})`
+                  backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${m.productImageName}')`,
                 }}
               />
-              </Card>)
-              } */}
-        <ImageGroup>
-          {selectedProduct.map((m) => (
-            <Col lg="4" key={m._id}>
-              <Card small className="card-post mb-4">
-                <div
-                  className="card-post__image"
-                  style={{
-                    backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${m.productImageName}')`,
-                  }}
-                />
-                <CardFooter className="border-top d-flex">
-                  <div className="card-post__author d-flex">
-                    <div className="d-flex flex-column justify-content-center ml-3">
-                      <span className="card-post__author-name">
-                        {m.productName}
-                      </span>
-                      <small>{m.categoryName}</small>
-                    </div>
+              <CardFooter className="border-top d-flex">
+                <div className="card-post__author d-flex">
+                  <div className="d-flex flex-column justify-content-center ml-3">
+                    <span className="card-post__author-name">
+                      {m.productName}
+                    </span>
+                    <small>{m.categoryName}</small>
                   </div>
-                  <div className="my-auto ml-auto">
-                    <Button
-                      size="sm"
-                      theme="primary"
-                      onClick={() =>
-                        openImage(
-                          `http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${m.productImageName}`
-                        )
-                      }
-                    >
-                      <i className="far fa fa-eye mr-1" /> View
-                    </Button>
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-          ))}
-        </ImageGroup>
+                </div>
+                <div className="my-auto ml-auto">
+                  <Button
+                    size="sm"
+                    theme="primary"
+                    onClick={() =>
+                      openImage(
+                        `http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${m.productImageName}`
+                      )
+                    }
+                  >
+                    <i className="far fa fa-eye mr-1" /> View
+                  </Button>
+                </div>
+              </CardFooter>
+            </Card>
+          </Col>
+        ))}
       </Row>
       {/* toggle={this.toggle} */}
       <Modal
@@ -117,14 +104,12 @@ export default function Products(props) {
             <Image
               // className="card-post__image"
               src={modal.image}
-              alt="nature"
               style={{
-                position: "absolute",
+                position: "relative",
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                height: "146%",
                 width: "100%",
                 objectFit: "cover",
               }}

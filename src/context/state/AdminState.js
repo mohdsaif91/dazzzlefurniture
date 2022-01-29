@@ -6,7 +6,7 @@ import {
   AddCategory,
   getCountCategory,
   updateCategory,
-  deleteCategoryById
+  deleteCategoryById,
 } from "../../api";
 import {
   adminLoginAction,
@@ -19,7 +19,7 @@ import {
   addCategorySucess,
   addCategoryUnSucess,
   updateCategorySucess,
-  updateCategoryUnSucess
+  updateCategoryUnSucess,
 } from "../actions/adminActions";
 
 import { startLoading, stopLoading } from "../actions/LoadingAction";
@@ -28,7 +28,7 @@ import { LoadingContex } from "./LoadingState";
 const initialState = {
   adminAccess: { message: "", login: false },
   category: {},
-  showLoading: false
+  showLoading: false,
 };
 
 //create createContext
@@ -39,17 +39,17 @@ export const AdminProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AdminReducer, initialState);
   const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
   //Actions
-  const adminLogin = async data => {
+  const adminLogin = async (data) => {
     dispatch(startLoading());
     await AuthLogin(data)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           sessionStorage.setItem("adminAccess", true);
           dispatch(adminLoginAction());
           dispatch(stopLoading("adminLogin"));
         }
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(loginFailAction());
       });
   };
@@ -64,11 +64,11 @@ export const AdminProvider = ({ children }) => {
     dispatch(adminLogoutAction());
   };
 
-  const addMethodCategory = async data => {
+  const addMethodCategory = async (data) => {
     startLoadingMeth();
     // dispatch(startLoading());
     await AddCategory(data)
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
         if (res.status === 201) {
           dispatch(addCategorySucess(res.data));
@@ -86,27 +86,27 @@ export const AdminProvider = ({ children }) => {
           dispatch(addCategoryUnSucess(res.data));
         }
       })
-      .catch(error => dispatch(addCategoryUnSucess(error)));
+      .catch((error) => dispatch(addCategoryUnSucess(error)));
   };
 
   const getCategoryCount = async () => {
     startLoadingMeth();
     await getCountCategory()
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
         if (res.status === 200) {
           dispatch(getCategoryCountAction(res.data));
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(getCategoryCountFail(err));
       });
   };
 
-  const updateEditCategory = async updatedData => {
+  const updateEditCategory = async (updatedData) => {
     startLoadingMeth();
     await updateCategory(updatedData)
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
         if (res.status === 201) {
           dispatch(updateCategorySucess(res.data));
@@ -114,13 +114,13 @@ export const AdminProvider = ({ children }) => {
           dispatch(updateCategoryUnSucess(res.data));
         }
       })
-      .catch(error => dispatch(updateCategoryUnSucess(error)));
+      .catch((error) => dispatch(updateCategoryUnSucess(error)));
   };
 
   const deleteCategory = async (id, imageName, categoryName) => {
     startLoadingMeth();
     await deleteCategoryById(id, imageName, categoryName)
-      .then(res => {
+      .then((res) => {
         stopLoadingMeth();
         if (res.status === 200) {
           dispatch(deleteSucessfull(res.data));
@@ -128,7 +128,7 @@ export const AdminProvider = ({ children }) => {
           throw res;
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(deleteUnSucessfull(err));
       });
   };
@@ -147,7 +147,7 @@ export const AdminProvider = ({ children }) => {
         addMethodCategory,
         getCategoryCount,
         updateEditCategory,
-        deleteCategory
+        deleteCategory,
       }}
     >
       {children}

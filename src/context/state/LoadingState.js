@@ -4,7 +4,7 @@ import LoadingReducer from "../reducers/LoadingReducer";
 import { startLoading, stopLoading } from "../actions/LoadingAction";
 
 const initialLoadingState = {
-  showLoading: false
+  showLoading: false,
 };
 
 export const LoadingContex = createContext(initialLoadingState);
@@ -24,7 +24,7 @@ export const LoadingProvider = ({ children }) => {
       value={{
         showLoading: state.showLoading,
         startLoadingMeth,
-        stopLoadingMeth
+        stopLoadingMeth,
       }}
     >
       {children}

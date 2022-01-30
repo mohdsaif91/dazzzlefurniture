@@ -11,7 +11,7 @@ import {
   FormGroup,
   FormSelect,
   Button,
-  Badge
+  Badge,
 } from "shards-react";
 
 import { AdminContext } from "../context/state/AdminState";
@@ -23,7 +23,7 @@ const initialProductState = {
   productImage: "",
   productCategory: "",
   products: [],
-  selectedCategory: ""
+  selectedCategory: "",
 };
 const editProductData = {
   editProductName: "",
@@ -33,7 +33,7 @@ const editProductData = {
   newEditCategoryName: "",
   editProductId: "",
   editImageDisplay: "",
-  newEditImage: ""
+  newEditImage: "",
 };
 export default function AddProductComponent() {
   const [product, setProduct] = useState({ ...initialProductState });
@@ -43,14 +43,14 @@ export default function AddProductComponent() {
   const {
     category: { category },
     categoryCount,
-    getCategoryCount
+    getCategoryCount,
   } = useContext(AdminContext);
   const {
     allProduct,
     getProductState,
     addProductState,
     deleteProduct,
-    updateProductState
+    updateProductState,
   } = useContext(ProductContext);
 
   useEffect(() => {
@@ -62,11 +62,12 @@ export default function AddProductComponent() {
   useEffect(() => {
     setProduct({
       ...product,
-      products: allProduct || []
+      products: allProduct || [],
     });
   }, [product.selectedCategory]);
 
   const addProduct = () => {
+    console.log(product);
     addProductState(getFormData(product));
   };
 
@@ -78,26 +79,22 @@ export default function AddProductComponent() {
     if (type === "add") {
       setProduct({
         ...product,
-        productImage: e.target.files[0]
+        productImage: e.target.files[0],
       });
     } else {
       setEdit({
         ...edit,
-        newEditImage: e.target.files[0]
+        newEditImage: e.target.files[0],
       });
     }
   };
 
-  const editProduct = id => {
+  const editProduct = (id) => {
     setTabShow(true);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    const selectedProduct = product.products.find(x => x._id === id);
-    const {
-      productImageName,
-      categoryName,
-      productName,
-      _id
-    } = selectedProduct;
+    const selectedProduct = product.products.find((x) => x._id === id);
+    const { productImageName, categoryName, productName, _id } =
+      selectedProduct;
 
     setEdit({
       ...edit,
@@ -105,7 +102,7 @@ export default function AddProductComponent() {
       editCategoryName: categoryName,
       newEditCategoryName: categoryName,
       editProductName: productName,
-      editProductId: _id
+      editProductId: _id,
     });
   };
 
@@ -113,12 +110,12 @@ export default function AddProductComponent() {
     deleteProduct(id, imageName);
   };
 
-  const getProductFromCategory = categoryName => {
+  const getProductFromCategory = (categoryName) => {
     const category = categoryName.substring(0, categoryName.lastIndexOf(" "));
     getProductState(category.trim());
     setProduct({
       ...product,
-      selectedCategory: categoryName.trim()
+      selectedCategory: categoryName.trim(),
     });
   };
 
@@ -143,10 +140,10 @@ export default function AddProductComponent() {
                 id="feInputState"
                 className="select-in-mobile"
                 value={edit.newEditCategoryName}
-                onChange={e => getProductFromCategory(e.target.value)}
+                onChange={(e) => getProductFromCategory(e.target.value)}
               >
                 <option>Select Category</option>
-                {actualCategory.map(m => (
+                {actualCategory.map((m) => (
                   <option className="d-flex justify-content-around">
                     {m.name}
                     {"   "} {m.count}
@@ -193,10 +190,10 @@ export default function AddProductComponent() {
                         type="test"
                         placeholder="Product Name"
                         value={edit.editProductName}
-                        onChange={e =>
+                        onChange={(e) =>
                           setEdit({
                             ...edit,
-                            editProductName: e.target.value
+                            editProductName: e.target.value,
                           })
                         }
                       />
@@ -206,15 +203,15 @@ export default function AddProductComponent() {
                       <FormSelect
                         id="feInputState"
                         value={edit.newEditCategoryName}
-                        onChange={e =>
+                        onChange={(e) =>
                           setEdit({
                             ...edit,
-                            newEditCategoryName: e.target.value
+                            newEditCategoryName: e.target.value,
                           })
                         }
                       >
                         <option>Choose...</option>
-                        {actualCategory.map(m => (
+                        {actualCategory.map((m) => (
                           <option>{m.name}</option>
                         ))}
                       </FormSelect>
@@ -226,7 +223,7 @@ export default function AddProductComponent() {
                         type="file"
                         className="custom-file-input"
                         id="customFile2"
-                        onChange={e => uploadProductImage(e, "update")}
+                        onChange={(e) => uploadProductImage(e, "update")}
                       />
                       <label
                         className="custom-file-label"
@@ -246,7 +243,7 @@ export default function AddProductComponent() {
                           <div
                             className="card-post__image"
                             style={{
-                              backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${edit.editImageDisplay}')`
+                              backgroundImage: `url('https://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${edit.editImageDisplay}')`,
                             }}
                           ></div>
                         ) : null}
@@ -279,10 +276,10 @@ export default function AddProductComponent() {
                         id="productName"
                         type="test"
                         placeholder="Product Name"
-                        onChange={e =>
+                        onChange={(e) =>
                           setProduct({
                             ...product,
-                            productName: e.target.value
+                            productName: e.target.value,
                           })
                         }
                       />
@@ -291,15 +288,15 @@ export default function AddProductComponent() {
                       <label htmlFor="feInputState">Category</label>
                       <FormSelect
                         id="feInputState"
-                        onChange={e =>
+                        onChange={(e) =>
                           setProduct({
                             ...product,
-                            productCategory: e.target.value
+                            productCategory: e.target.value,
                           })
                         }
                       >
                         <option>Choose...</option>
-                        {actualCategory.map(m => (
+                        {actualCategory.map((m) => (
                           <option>{m.name}</option>
                         ))}
                       </FormSelect>
@@ -311,7 +308,7 @@ export default function AddProductComponent() {
                         type="file"
                         className="custom-file-input"
                         id="customFile2"
-                        onChange={e => uploadProductImage(e, "add")}
+                        onChange={(e) => uploadProductImage(e, "add")}
                       />
                       <label
                         className="custom-file-label"
@@ -337,7 +334,7 @@ export default function AddProductComponent() {
                     productImageName,
                     _id,
                     productId,
-                    productName
+                    productName,
                   },
                   index
                 ) => (
@@ -348,7 +345,7 @@ export default function AddProductComponent() {
                     <div
                       className="card-post__image"
                       style={{
-                        backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${productImageName}')`
+                        backgroundImage: `url('http://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${productImageName}')`,
                       }}
                     >
                       <Badge pill className="card-post__category bg-info">

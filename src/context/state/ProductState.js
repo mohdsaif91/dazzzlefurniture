@@ -10,6 +10,7 @@ import {
   updateProductUnSucess,
   gotProductIdSucessfull,
   gotProductIdUnSucessfull,
+  addProductFail,
 } from "../actions/addProductAction";
 import {
   addProductApi,
@@ -52,13 +53,17 @@ export const ProductProvider = ({ children }) => {
   const addProductState = async (product) => {
     startLoadingMeth();
     // dispatch(startLoading());
-    await addProductApi(product).then((res) => {
-      stopLoadingMeth();
-      // dispatch(stopLoading());
-      if (res.status === 201) {
-        dispatch(addProductSucess(res.data));
-      }
-    });
+    await addProductApi(product)
+      .then((res) => {
+        stopLoadingMeth();
+        if (res.status === 201) {
+          dispatch(addProductSucess(res.data));
+        }
+      })
+      .catch((err) => {
+        stopLoadingMeth();
+        dispatch(addProductFail(err));
+      });
   };
 
   const deleteProduct = async (id, imageName) => {

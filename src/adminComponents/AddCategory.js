@@ -8,7 +8,7 @@ import {
   FormInput,
   Card,
   CardBody,
-  Button
+  Button,
 } from "shards-react";
 
 import { AdminContext } from "../context/state/AdminState";
@@ -19,7 +19,7 @@ import { getFormData } from "../util";
 const initialData = {
   categoryImage: "",
   categoryName: "",
-  createEnable: true
+  createEnable: true,
 };
 
 const editData = {
@@ -29,12 +29,12 @@ const editData = {
   editedImage: null,
   imageDisplay: "",
   categoryId: "",
-  oldCategoryName: ""
+  oldCategoryName: "",
 };
 
 const loadingData = {
   create: false,
-  update: false
+  update: false,
 };
 
 export default function AddCategory() {
@@ -51,20 +51,20 @@ export default function AddCategory() {
     getCategoryCount,
     showLoading,
     updateEditCategory,
-    deleteCategory
+    deleteCategory,
   } = useContext(AdminContext);
 
   const onFileUpload = (e, type) => {
     if (type === "imageDisplay") {
       setEditCategoryData({
         ...editcategoryData,
-        editedImage: e.target.files[0]
+        editedImage: e.target.files[0],
       });
     } else {
       setCategory({
         ...categoryData,
         categoryImage: e.target.files[0],
-        createEnable: categoryData.categoryName === ""
+        createEnable: categoryData.categoryName === "",
       });
     }
   };
@@ -76,7 +76,7 @@ export default function AddCategory() {
   useEffect(() => {
     if (searchCategory !== "") {
       let filteredArray = [];
-      actualCategory.filter(f => {
+      actualCategory.filter((f) => {
         if (f.categoryName.includes(searchCategory)) {
           filteredArray.push(f);
         }
@@ -96,7 +96,7 @@ export default function AddCategory() {
       : setLoading({ ...loading, update: showLoading.flag });
   }, [actualCategory, showLoading]);
 
-  const uploadFile = e => {
+  const uploadFile = (e) => {
     e.preventDefault();
     const formDataKeyPair = getFormData(categoryData);
     addMethodCategory(formDataKeyPair);
@@ -106,21 +106,21 @@ export default function AddCategory() {
     deleteCategory(id, imageName, categoryName.replace(/ /g, "_"));
   };
 
-  const editCategory = id => {
+  const editCategory = (id) => {
     setTabShow(true);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    const edited = cat.find(f => f._id === id);
+    const edited = cat.find((f) => f._id === id);
     setEditCategoryData({
       ...editcategoryData,
       imageName: edited.imageName,
       editedcategoryName: edited.categoryName,
       editEnable: false,
       categoryId: id,
-      oldCategoryName: edited.categoryName
+      oldCategoryName: edited.categoryName,
     });
   };
 
-  const update = e => {
+  const update = (e) => {
     e.preventDefault();
     const updatedFormPairKey = getFormData(editcategoryData);
     updateEditCategory(updatedFormPairKey);
@@ -136,7 +136,7 @@ export default function AddCategory() {
               <FormInput
                 size="lg"
                 className="mb-3"
-                onChange={e => setSearchCategory(e.target.value)}
+                onChange={(e) => setSearchCategory(e.target.value)}
                 placeholder="Search for Category"
               />
             </Form>
@@ -174,10 +174,10 @@ export default function AddCategory() {
                     type="test"
                     placeholder="Category Name"
                     value={editcategoryData.editedcategoryName}
-                    onChange={e =>
+                    onChange={(e) =>
                       setEditCategoryData({
                         ...editcategoryData,
-                        editedcategoryName: e.target.value
+                        editedcategoryName: e.target.value,
                       })
                     }
                   />
@@ -190,7 +190,7 @@ export default function AddCategory() {
                     type="file"
                     className="custom-file-input"
                     id="customFile2"
-                    onChange={e => onFileUpload(e, "imageDisplay")}
+                    onChange={(e) => onFileUpload(e, "imageDisplay")}
                   />
                 </div>
                 <Row>
@@ -203,7 +203,7 @@ export default function AddCategory() {
                         <div
                           className="card-post__image"
                           style={{
-                            backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/categories/${editcategoryData.imageName}')`
+                            backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/categories/${editcategoryData.imageName}')`,
                           }}
                         ></div>
                       ) : null}
@@ -214,7 +214,7 @@ export default function AddCategory() {
                       type="submit"
                       disabled={editcategoryData.editEnable}
                       theme={loading.update ? "default" : "info"}
-                      onClick={e => update(e)}
+                      onClick={(e) => update(e)}
                     >
                       {loading.update ? (
                         <img
@@ -242,11 +242,11 @@ export default function AddCategory() {
                     id="categoryName"
                     type="test"
                     placeholder="Category Name"
-                    onChange={e =>
+                    onChange={(e) =>
                       setCategory({
                         ...categoryData,
                         categoryName: e.target.value,
-                        createEnable: categoryData.categoryImage === null
+                        createEnable: categoryData.categoryImage === null,
                       })
                     }
                   />
@@ -259,14 +259,14 @@ export default function AddCategory() {
                     type="file"
                     className="custom-file-input"
                     id="customFile2"
-                    onChange={e => onFileUpload(e, "categoryImage")}
+                    onChange={(e) => onFileUpload(e, "categoryImage")}
                   />
                 </div>
                 <Button
                   type="submit"
                   disabled={categoryData.createEnable}
                   theme={loading.create ? "default" : "primary"}
-                  onClick={e => uploadFile(e)}
+                  onClick={(e) => uploadFile(e)}
                 >
                   {loading.create ? (
                     <img style={{ height: 93, width: 136 }} src={infinity} />
@@ -286,7 +286,7 @@ export default function AddCategory() {
                 <div
                   className="card-post__image"
                   style={{
-                    backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/categories/${imageName}')`
+                    backgroundImage: `url('https://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/category/${imageName}')`,
                   }}
                 ></div>
                 <CardBody>

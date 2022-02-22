@@ -11,6 +11,8 @@ import {
   gotProductIdSucessfull,
   gotProductIdUnSucessfull,
   addProductFail,
+  gotRandomProductSucessfull,
+  gotRandomProductUnSucessfull,
 } from "../actions/addProductAction";
 import {
   addProductApi,
@@ -18,6 +20,7 @@ import {
   deleteProductApi,
   updateProductApi,
   getProductLatestIdApi,
+  getRandomProductAPI,
 } from "../../api";
 import ProductReducer from "../reducers/ProductReducer";
 import { LoadingContex } from "./LoadingState";
@@ -33,6 +36,17 @@ export const ProductContext = createContext(initialProductState);
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialProductState);
   const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
+
+  const getRandomProductState = async () => {
+    startLoadingMeth();
+    await getRandomProductAPI()
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(gotRandomProductSucessfull());
+        }
+      })
+      .catch((err) => dispatch(gotRandomProductUnSucessfull(err)));
+  };
 
   const getProductState = async (category) => {
     startLoadingMeth();
@@ -118,6 +132,7 @@ export const ProductProvider = ({ children }) => {
         deleteProduct,
         updateProductState,
         getLatestProductId,
+        getRandomProductState,
       }}
     >
       {children}

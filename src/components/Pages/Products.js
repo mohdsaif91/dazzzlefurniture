@@ -4,13 +4,9 @@ import {
   Row,
   Col,
   Card,
-  CardBody,
   CardFooter,
-  Badge,
   Button,
   Modal,
-  ModalBody,
-  ModalHeader,
 } from "shards-react";
 import { ImageGroup, Image } from "react-fullscreen-image";
 
@@ -21,17 +17,17 @@ const modalData = {
   image: "",
 };
 
-const imgList = [
-  "https://unsplash.com/photos/Bkci_8qcdvQ",
-  "https://unsplash.com/photos/hS46bsAASwQ",
-  "https://unsplash.com/photos/2VDa8bnLM8c",
-  "https://unsplash.com/photos/_LuLiJc1cdo",
-  "https://unsplash.com/photos/1Z2niiBPg5A",
-  "https://unsplash.com/photos/pHANr-CpbYM",
-  "https://unsplash.com/photos/pQMM63GE7fo",
-  "https://unsplash.com/photos/2VDa8bnLM8c",
-  "https://unsplash.com/photos/MBkQKiH14ng",
-];
+// const imgList = [
+//   "https://unsplash.com/photos/Bkci_8qcdvQ",
+//   "https://unsplash.com/photos/hS46bsAASwQ",
+//   "https://unsplash.com/photos/2VDa8bnLM8c",
+//   "https://unsplash.com/photos/_LuLiJc1cdo",
+//   "https://unsplash.com/photos/1Z2niiBPg5A",
+//   "https://unsplash.com/photos/pHANr-CpbYM",
+//   "https://unsplash.com/photos/pQMM63GE7fo",
+//   "https://unsplash.com/photos/2VDa8bnLM8c",
+//   "https://unsplash.com/photos/MBkQKiH14ng",
+// ];
 
 export default function Products(props) {
   const [selectedProduct, setSelectedProduct] = useState([]);
@@ -47,6 +43,7 @@ export default function Products(props) {
   }, [allProduct]);
 
   const openImage = (image) => {
+    console.log(image);
     setModal({
       ...modal,
       showModal: !modal.showModal,
@@ -54,7 +51,7 @@ export default function Products(props) {
     });
   };
 
-  // console.log(selectedProduct, "<>?", categoryName, allProduct);
+  console.log(selectedProduct, "<>?", categoryName, allProduct);
   return (
     <Container fluid className="main-content-container px-4 mt-4">
       <Row>
@@ -64,7 +61,7 @@ export default function Products(props) {
               <div
                 className="card-post__image"
                 style={{
-                  backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${m.productImageName}')`,
+                  backgroundImage: `url('http://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${m.productImageName}')`,
                 }}
               />
               <CardFooter className="border-top d-flex">
@@ -82,7 +79,7 @@ export default function Products(props) {
                     theme="primary"
                     onClick={() =>
                       openImage(
-                        `http://dazzlefurniture.s3.ap-south-1.amazonaws.com/products/${m.productImageName}`
+                        `http://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${m.productImageName}`
                       )
                     }
                   >
@@ -94,28 +91,29 @@ export default function Products(props) {
           </Col>
         ))}
       </Row>
-      {/* toggle={this.toggle} */}
       <Modal
         open={modal.showModal}
         toggle={() => setModal({ ...modal, showModal: false })}
       >
         <ImageGroup>
-          <ModalBody className="fill">
-            <Image
-              // className="card-post__image"
-              src={modal.image}
-              style={{
-                position: "relative",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                width: "100%",
-                objectFit: "cover",
-              }}
-            />
-            {/* <img src={modal.image} /> */}
-          </ModalBody>
+          <ul className="images">
+            <li>
+              {/* <ModalBody className="fill"> */}
+              <Image
+                src={modal.image}
+                style={{
+                  position: "relative",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  width: "100%",
+                  objectFit: "cover",
+                }}
+              />
+              {/* </ModalBody> */}
+            </li>
+          </ul>
         </ImageGroup>
       </Modal>
     </Container>

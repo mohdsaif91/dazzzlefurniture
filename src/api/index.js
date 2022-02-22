@@ -25,3 +25,4 @@ export const deleteProductApi = (id, imageName) =>
 export const updateProductApi = (data) =>
   Axios.patch(`${url}/v1/product`, data);
 export const getProductLatestIdApi = () => Axios.get(`${url}/v1/product/Id`);
+export const getRandomProductAPI = () => Axios.get(`${url}/v1/randomProducts`);

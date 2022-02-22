@@ -13,61 +13,77 @@ export const productAction = {
   START_LOADING: "START_LOADING",
   STOP_LOADING: "STOP_LOADING",
   GOT_PRODUCT_ID_SUCESSFULL: "GOT_PRODUCT_ID_SUCESSFULL",
-  GOT_PRODUCT_ID_UN_SUCESSFULL: "GOT_PRODUCT_ID_UN_SUCESSFULL"
+  GOT_PRODUCT_ID_UN_SUCESSFULL: "GOT_PRODUCT_ID_UN_SUCESSFULL",
+  GET_RANDOM_PRODUCT_SUCCESS: "GET_RANDOM_PRODUCT_SUCCESS",
+  GET_RANDOM_PRODUCT_UNSUCCESS: "GET_RANDOM_PRODUCT_UNSUCCESS",
 };
+
+export function gotRandomProductSucessfull(data) {
+  return {
+    type: productAction.GET_RANDOM_PRODUCT_SUCCESS,
+    data,
+  };
+}
+
+export function gotRandomProductUnSucessfull(data) {
+  return {
+    type: productAction.GET_PRODUCT_UNSUCESSFULL,
+    data,
+  };
+}
 
 export function gotProductIdSucessfull(data) {
   return {
     type: productAction.GOT_PRODUCT_ID_SUCESSFULL,
-    data
+    data,
   };
 }
 
 export function gotProductIdUnSucessfull(data) {
   return {
     type: productAction.GOT_PRODUCT_ID_UN_SUCESSFULL,
-    data
+    data,
   };
 }
 
 export function getProductSucessfull(data) {
   return {
     type: productAction.GET_PRODUCT_SUCESSFULL,
-    data
+    data,
   };
 }
 export function getProductUnSucessfull(data) {
   return {
     type: productAction.GET_PRODUCT_UNSUCESSFULL,
-    data
+    data,
   };
 }
 
 export function updateProductSucess(data) {
   return {
     type: productAction.UPDATE_PRODUCT_SUCESSFULL,
-    data
+    data,
   };
 }
 
 export function updateProductUnSucess(data) {
   return {
     type: productAction.UPDATE_PRODUCT_UNSUCESSFULL,
-    data
+    data,
   };
 }
 
 export function addProductSucess(data) {
   return {
     type: productAction.ADD_PRODUCT_SUCESS,
-    data
+    data,
   };
 }
 
 export function addProductFail(data) {
   return {
     type: productAction.ADD_PRODUCT_FAIL,
-    data
+    data,
   };
 }
 
@@ -75,7 +91,7 @@ export function deleteSucessfullProduct(data) {
   return {
     type: productAction.DELETE_PRODUCT_SUCESSFULL,
     error: false,
-    data
+    data,
   };
 }
 
@@ -83,19 +99,19 @@ export function deleteUnsucessfull(err) {
   return {
     type: productAction.DELETE_PRODUCT_UNSUCESSFULL,
     error: true,
-    err
+    err,
   };
 }
 export function startLoading() {
   return {
     type: loadingAction.START_LOADING,
-    data: true
+    data: true,
   };
 }
 
 export function stopLoading() {
   return {
     type: loadingAction.STOP_LOADING,
-    data: false
+    data: false,
   };
 }

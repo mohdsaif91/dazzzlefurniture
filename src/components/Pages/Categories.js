@@ -5,7 +5,7 @@ import { AdminContext } from "../../context/state/AdminState";
 
 const initialData = {
   themColor: ["dark", "info", "royal-blue", "warning"],
-  counter: 0
+  counter: 0,
 };
 
 export default function Categories() {
@@ -14,7 +14,7 @@ export default function Categories() {
 
   const {
     getCategoryCount,
-    category: { category }
+    category: { category },
   } = useContext(AdminContext);
   useEffect(() => {
     if (!category) {
@@ -34,12 +34,12 @@ export default function Categories() {
           counter++;
         }
         return (
-          <Col lg="3" md="6" sm="12" className="mb-4" key={_id}>
+          <Col lg="3" md="6" sm="12" className="m-4" key={_id}>
             <Card small className="card-post card-post--1">
               <div
                 className="card-post__image card-image"
                 style={{
-                  backgroundImage: `url(http://dazzlefurniture.s3.ap-south-1.amazonaws.com/categories/${imageName})`
+                  backgroundImage: `url(https://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/category/${imageName})`,
                 }}
               >
                 <Badge

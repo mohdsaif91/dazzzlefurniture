@@ -218,6 +218,7 @@ export default function AddCategory() {
                     >
                       {loading.update ? (
                         <img
+                          alt=""
                           style={{ height: 93, width: 136 }}
                           src={infinity}
                         />
@@ -269,7 +270,11 @@ export default function AddCategory() {
                   onClick={(e) => uploadFile(e)}
                 >
                   {loading.create ? (
-                    <img style={{ height: 93, width: 136 }} src={infinity} />
+                    <img
+                      alt=""
+                      style={{ height: 93, width: 136 }}
+                      src={infinity}
+                    />
                   ) : (
                     "Add Category"
                   )}

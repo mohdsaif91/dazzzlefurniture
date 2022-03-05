@@ -5,6 +5,7 @@
 
   > * {
     display: flex;
+    justify-content: space-between;
   }
 
   .nav-link {
@@ -139,4 +140,3 @@
 .main-content .header-navbar {
   box-shadow: $main-navbar-box-shadow;
 }
-

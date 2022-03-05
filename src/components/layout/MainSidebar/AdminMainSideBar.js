@@ -9,7 +9,7 @@ import SidebarNavItems from "./SidebarNavItems";
 
 import { Store } from "../../../flux";
 
-class MainSidebar extends React.Component {
+class AdminMainSidebar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,7 +46,7 @@ class MainSidebar extends React.Component {
     );
 
     return (
-      <Col tag="aside" className={classes} lg={{ size: 1 }} md={{ size: 2 }}>
+      <Col tag="aside" className={classes} lg={{ size: 2 }} md={{ size: 3 }}>
         <SidebarMainNavbar hideLogoText={this.props.hideLogoText} />
         <SidebarSearch />
         <SidebarNavItems />
@@ -55,15 +55,15 @@ class MainSidebar extends React.Component {
   }
 }
 
-MainSidebar.propTypes = {
+AdminMainSidebar.propTypes = {
   /**
    * Whether to hide the logo text, or not.
    */
   hideLogoText: PropTypes.bool,
 };
 
-MainSidebar.defaultProps = {
+AdminMainSidebar.defaultProps = {
   hideLogoText: false,
 };
 
-export default MainSidebar;
+export default AdminMainSidebar;

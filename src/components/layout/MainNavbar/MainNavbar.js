@@ -6,6 +6,7 @@ import { Container, Navbar } from "shards-react";
 import NavbarSearch from "./NavbarSearch";
 import NavbarNav from "./NavbarNav/NavbarNav";
 import NavbarToggle from "./NavbarToggle";
+import { isMobileWindow } from "../../../utils/WindowSize";
 
 const MainNavbar = ({ layout, stickyTop }) => {
   const classes = classNames(
@@ -16,11 +17,15 @@ const MainNavbar = ({ layout, stickyTop }) => {
 
   return (
     <div className={classes}>
-      <Container className="p-0">
-        <Navbar type="light" className="align-items-stretch flex-md-nowrap p-0">
+      <Container fluid className="p-0">
+        <Navbar
+          type="light"
+          className="align-items-stretch flex-md-nowrap p-0"
+          // className="align-items-stretch flex-md-nowrap p-0 main-nav-bar"
+        >
           <NavbarSearch />
           <NavbarNav />
-          <NavbarToggle />
+          {isMobileWindow() && <NavbarToggle />}
         </Navbar>
       </Container>
     </div>
@@ -35,11 +40,11 @@ MainNavbar.propTypes = {
   /**
    * Whether the main navbar is sticky to the top, or not.
    */
-  stickyTop: PropTypes.bool
+  stickyTop: PropTypes.bool,
 };
 
 MainNavbar.defaultProps = {
-  stickyTop: true
+  stickyTop: true,
 };
 
 export default MainNavbar;

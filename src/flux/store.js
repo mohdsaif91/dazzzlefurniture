@@ -8,7 +8,7 @@ import getAdminSidbarNavItems from "../data/admin-sidebad-nav-items";
 let _store = {
   menuVisible: false,
   navItems: getSidebarNavItems(),
-  adminNavItem: getAdminSidbarNavItems()
+  adminNavItem: getAdminSidbarNavItems(),
 };
 
 class Store extends EventEmitter {
@@ -31,6 +31,7 @@ class Store extends EventEmitter {
   }
 
   toggleSidebar() {
+    console.log("flux");
     _store.menuVisible = !_store.menuVisible;
     this.emit(Constants.CHANGE);
   }

@@ -1,0 +1,124 @@
+.hero-1 {
+  background-image: url(.././images/heroImage5.webp);
+  z-index: 999;
+  opacity: 1;
+}
+
+.hero-2 {
+  background-image: url(.././images/heroImage3.jpg);
+  z-index: 999;
+  opacity: 1;
+}
+
+.hero-3 {
+  background-image: url(.././images/heroImage4.jpg);
+  z-index: 999;
+  opacity: 1;
+}
+
+.hero-text {
+  margin-top: 32px;
+  color: black;
+  font-size: 40px;
+  line-height: 46px;
+  margin-bottom: 15px;
+}
+
+.shop-now-btn {
+  background-color: #020202;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 500;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  border-radius: 0px;
+  position: relative;
+  border-radius: 50px;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.width-60 {
+  width: 60%;
+}
+
+.hero-text-container {
+  padding: 4rem 2rem;
+}
+.hero-text-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.main-hero-text {
+  font-size: 48px;
+  color: #000000;
+  line-height: 1;
+  margin: 0;
+}
+
+.main-hero-text-small {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.slick-track {
+  display: flex;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-bottom: 2px solid #000000;
+  margin-bottom: 32px;
+}
+.box-service {
+  display: flex;
+  align-items: center;
+}
+.number {
+  max-width: 60px;
+  margin-right: 20px;
+  font-size: 65px;
+  color: #000000;
+  font-weight: 600;
+}
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.content {
+  /* font-family: Quicksand; */
+  font-size: 14px;
+  color: #868686;
+  line-height: 24px;
+  margin-bottom: 0px;
+}
+
+.carousel .thumbs-wrapper {
+  display: none !important;
+}
+
+@media screen and (min-width: 300px) and (max-width: 450px) {
+  .hero-text-container {
+    padding: 2rem 0rem;
+  }
+  .main-hero-text {
+    font-size: 31px;
+  }
+  .slick-track {
+    flex-direction: column;
+    padding: 1.5rem 0;
+  }
+  .box-service {
+    margin-bottom: 8px;
+  }
+}

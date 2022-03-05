@@ -7,7 +7,7 @@ import {
   DropdownItem,
   Collapse,
   NavItem,
-  NavLink
+  NavLink,
 } from "shards-react";
 import { AdminContext } from "../../../../context/state/AdminState";
 

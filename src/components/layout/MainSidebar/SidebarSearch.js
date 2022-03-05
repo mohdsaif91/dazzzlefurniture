@@ -4,25 +4,34 @@ import {
   FormInput,
   InputGroup,
   InputGroupAddon,
-  InputGroupText
+  InputGroupText,
 } from "shards-react";
+import { isMobileWindow } from "../../../utils/WindowSize";
 
 export default () => (
   <Form
     className="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none"
     style={{ display: "flex", minHeight: "45px" }}
   >
-    <InputGroup seamless className="ml-3">
-      <InputGroupAddon type="prepend">
-        <InputGroupText>
-          <i className="material-icons">search</i>
-        </InputGroupText>
-        <FormInput
-          className="navbar-search"
-          placeholder="Search for something..."
-          aria-label="Search"
-        />
-      </InputGroupAddon>
-    </InputGroup>
+    {!isMobileWindow ? (
+      <InputGroup seamless className="ml-3">
+        <InputGroupAddon type="prepend">
+          <InputGroupText>
+            <i className="material-icons">search</i>
+          </InputGroupText>
+          {/* <input
+            type="text"
+            className="navbar-search pl-4"
+            placeholder="Search on Dazzle..."
+          /> */}
+        </InputGroupAddon>
+      </InputGroup>
+    ) : (
+      <input
+        type="text"
+        className="navbar-search pl-4"
+        placeholder="Search on Dazzle ..."
+      />
+    )}
   </Form>
 );

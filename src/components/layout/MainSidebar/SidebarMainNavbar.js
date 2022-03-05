@@ -19,6 +19,9 @@ class SidebarMainNavbar extends React.Component {
 
   render() {
     const { hideLogoText } = this.props;
+    const width =
+      window.innerWidth > 0 ? window.innerWidth : window.screen.width;
+    const mobile = width <= 700;
     return (
       <div className="main-navbar">
         <Navbar
@@ -30,20 +33,18 @@ class SidebarMainNavbar extends React.Component {
             href="#"
             style={{ lineHeight: "25px" }}
           >
-            <div className="d-table m-auto">
-              <img
-                id="main-logo"
-                className="d-inline-block align-top mr-1"
-                style={{ maxWidth: "25px" }}
-                src={require("../../../images/shards-dashboards-logo.svg")}
-                alt="Dazzle Furnitures"
-              />
-              {!hideLogoText && (
-                <span className="d-none d-md-inline ml-1">
-                  Dazzle Furnitures
-                </span>
-              )}
-            </div>
+            {mobile && (
+              <div className="d-table m-auto">
+                <img
+                  id="main-logo"
+                  className="d-inline-block align-top mr-1"
+                  style={{ maxWidth: "25px" }}
+                  src={require("../../../images/shards-dashboards-logo.svg")}
+                  alt="Dazzle Furnitures"
+                />
+                <span className="d-md-inline ml-1">Dazzle Furnitures</span>
+              </div>
+            )}
           </NavbarBrand>
           {/* eslint-disable-next-line */}
           <a

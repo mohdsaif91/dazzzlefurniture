@@ -9,7 +9,7 @@ import {
   CardBody,
   CardFooter,
   Badge,
-  Button
+  Button,
 } from "shards-react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -29,9 +29,8 @@ const initialData = {
       author: "Anna Kunis",
       authorAvatar: require("../images/avatars/1.jpg"),
       title: "Conduct at an replied removal an amongst",
-      body:
-        "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see...",
-      date: "28 February 2019"
+      body: "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see...",
+      date: "28 February 2019",
     },
     {
       backgroundImage: require("../images/content-management/2.jpeg"),
@@ -40,9 +39,8 @@ const initialData = {
       author: "James Jamerson",
       authorAvatar: require("../images/avatars/2.jpg"),
       title: "Off tears are day blind smile alone had ready",
-      body:
-        "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
-      date: "29 February 2019"
+      body: "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
+      date: "29 February 2019",
     },
     {
       backgroundImage: require("../images/content-management/3.jpeg"),
@@ -51,9 +49,8 @@ const initialData = {
       author: "Jimmy Jackson",
       authorAvatar: require("../images/avatars/2.jpg"),
       title: "Difficult in delivered extensive at direction",
-      body:
-        "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
-      date: "29 February 2019"
+      body: "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
+      date: "29 February 2019",
     },
     {
       backgroundImage: require("../images/content-management/4.jpeg"),
@@ -62,10 +59,9 @@ const initialData = {
       author: "John James",
       authorAvatar: require("../images/avatars/3.jpg"),
       title: "It so numerous if he may outlived disposal",
-      body:
-        "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
-      date: "29 February 2019"
-    }
+      body: "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
+      date: "29 February 2019",
+    },
   ],
 
   // Second list of posts.
@@ -77,9 +73,8 @@ const initialData = {
       author: "Anna Ken",
       authorAvatar: require("../images/avatars/0.jpg"),
       title: "Attention he extremity unwilling on otherwise cars backwards yet",
-      body:
-        "Conviction up partiality as delightful is discovered. Yet jennings resolved disposed exertion you off. Left did fond drew fat head poor jet pan flying over...",
-      date: "29 February 2019"
+      body: "Conviction up partiality as delightful is discovered. Yet jennings resolved disposed exertion you off. Left did fond drew fat head poor jet pan flying over...",
+      date: "29 February 2019",
     },
     {
       backgroundImage: require("../images/content-management/6.jpeg"),
@@ -89,10 +84,9 @@ const initialData = {
       authorAvatar: require("../images/avatars/1.jpg"),
       title:
         "Totally words widow one downs few age every seven if miss part by fact",
-      body:
-        "Discovered had get considered projection who favourable. Necessary up knowledge it tolerably. Unwilling departure education to admitted speaking...",
-      date: "29 February 2019"
-    }
+      body: "Discovered had get considered projection who favourable. Necessary up knowledge it tolerably. Unwilling departure education to admitted speaking...",
+      date: "29 February 2019",
+    },
   ],
 
   // Third list of posts.
@@ -101,26 +95,23 @@ const initialData = {
       author: "John James",
       authorAvatar: require("../images/avatars/1.jpg"),
       title: "Had denoting properly jointure which well books beyond",
-      body:
-        "In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom work...",
-      date: "29 February 2019"
+      body: "In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom work...",
+      date: "29 February 2019",
     },
     {
       author: "John James",
       authorAvatar: require("../images/avatars/2.jpg"),
       title: "Husbands ask repeated resolved but laughter debating",
-      body:
-        "It abode words began enjoy years no do ﻿no. Tried spoil as heart visit blush or. Boy possible blessing sensible set but margaret interest. Off tears...",
-      date: "29 February 2019"
+      body: "It abode words began enjoy years no do ﻿no. Tried spoil as heart visit blush or. Boy possible blessing sensible set but margaret interest. Off tears...",
+      date: "29 February 2019",
     },
     {
       author: "John James",
       authorAvatar: require("../images/avatars/3.jpg"),
       title: "Instantly gentleman contained belonging exquisite now direction",
-      body:
-        "West room at sent if year. Numerous indulged distance old law you. Total state as merit court green decay he. Steepest merit checking railway...",
-      date: "29 February 2019"
-    }
+      body: "West room at sent if year. Numerous indulged distance old law you. Total state as merit court green decay he. Steepest merit checking railway...",
+      date: "29 February 2019",
+    },
   ],
 
   // Fourth list of posts.
@@ -132,9 +123,8 @@ const initialData = {
       category: "News",
       categoryUrl: "#",
       title: "Extremity so attending objection as engrossed",
-      body:
-        "Pursuit chamber as elderly amongst on. Distant however warrant farther to of. My justice wishing prudent waiting in be...",
-      date: "29 February 2019"
+      body: "Pursuit chamber as elderly amongst on. Distant however warrant farther to of. My justice wishing prudent waiting in be...",
+      date: "29 February 2019",
     },
     {
       backgroundImage: require("../images/content-management/8.jpeg"),
@@ -143,9 +133,8 @@ const initialData = {
       category: "News",
       categoryUrl: "#",
       title: "Bed sincerity yet therefore forfeited his",
-      body:
-        "Speaking throwing breeding betrayed children my to. Me marianne no he horrible produced ye. Sufficient unpleasing and...",
-      date: "29 February 2019"
+      body: "Speaking throwing breeding betrayed children my to. Me marianne no he horrible produced ye. Sufficient unpleasing and...",
+      date: "29 February 2019",
     },
     {
       backgroundImage: require("../images/content-management/9.jpeg"),
@@ -154,9 +143,8 @@ const initialData = {
       category: "News",
       categoryUrl: "#",
       title: "Object remark lively all did feebly excuse our",
-      body:
-        "Morning prudent removal an letters by. On could my in order never it. Or excited certain sixteen it to parties colonel not seeing...",
-      date: "29 February 2019"
+      body: "Morning prudent removal an letters by. On could my in order never it. Or excited certain sixteen it to parties colonel not seeing...",
+      date: "29 February 2019",
     },
     {
       backgroundImage: require("../images/content-management/10.jpeg"),
@@ -165,12 +153,11 @@ const initialData = {
       category: "News",
       categoryUrl: "#",
       title: "His followed carriage proposal entrance",
-      body:
-        "For county now sister engage had season better had waited. Occasional mrs interested far expression directly as regard...",
-      date: "29 February 2019"
-    }
+      body: "For county now sister engage had season better had waited. Occasional mrs interested far expression directly as regard...",
+      date: "29 February 2019",
+    },
   ],
-  categoryVisible: false
+  categoryVisible: false,
 };
 export default function BlogPosts() {
   const [data, setData] = useState({ ...initialData });
@@ -189,83 +176,98 @@ export default function BlogPosts() {
 
   const viewCategory = () => {};
 
-  const getProduct = e => {
+  const getProduct = (e) => {
     getProductState(e.target.id);
     history.push({
       pathname: "/product",
-      state: { categoryName: e.target.id }
+      state: { categoryName: e.target.id },
     });
   };
   const categoryData = !category.category ? [] : category.category;
 
   return (
     <Container fluid className="main-content-container px-4">
-      {/* Page Header */}
-      <Row noGutters className="page-header py-4">
-        <PageTitle
-          sm="4"
-          title="Blog Posts"
-          subtitle="Components"
-          className="text-sm-left"
-        />
-      </Row>
       <Carousel
-        className="mb-4"
-        selectedItem={0}
-        autoPlay={false}
-        showThumbs={false}
+        showArrows={false}
+        className="mb-4 mt-4"
+        autoPlay={true}
         infiniteLoop={true}
       >
         <div>
           <Card small className="card-post card-post--1">
-            <div
-              className="card-post__image card-image"
-              style={{
-                backgroundImage: `url(https://www.w3schools.com/howto/img_nature_wide.jpg)`
-              }}
-            ></div>
+            <div className="card-post__image card-image hero-1">
+              <div className="hero-content-2 center">
+                <h2 className="hero-text">
+                  Creative Design <br /> Modern &amp; Exclusive Furniture
+                </h2>
+                <a href="#" className="shop-now-btn" tabindex="0">
+                  SHOP NOW
+                </a>
+              </div>
+            </div>
           </Card>
         </div>
         <div>
           <Card small className="card-post card-post--1">
-            <div
-              className="card-post__image card-image"
-              style={{
-                backgroundImage: `url(https://www.w3schools.com/howto/img_fjords_wide.jpg)`
-              }}
-            ></div>
+            <div className="card-post__image card-image hero-2">
+              <div className="hero-content-2 center">
+                <h2 className="hero-text">
+                  Beautiful <br /> CraftmenShip
+                </h2>
+                <a href="#" className="shop-now-btn" tabindex="0">
+                  SHOP NOW
+                </a>
+              </div>
+            </div>
           </Card>
         </div>
         <div>
-          <img
-            className="carousel-image"
-            src="https://www.w3schools.com/howto/img_fjords_wide.jpg"
-          />
+          <Card small className="card-post card-post--1">
+            <div className="card-post__image card-image hero-3">
+              <div className="hero-content-2 center">
+                <h2 className="hero-text">
+                  Green up <br /> Your Lifestyle
+                </h2>
+                <a href="#" className="shop-now-btn" tabindex="0">
+                  SHOP NOW
+                </a>
+              </div>
+            </div>
+          </Card>
         </div>
       </Carousel>
+      <div className="hero-text-container">
+        <div class="hero-text-row">
+          <div>
+            <div class="main-hero-text-small">HISTORY SINCE 1998</div>
 
-      {/* First Row of Posts */}
-      <Row>
-        {PostsListOne.map((post, idx) => (
-          <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
-            <Card small className="card-post card-post--1">
-              <div
-                onClick={() => viewCategory()}
-                className="card-post__image card-image"
-                style={{ backgroundImage: `url(${post.backgroundImage})` }}
-              >
-                <Badge
-                  pill
-                  className={`card-post__category bg-${post.categoryTheme}`}
-                >
-                  {post.category}
-                </Badge>
-              </div>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-      {/* --- */}
+            <h2 className=" main-hero-text">
+              Welcome to Dazzle
+              <br />
+              furniture
+              <br />
+              Store - Amazing
+            </h2>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInRight">
+            <p>
+              Class aptent taciti sociosqu ad litora torquent per conubia
+              nostra, per inceptos himenaeos.{" "}
+              <strong>Suspendisse faucibus</strong> sed dolor eget posuere. Sed
+              id interdum urna faucibus sed dolor eget posuere.
+            </p>
+            <p>
+              Sed id interdum urna. Nam ac elit a ante commodo tristique. Duis
+              lacus urna, condimentum a vehicula a, hendrerit ac nisi Lorem
+              ipsum dolor sit amet dolor eget posuere.
+            </p>
+
+            <div class="name-black">
+              <span>JONT HENRRY</span> - CEO
+            </div>
+          </div>
+        </div>
+      </div>
       <div style={{ width: "100%", margin: "20px auto", textAlign: "center" }}>
         <Row>
           <Col lg="12" md="12" sm="12" className="mb-4">
@@ -293,7 +295,7 @@ export default function BlogPosts() {
                 <Button
                   size="sm"
                   id={categoryName}
-                  onClick={e => getProduct(e)}
+                  onClick={(e) => getProduct(e)}
                   theme="white"
                 >
                   {categoryName}
@@ -328,6 +330,93 @@ export default function BlogPosts() {
           </div>
         </div> */}
       </div>
+
+      <Row>
+        {PostsListOne.map((post, idx) => (
+          <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
+            <Card small className="card-post card-post--1">
+              <div
+                onClick={() => viewCategory()}
+                className="card-post__image card-image"
+                style={{ backgroundImage: `url(${post.backgroundImage})` }}
+              >
+                <Badge
+                  pill
+                  className={`card-post__category bg-${post.categoryTheme}`}
+                >
+                  {post.category}
+                </Badge>
+              </div>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+      <div class="slick-track" role="listbox">
+        <div
+          class="itemtservice slick-slide slick-current slick-active"
+          data-slick-index="0"
+          aria-hidden="false"
+          tabindex="-1"
+          role="option"
+          aria-describedby="slick-slide30"
+        >
+          <div class="box-service col-lg-12">
+            <div class="number">1</div>
+
+            <div class="info">
+              <h4 class="title">SHIPPING &amp; RETURN</h4>
+
+              <p class="content">
+                If your glasses aren't perfect, return them within 30 days for a
+                full refund. We'll even pay shipping.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="itemtservice slick-slide slick-active"
+          data-slick-index="1"
+          aria-hidden="false"
+          tabindex="-1"
+          role="option"
+          aria-describedby="slick-slide31"
+        >
+          <div class="box-service col-lg-12">
+            <div class="number">2</div>
+
+            <div class="info">
+              <h4 class="title">SAFE PAYMENT</h4>
+
+              <p class="content">
+                Pay with the world's most popular and secure payment methods
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="itemtservice slick-slide slick-active"
+          data-slick-index="2"
+          aria-hidden="false"
+          tabindex="-1"
+          role="option"
+          aria-describedby="slick-slide32"
+        >
+          <div class="box-service col-lg-12">
+            <div class="number">3</div>
+
+            <div class="info">
+              <h4 class="title">SHOP WITH CONFIDENCE</h4>
+
+              <p class="content">
+                Our Buyer Protection covers your purchase from click to
+                delivery.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* --- */}
+
       {/* --- */}
       {/* Second Row of Posts */}
       <Row>

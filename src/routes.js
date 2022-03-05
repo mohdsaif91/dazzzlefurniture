@@ -22,43 +22,43 @@ export default [
   {
     path: "/blog-overview",
     layout: DefaultLayout,
-    component: BlogOverview
+    component: BlogOverview,
   },
   {
     path: "/user-profile-lite",
     layout: DefaultLayout,
-    component: UserProfileLite
+    component: UserProfileLite,
   },
   {
     path: "/add-new-post",
     layout: DefaultLayout,
-    component: AddNewPost
+    component: AddNewPost,
   },
   {
     path: "/errors",
     layout: DefaultLayout,
-    component: Errors
+    component: Errors,
   },
   {
     path: "/components-overview",
     layout: DefaultLayout,
-    component: ComponentsOverview
+    component: ComponentsOverview,
   },
   {
     path: "/tables",
     layout: DefaultLayout,
-    component: Tables
+    component: Tables,
   },
   {
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: BlogPosts
+    component: BlogPosts,
   },
   { path: "/signIn", layout: DefaultLayout, component: SignIn },
   { path: "/adminHome/admin", layout: DefaultLayout, component: AdminHome },
   { path: "/addProduct/admin", layout: DefaultLayout, component: AddProduct },
   { path: "/addCategory/admin", layout: DefaultLayout, component: AddCategory },
   { path: "/categories", layout: DefaultLayout, component: Categories },
-  { pathc: "/products", layout: DefaultLayout, component: Products }
+  { pathc: "/products", layout: DefaultLayout, component: Products },
 ];

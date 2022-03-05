@@ -1,0 +1,31 @@
+.footer-top {
+  background-color: #ffffff;
+  color: #363636;
+  padding: 96px 0 64px 0;
+}
+.site-footer .widget {
+  margin-bottom: 2em;
+}
+ul.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.widget_nav_menu.widget_menu_horizontal ul li {
+  display: inline-block;
+  margin-right: 40px;
+}
+.footer-top a,
+.footer-bottom a {
+  color: #363636;
+  transition: 0.4s;
+}
+.img-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-text {
+  font-size: 20px;
+}

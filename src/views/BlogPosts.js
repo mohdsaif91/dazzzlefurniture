@@ -167,7 +167,9 @@ export default function BlogPosts() {
   const { PostsListOne, PostsListTwo, PostsListThree, PostsListFour } = data;
 
   const { getCategoryCount, category } = useContext(AdminContext);
-  const { getProductState } = useContext(ProductContext);
+  const { getProductState, gotHotProduct } = useContext(ProductContext);
+
+  console.log(gotHotProduct, " HOT PRODUCT !");
 
   const history = useHistory();
 

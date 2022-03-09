@@ -1,27 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardBody, CardHeader, Col, Container, Row } from "shards-react";
 
-import { AdminContext } from "../../context/state/AdminState";
 import { ProductContext } from "../../context/state/ProductState";
 import WhatsApp from "../../images/what-app.gif";
 
 function ShowSingleProduct() {
-  const [single, setSingle] = useState(null);
-
-  const { category } = useContext(AdminContext);
-  const { getProductById, gotHotProduct } = useContext(ProductContext);
+  const { getProductById, gotHotProduct, doNotCallAgain } =
+    useContext(ProductContext);
 
   const { id } = useParams();
   useEffect(() => {
-    console.log(gotHotProduct);
     if (!gotHotProduct) {
+      console.log("empty");
       getProductById(id);
     }
-    // if (gotHotProduct) {
-    //   setSingle(gotHotProduct);
-    // }
-  }, [category]);
+    return () => {
+      doNotCallAgain();
+    };
+  }, [id]);
+  console.log("called Single");
   return (
     <Container fluid>
       <Row className="mt-4 mb-4">

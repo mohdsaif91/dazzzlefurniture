@@ -83,8 +83,9 @@ export default (state = {}, action) => {
     case productAction.RESET_SINGLE_PRODUCT:
       return {
         ...state,
-        resetFlag: false,
+        gotHotProduct: null,
       };
+
     default:
       return state;
   }

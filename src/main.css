@@ -16,6 +16,16 @@
   left: 0;
   background: #f8f8f8ad;
 }
+.logout-icon {
+  cursor: pointer;
+  padding-right: 32px;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  height: 40px;
+  width: 40px;
+}
 
 .fp-container .fp-loader {
   top: 30%;

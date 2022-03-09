@@ -14,9 +14,32 @@ export const productAction = {
   STOP_LOADING: "STOP_LOADING",
   GOT_PRODUCT_ID_SUCESSFULL: "GOT_PRODUCT_ID_SUCESSFULL",
   GOT_PRODUCT_ID_UN_SUCESSFULL: "GOT_PRODUCT_ID_UN_SUCESSFULL",
+  GET_BY_PRODUCT_ID_SUCCESSFUL: "GET_BY_PRODUCT_ID_SUCCESSFUL",
+  GET_BY_PRODUCT_ID_UNSUCCESSFUL: "GET_BY_PRODUCT_ID_UNSUCCESSFUL",
   GET_RANDOM_PRODUCT_SUCCESS: "GET_RANDOM_PRODUCT_SUCCESS",
   GET_RANDOM_PRODUCT_UNSUCCESS: "GET_RANDOM_PRODUCT_UNSUCCESS",
+  RESET_SINGLE_PRODUCT: "RESET_SINGLE_PRODUCT",
 };
+
+export function reSetSingleProduct() {
+  return {
+    type: productAction.RESET_SINGLE_PRODUCT,
+  };
+}
+
+export function getProductByIdSuccessful(data) {
+  return {
+    type: productAction.GET_BY_PRODUCT_ID_SUCCESSFUL,
+    data,
+  };
+}
+
+export function getProductByIdUnSuccessful(data) {
+  return {
+    type: productAction.GET_BY_PRODUCT_ID_UNSUCCESSFUL,
+    data,
+  };
+}
 
 export function gotRandomProductSucessfull(data) {
   return {

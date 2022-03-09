@@ -1,4 +1,4 @@
-export default function () {
+export default function (props) {
   return [
     {
       title: "Home",
@@ -18,6 +18,16 @@ export default function () {
     },
     {
       title: "Products",
+      htmlBefore: '<i class="material-icons">note_add</i>',
+      to: "/product",
+    },
+    {
+      title: "About us",
+      htmlBefore: '<i class="material-icons">note_add</i>',
+      to: "/product",
+    },
+    {
+      title: "Contact us",
       htmlBefore: '<i class="material-icons">note_add</i>',
       to: "/product",
     },

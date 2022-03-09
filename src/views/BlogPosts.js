@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import {
   Container,
   Row,
@@ -18,6 +18,7 @@ import PageTitle from "../components/common/PageTitle";
 import { AdminContext } from "../context/state/AdminState";
 import { ProductContext } from "../context/state/ProductState";
 import { Link, useHistory } from "react-router-dom";
+import GlidSlide from "./GlidSlide";
 
 const initialData = {
   // First list of posts.
@@ -159,8 +160,10 @@ const initialData = {
   ],
   categoryVisible: false,
 };
+
 export default function BlogPosts() {
   const [data, setData] = useState({ ...initialData });
+
   const { PostsListOne, PostsListTwo, PostsListThree, PostsListFour } = data;
 
   const { getCategoryCount, category } = useContext(AdminContext);
@@ -186,7 +189,7 @@ export default function BlogPosts() {
   const categoryData = !category.category ? [] : category.category;
 
   return (
-    <Container fluid className="main-content-container px-4">
+    <Container fluid className="main-content-container px-4 home-container">
       <Carousel
         showArrows={false}
         className="mb-4 mt-4"
@@ -331,7 +334,10 @@ export default function BlogPosts() {
         </div> */}
       </div>
 
-      <Row>
+      <div className="glide-container">
+        {category.hotProduct && <GlidSlide data={category.hotProduct} />}
+      </div>
+      {/* <Row>
         {PostsListOne.map((post, idx) => (
           <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
             <Card small className="card-post card-post--1">
@@ -350,7 +356,7 @@ export default function BlogPosts() {
             </Card>
           </Col>
         ))}
-      </Row>
+      </Row> */}
       <div class="slick-track" role="listbox">
         <div
           class="itemtservice slick-slide slick-current slick-active"

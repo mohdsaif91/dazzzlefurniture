@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Form,
   InputGroup,
@@ -15,10 +16,15 @@ export default () => {
   const { adminAccess } = useContext(AdminContext);
 
   const nav_Class = !isMobileWindow() ? "ml-4 mr-4" : "ml-3 mr-3";
+  const history = useHistory();
+
+  const showLogin = () => {
+    history.push("/signIn");
+  };
 
   return (
     <div className="m-navbar-container">
-      <NavbarBrand className="mr-0" href="#" style={{ lineHeight: "25px" }}>
+      <NavbarBrand className="mr-0" style={{ lineHeight: "25px" }}>
         <div className={`d-table  ${nav_Class}`}>
           <img
             id="main-logo"
@@ -26,6 +32,7 @@ export default () => {
             style={{ maxWidth: "25px" }}
             src={require("../../../images/shards-dashboards-logo.svg")}
             alt="Dazzle Furnitures"
+            onClick={() => showLogin()}
           />
           {!isMobileWindow() && (
             <span className="d-md-inline ml-1 logo-name">
@@ -43,23 +50,25 @@ export default () => {
           <i className="material-icons">&#xE5C4;</i>
         </a>
       )}
-      <Form className="main-navbar__search d-none d-md-flex d-lg-flex">
-        {adminAccess.login ? null : (
-          <InputGroup seamless className="ml-3">
-            <InputGroupAddon className="" type="prepend">
-              <InputGroupText>
-                <i className="material-icons">search</i>
-              </InputGroupText>
-            </InputGroupAddon>
-            <input
-              type="text"
-              className="navbar-search pl-4"
-              placeholder="Search on Dazzle..."
-            />
-          </InputGroup>
-        )}
-      </Form>
-      {!isMobileWindow() && <PageItem />}
+      {adminAccess.login ? null : (
+        <>
+          <Form className="main-navbar__search d-none d-md-flex d-lg-flex">
+            <InputGroup seamless className="ml-3">
+              <InputGroupAddon className="" type="prepend">
+                <InputGroupText>
+                  <i className="material-icons">search</i>
+                </InputGroupText>
+              </InputGroupAddon>
+              <input
+                type="text"
+                className="navbar-search pl-4"
+                placeholder="Search on Dazzle..."
+              />
+            </InputGroup>
+          </Form>
+          {!isMobileWindow() && <PageItem />}
+        </>
+      )}
     </div>
   );
 };

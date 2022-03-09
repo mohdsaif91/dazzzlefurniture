@@ -67,7 +67,24 @@ export default (state = {}, action) => {
         ...state,
         randomProduct: action.data,
       };
-
+    case productAction.GET_BY_PRODUCT_ID_SUCCESSFUL:
+      return {
+        ...state,
+        resetFlag: true,
+        gotHotProduct: action.data,
+        error: false,
+      };
+    case productAction.GET_BY_PRODUCT_ID_UNSUCCESSFUL:
+      return {
+        ...state,
+        error: true,
+        errorMessage: action.data || "error ",
+      };
+    case productAction.RESET_SINGLE_PRODUCT:
+      return {
+        ...state,
+        resetFlag: false,
+      };
     default:
       return state;
   }

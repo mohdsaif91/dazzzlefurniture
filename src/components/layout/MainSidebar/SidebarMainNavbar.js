@@ -42,7 +42,7 @@ class SidebarMainNavbar extends React.Component {
                   src={require("../../../images/shards-dashboards-logo.svg")}
                   alt="Dazzle Furnitures"
                 />
-                <span className="d-md-inline ml-1">Dazzle Furnitures</span>
+                <span className="d-md-inline ml-1">Dazzle Furnituresa</span>
               </div>
             )}
           </NavbarBrand>

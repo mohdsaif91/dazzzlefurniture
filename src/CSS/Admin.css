@@ -1,4 +1,11 @@
-.addProduct{
-padding: 10px;
-background-color: darkgray;
+.addProduct {
+  padding: 10px;
+  background-color: darkgray;
 }
+
+.category-name {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+

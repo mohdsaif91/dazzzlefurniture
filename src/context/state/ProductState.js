@@ -13,6 +13,9 @@ import {
   addProductFail,
   gotRandomProductSucessfull,
   gotRandomProductUnSucessfull,
+  getProductByIdSuccessful,
+  getProductByIdUnSuccessful,
+  reSetSingleProduct,
 } from "../actions/addProductAction";
 import {
   addProductApi,
@@ -21,6 +24,7 @@ import {
   updateProductApi,
   getProductLatestIdApi,
   getRandomProductAPI,
+  getProductByIdAPI,
 } from "../../api";
 import ProductReducer from "../reducers/ProductReducer";
 import { LoadingContex } from "./LoadingState";
@@ -120,6 +124,27 @@ export const ProductProvider = ({ children }) => {
       });
   };
 
+  const getProductById = async (id) => {
+    startLoadingMeth();
+    await getProductByIdAPI(id)
+      .then((res) => {
+        stopLoadingMeth();
+        if (res.status === 200) {
+          dispatch(getProductByIdSuccessful(res.data));
+        } else {
+          dispatch(getProductByIdUnSuccessful());
+        }
+      })
+      .catch((err) => {
+        stopLoadingMeth();
+        dispatch(getProductByIdUnSuccessful(err));
+      });
+  };
+
+  const doNotCallAgain = () => {
+    dispatch(reSetSingleProduct());
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -127,9 +152,13 @@ export const ProductProvider = ({ children }) => {
         error: state.error,
         showLoading: state.showLoading,
         lastObjectCount: state.lastObjectCount,
+        gotHotProduct: state.gotHotProduct,
+        resetFlag: state.resetFlag,
+        getProductById,
         getProductState,
         addProductState,
         deleteProduct,
+        doNotCallAgain,
         updateProductState,
         getLatestProductId,
         getRandomProductState,

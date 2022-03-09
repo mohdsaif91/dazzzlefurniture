@@ -12,18 +12,18 @@ import {
   FormGroup,
   FormInput,
   InputGroup,
-  Button
+  Button,
 } from "shards-react";
 
 import { AdminContext } from "../context/state/AdminState";
 
 const initialData = {
   userName: "",
-  password: ""
+  password: "",
 };
 
 const adminLoading = {
-  login: false
+  login: false,
 };
 
 export default function SignIn() {
@@ -39,7 +39,6 @@ export default function SignIn() {
     } else if (adminAccess.message === "loginFailed" && !adminAccess.login) {
       setAuth(true);
     }
-    // showLoading ? setLoading(true) : setLoading(false);
     setLoading({ ...loading, login: showLoading.flage });
   }, [adminAccess.login, showLoading]);
 
@@ -61,8 +60,7 @@ export default function SignIn() {
                 <InputGroup className="mb-3">
                   <FormInput
                     placeholder="Username"
-                    placeholder="User name"
-                    onChange={e =>
+                    onChange={(e) =>
                       setLogin({ ...login, userName: e.target.value })
                     }
                   />
@@ -72,7 +70,7 @@ export default function SignIn() {
                 <FormInput
                   type="password"
                   placeholder="Password"
-                  onChange={e =>
+                  onChange={(e) =>
                     setLogin({ ...login, password: e.target.value })
                   }
                 />

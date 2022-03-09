@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Loading from "react-fullscreen-loading";
 
 import routes from "./routes";
-import withTracker from "./withTracker";
 import { LoadingContex } from "./context/state/LoadingState";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,13 +28,13 @@ export default () => {
                   key={index}
                   path={route.path}
                   exact={route.exact}
-                  component={withTracker(props => {
+                  component={(props) => {
                     return (
                       <route.layout {...props}>
                         <route.component {...props} />
                       </route.layout>
                     );
-                  })}
+                  }}
                 />
               );
             })}

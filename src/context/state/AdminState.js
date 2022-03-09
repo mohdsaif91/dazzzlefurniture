@@ -7,6 +7,8 @@ import {
   getCountCategory,
   updateCategory,
   deleteCategoryById,
+  getProductApi,
+  addHotProductAPI,
 } from "../../api";
 import {
   adminLoginAction,
@@ -20,13 +22,21 @@ import {
   addCategoryUnSucess,
   updateCategorySucess,
   updateCategoryUnSucess,
+  getAdminProductFail,
+  getAdminProductSuccess,
+  addhotProductSuccess,
+  addhotProductFail,
 } from "../actions/adminActions";
 
 import { startLoading, stopLoading } from "../actions/LoadingAction";
 import { LoadingContex } from "./LoadingState";
 
+const loginData = sessionStorage.getItem("loginData");
+
 const initialState = {
-  adminAccess: { message: "", login: false },
+  adminAccess: loginData
+    ? JSON.parse(loginData)
+    : { message: "", login: false },
   category: {},
   showLoading: false,
 };
@@ -46,6 +56,10 @@ export const AdminProvider = ({ children }) => {
         if (res.status === 200) {
           sessionStorage.setItem("adminAccess", true);
           dispatch(adminLoginAction());
+          sessionStorage.setItem(
+            "loginData",
+            JSON.stringify({ message: "loginSucessfull", login: true })
+          );
           dispatch(stopLoading("adminLogin"));
         }
       })
@@ -60,7 +74,7 @@ export const AdminProvider = ({ children }) => {
   };
 
   const adminLogOut = () => {
-    sessionStorage.setItem("adminAccess", false);
+    sessionStorage.clear();
     dispatch(adminLogoutAction());
   };
 
@@ -133,18 +147,55 @@ export const AdminProvider = ({ children }) => {
       });
   };
 
+  const getAdminProduct = async (categoryName) => {
+    startLoadingMeth();
+    await getProductApi(categoryName)
+      .then((res) => {
+        stopLoadingMeth();
+        if (res.status === 200) {
+          dispatch(getAdminProductSuccess(res.data));
+        } else {
+          dispatch(getAdminProductFail());
+        }
+      })
+      .catch((err) => {
+        stopLoadingMeth();
+        dispatch(getAdminProductFail(err));
+      });
+  };
+
+  const addHotProduct = async (id) => {
+    startLoadingMeth();
+    await addHotProductAPI(id)
+      .then((res) => {
+        stopLoadingMeth();
+        if (res.status === 200) {
+          dispatch(addhotProductSuccess(res.data));
+        } else {
+          dispatch(addhotProductFail());
+        }
+      })
+      .catch((err) => {
+        stopLoadingMeth();
+        dispatch(addhotProductFail(err));
+      });
+  };
+
   return (
     <AdminContext.Provider
       value={{
         adminAccess: state.adminAccess,
+        adminProduct: state.adminProduct,
         category: state.category,
         showLoading: state.showLoading,
         categoryCount: state.categoryCount,
         productCount: state.productCount,
+        addHotProduct,
         adminLogin,
         adminLogOut,
         refreshLogin,
         addMethodCategory,
+        getAdminProduct,
         getCategoryCount,
         updateEditCategory,
         deleteCategory,

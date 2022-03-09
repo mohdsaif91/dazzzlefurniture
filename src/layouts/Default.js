@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "shards-react";
 
@@ -6,24 +6,36 @@ import MainNavbar from "../components/layout/MainNavbar/MainNavbar";
 import MainSidebar from "../components/layout/MainSidebar/MainSidebar";
 import MainFooter from "../components/layout/MainFooter";
 import { isMobileWindow } from "../utils/WindowSize";
+import { AdminContext } from "../context/state/AdminState";
 
 const DefaultLayout = ({ children, noNavbar, noFooter }) => {
-  console.log(isMobileWindow, "Mobile Flag");
+  const { adminAccess } = useContext(AdminContext);
+
   return (
     <Container fluid>
       <Row>
         {isMobileWindow() && <MainSidebar />}
-        <Col
-          className="main-content p-0"
-          // lg={{ size: 11, offset: 1 }}
-          // md={{ size: 10, offset: 2 }}
-          sm="12"
-          tag="main"
-        >
-          {!noNavbar && <MainNavbar />}
-          {children}
-          {noFooter && <MainFooter />}
-        </Col>
+        {adminAccess.login ? (
+          <>
+            <MainSidebar />
+            <Col
+              className="main-content p-0"
+              lg={{ size: 10, offset: 2 }}
+              md={{ size: 9, offset: 3 }}
+              sm="12"
+              tag="main"
+            >
+              {!noNavbar && <MainNavbar />}
+              {children}
+            </Col>
+          </>
+        ) : (
+          <Col className="main-content p-0" sm="12" tag="main">
+            {!noNavbar && <MainNavbar />}
+            {children}
+            {noFooter && <MainFooter />}
+          </Col>
+        )}
       </Row>
     </Container>
   );

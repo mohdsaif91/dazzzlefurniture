@@ -5,17 +5,17 @@ export default (state, action) => {
     case adminActions.ADMIN_LOGIN:
       return {
         ...state,
-        adminAccess: action.data
+        adminAccess: action.data,
       };
     case adminActions.ADMIN_LOGOUT:
       return {
         ...state,
-        adminAccess: action.data
+        adminAccess: action.data,
       };
     case adminActions.LOGIN_FAIL:
       return {
         ...state,
-        adminAccess: action.data
+        adminAccess: action.data,
       };
     case adminActions.GET_CATEGORY_COUNT:
       const { categoryCount, productCount } = action.data;
@@ -23,31 +23,33 @@ export default (state, action) => {
         ...state,
         category: action.data,
         categoryCount: categoryCount,
-        productCount
+        productCount,
       };
     case adminActions.DELETE_SUCESSFULL:
       const category = {
-        category: state.category.category.filter(f => f._id !== action.data.id)
+        category: state.category.category.filter(
+          (f) => f._id !== action.data.id
+        ),
       };
       return {
         ...state,
-        category
+        category,
       };
     case adminActions.ADD_CATEGORY_SUCESS:
       return {
         ...state,
         error: false,
-        category: [...state.category.category, action.data]
+        category: [...state.category.category, action.data],
       };
     case adminActions.ADD_CATEGORY_UNSUCESS:
       return {
         ...state,
         error: true,
-        category: action.data
+        category: action.data,
       };
     case adminActions.UPDATED_CATEGORY_SUCESS:
       const updatedValue = action.data;
-      const updatedCat = state.category.category.filter(f => {
+      const updatedCat = state.category.category.filter((f) => {
         if (f._id === updatedValue._id) {
           return updatedValue;
         } else {
@@ -57,7 +59,18 @@ export default (state, action) => {
       return {
         ...state,
         error: false,
-        category: updatedCat
+        category: updatedCat,
+      };
+    case adminActions.GET_ADMIN_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        adminProduct: action.data,
+      };
+    case adminActions.GET_ADMIN_PRODUCT_FAIL:
+      return {
+        ...state,
+        error: true,
       };
     case adminActions.DELETE_UNSUCESSFULL:
     default:

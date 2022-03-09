@@ -26,3 +26,7 @@ export const updateProductApi = (data) =>
   Axios.patch(`${url}/v1/product`, data);
 export const getProductLatestIdApi = () => Axios.get(`${url}/v1/product/Id`);
 export const getRandomProductAPI = () => Axios.get(`${url}/v1/randomProducts`);
+export const addHotProductAPI = (id) =>
+  Axios.post(`${url}/v1/hotProduct/add`, id);
+export const getProductByIdAPI = (id) =>
+  Axios.get(`${url}/v1/product/getProductById/${id}`);

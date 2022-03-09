@@ -2,6 +2,7 @@ import React from "react";
 
 // Layout Types
 import { DefaultLayout } from "./layouts";
+import AuthLayout from "./layouts/AuthLayout";
 
 // Route Views
 import BlogOverview from "./views/BlogOverview";
@@ -17,6 +18,7 @@ import AddProduct from "./adminComponents/AddProduct";
 import AddCategory from "./adminComponents/AddCategory";
 import Categories from "./components/Pages/Categories";
 import Products from "./components/Pages/Products";
+import ShowSingleproduct from "./components/Pages/ShowSingleProduct";
 
 export default [
   {
@@ -55,10 +57,15 @@ export default [
     layout: DefaultLayout,
     component: BlogPosts,
   },
-  { path: "/signIn", layout: DefaultLayout, component: SignIn },
+  { path: "/signIn", layout: AuthLayout, component: SignIn },
   { path: "/adminHome/admin", layout: DefaultLayout, component: AdminHome },
   { path: "/addProduct/admin", layout: DefaultLayout, component: AddProduct },
   { path: "/addCategory/admin", layout: DefaultLayout, component: AddCategory },
   { path: "/categories", layout: DefaultLayout, component: Categories },
-  { pathc: "/products", layout: DefaultLayout, component: Products },
+  { path: "/products", layout: DefaultLayout, component: Products },
+  {
+    path: "/singleProduct/:id",
+    layout: DefaultLayout,
+    component: ShowSingleproduct,
+  },
 ];

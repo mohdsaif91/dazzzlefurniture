@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { Container, Row, Col, Card, CardBody } from "shards-react";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
 
 import { AdminContext } from "../context/state/AdminState";
 import { ProductContext } from "../context/state/ProductState";
+import ProductTable from "./ProductTable";
+import ProductFilter from "./ProductFilter";
 
 export default function AdminHome() {
   const {
@@ -36,7 +38,7 @@ export default function AdminHome() {
             </CardBody>
           </Card>
         </Col>
-        <Col lg="4" key={1}>
+        <Col lg="4" key={2}>
           <Card small className="card-post mb-4 mt-4">
             <CardBody>
               <h5 className="card-title">Number of Product</h5>
@@ -44,9 +46,24 @@ export default function AdminHome() {
             </CardBody>
           </Card>
         </Col>
+        <Col lg="4" key={3}>
+          <Card small className="card-post mb-4 mt-4">
+            <CardBody>
+              <h5 className="card-title">Number of hot Product</h5>
+              <p className="card-text text-muted">{productCount}</p>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+      {/* Filter */}
+      <Row>
+        <ProductFilter />
+      </Row>
+      <Row>
+        <ProductTable />
       </Row>
       {/* carousel */}
-      <Row>
+      {/* <Row>
         <Carousel
           className="mb-4"
           selectedItem={0}
@@ -81,7 +98,7 @@ export default function AdminHome() {
             />
           </div>
         </Carousel>
-      </Row>
+      </Row> */}
     </Container>
   );
 }

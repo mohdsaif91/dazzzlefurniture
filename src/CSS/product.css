@@ -4,8 +4,42 @@
   border-radius: 5px 5px 1px 1px;
 }
 
-.fill{
-    /* margin: 5%; */
-    height:250px
+.fill {
+  /* margin: 5%; */
+  height: 250px;
+}
+.react-select-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 16px;
+}
+.select-heading {
+  font-size: 26px;
+  padding-bottom: 8px;
+}
+.category-select {
+  width: 272px;
 }
 
+.my-component {
+  background: #fff;
+}
+
+.full-screen-img {
+  height: 100%;
+  width: 100%;
+  margin: 32px 0;
+}
+.exit-btn {
+  margin: 0 32px;
+  background-color: yellow;
+  padding: 8px 24px;
+  font-weight: 600;
+  color: black;
+}
+
+.fullscreen-enabled .my-component {
+  background: #000;
+}

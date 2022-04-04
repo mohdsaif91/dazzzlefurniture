@@ -11,20 +11,20 @@ export default function (props) {
     //   htmlAfter: "",
     //   to: "/blog-overview",
     // },
-    {
-      title: "Categories",
-      htmlBefore: '<i class="material-icons">category</i>',
-      to: "/categories",
-    },
+    // {
+    //   title: "Categories",
+    //   htmlBefore: '<i class="material-icons">category</i>',
+    //   to: "/categories",
+    // },
     {
       title: "Products",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/product",
+      to: "/products",
     },
     {
       title: "About us",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/product",
+      to: "/aboutus",
     },
     {
       title: "Contact us",

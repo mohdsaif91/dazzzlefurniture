@@ -18,7 +18,7 @@ function PageItem() {
             Home
           </li>
         </NavLink>
-        <NavLink to="/categories">
+        {/* <NavLink to="/categories">
           <li
             className={`p-item ${
               active === "categories" && "active-page-item"
@@ -26,24 +26,24 @@ function PageItem() {
           >
             Category
           </li>
-        </NavLink>
+        </NavLink> */}
         <NavLink to="/products">
           <li
             className={`p-item ${active === "products" && "active-page-item"}`}
           >
-            Product
+            Products
           </li>
         </NavLink>
-        <NavLink to="/products">
+        <NavLink to="/aboutus">
           <li
-            className={`p-item ${active === "products" && "active-page-item"}`}
+            className={`p-item ${active === "aboutus" && "active-page-item"}`}
           >
             About us
           </li>
         </NavLink>
-        <NavLink to="/products">
+        <NavLink to="/contactus">
           <li
-            className={`p-item ${active === "products" && "active-page-item"}`}
+            className={`p-item ${active === "contactus" && "active-page-item"}`}
           >
             Contact us
           </li>

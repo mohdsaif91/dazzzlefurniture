@@ -25,6 +25,7 @@ import {
   getProductLatestIdApi,
   getRandomProductAPI,
   getProductByIdAPI,
+  getAllProductAPI,
 } from "../../api";
 import ProductReducer from "../reducers/ProductReducer";
 import { LoadingContex } from "./LoadingState";
@@ -40,6 +41,24 @@ export const ProductContext = createContext(initialProductState);
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialProductState);
   const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
+
+  const getAllProduct = async () => {
+    startLoadingMeth();
+    await getAllProductAPI()
+      .then((res) => {
+        stopLoadingMeth();
+        if (res.status === 200) {
+          console.log(res.data, " API Data");
+          dispatch(getProductSucessfull(res.data));
+        } else {
+          dispatch(getProductUnSucessfull(res.data));
+        }
+      })
+      .catch((err) => {
+        stopLoadingMeth();
+        dispatch(getProductUnSucessfull(err.response.message));
+      });
+  };
 
   const getRandomProductState = async () => {
     startLoadingMeth();
@@ -58,6 +77,7 @@ export const ProductProvider = ({ children }) => {
       .then((res) => {
         stopLoadingMeth();
         if (res.status === 200) {
+          console.log(res.data, " API Data");
           dispatch(getProductSucessfull(res.data));
         } else {
           dispatch(getProductUnSucessfull(res.data));
@@ -162,6 +182,7 @@ export const ProductProvider = ({ children }) => {
         updateProductState,
         getLatestProductId,
         getRandomProductState,
+        getAllProduct,
       }}
     >
       {children}

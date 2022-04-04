@@ -9,53 +9,99 @@ import {
   Modal,
 } from "shards-react";
 import { ImageGroup, Image } from "react-fullscreen-image";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import Select from "react-select";
 
 import { ProductContext } from "../../context/state/ProductState";
+import { AdminContext } from "../../context/state/AdminState";
 
 const modalData = {
   showModal: false,
   image: "",
 };
 
-// const imgList = [
-//   "https://unsplash.com/photos/Bkci_8qcdvQ",
-//   "https://unsplash.com/photos/hS46bsAASwQ",
-//   "https://unsplash.com/photos/2VDa8bnLM8c",
-//   "https://unsplash.com/photos/_LuLiJc1cdo",
-//   "https://unsplash.com/photos/1Z2niiBPg5A",
-//   "https://unsplash.com/photos/pHANr-CpbYM",
-//   "https://unsplash.com/photos/pQMM63GE7fo",
-//   "https://unsplash.com/photos/2VDa8bnLM8c",
-//   "https://unsplash.com/photos/MBkQKiH14ng",
-// ];
+const initialSelect = { label: "", value: "" };
 
 export default function Products(props) {
-  const [selectedProduct, setSelectedProduct] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState({
+    ...initialSelect,
+  });
   const [modal, setModal] = useState({ ...modalData });
-  const { allProduct, getProductState } = useContext(ProductContext);
-  const { categoryName } = (props.location && props.location.state) || {};
+  const [showProduct, setShowProduct] = useState([]);
+
+  const { allProduct, getAllProduct } = useContext(ProductContext);
+  const { getCategoryCount, category } = useContext(AdminContext);
+  const handle = useFullScreenHandle();
 
   useEffect(() => {
-    if (allProduct === null) {
-      getProductState(categoryName);
+    if (!category.category) {
+      getCategoryCount();
     }
-    setSelectedProduct(allProduct || []);
-  }, [allProduct]);
+    if (!allProduct) {
+      getAllProduct();
+    }
+  }, [allProduct, category]);
+
+  useEffect(() => {
+    if (allProduct && selectedCategory.value !== "") {
+      const filteredCategory = allProduct.filter(
+        (f) => f.categoryName === selectedCategory.value
+      );
+
+      setShowProduct([...filteredCategory]);
+      console.log(filteredCategory, " <>");
+    } else {
+      setShowProduct(allProduct);
+    }
+  }, [allProduct, selectedCategory]);
 
   const openImage = (image) => {
     console.log(image);
-    setModal({
-      ...modal,
-      showModal: !modal.showModal,
-      image,
-    });
+    try {
+      setModal({
+        ...modal,
+        showModal: !modal.showModal,
+        image,
+      });
+      handle.enter();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  console.log(selectedProduct, "<>?", categoryName, allProduct);
+  const closeFullScreen = () => {
+    setModal({ ...modalData });
+    handle.exit();
+  };
+
+  const actualProducts = allProduct ? allProduct : [];
+  console.log(showProduct, " SHOW product");
+
+  const categoryOption = category.category
+    ? category.category.map((m) => {
+        return { label: m.categoryName, value: m.categoryName };
+      })
+    : [];
+
   return (
     <Container fluid className="main-content-container px-4 mt-4">
+      <Row className="react-select-container">
+        <div className="select-heading">Category Name</div>
+        <Select
+          className="category-select"
+          placeholder="Select Category"
+          options={categoryOption}
+          onChange={(value) =>
+            !value
+              ? setSelectedCategory({ initialSelect })
+              : setSelectedCategory(value)
+          }
+          value={selectedCategory}
+          isClearable={true}
+        />
+      </Row>
       <Row>
-        {selectedProduct.map((m) => (
+        {showProduct.map((m) => (
           <Col lg="4" key={m._id}>
             <Card small className="card-post mb-4">
               <div
@@ -91,31 +137,18 @@ export default function Products(props) {
           </Col>
         ))}
       </Row>
-      <Modal
-        open={modal.showModal}
-        toggle={() => setModal({ ...modal, showModal: false })}
-      >
-        <ImageGroup>
-          <ul className="images">
-            <li>
-              {/* <ModalBody className="fill"> */}
-              <Image
-                src={modal.image}
-                style={{
-                  position: "relative",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  width: "100%",
-                  objectFit: "cover",
-                }}
-              />
-              {/* </ModalBody> */}
-            </li>
-          </ul>
-        </ImageGroup>
-      </Modal>
+      {/* {modal.showModal && ( */}
+      <FullScreen handle={handle}>
+        {modal.image !== "" && (
+          <button className="exit-btn" onClick={() => closeFullScreen()}>
+            Exit
+          </button>
+        )}
+        {modal.image !== "" && (
+          <img className="full-screen-img" src={modal.image} />
+        )}
+      </FullScreen>
+      {/* )} */}
     </Container>
   );
 }

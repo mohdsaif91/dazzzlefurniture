@@ -12,6 +12,7 @@ import {
   Button,
 } from "shards-react";
 import { Carousel } from "react-responsive-carousel";
+import CountUp from "react-countup";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 import PageTitle from "../components/common/PageTitle";
@@ -19,6 +20,9 @@ import { AdminContext } from "../context/state/AdminState";
 import { ProductContext } from "../context/state/ProductState";
 import { Link, useHistory } from "react-router-dom";
 import GlidSlide from "./GlidSlide";
+import B1 from "../images/bottom1.webp";
+import B2 from "../images/bottom2.webp";
+import B3 from "../images/bottom3.webp";
 
 const initialData = {
   // First list of posts.
@@ -205,9 +209,11 @@ export default function BlogPosts() {
                 <h2 className="hero-text">
                   Creative Design <br /> Modern &amp; Exclusive Furniture
                 </h2>
-                <a href="#" className="shop-now-btn" tabindex="0">
-                  SHOP NOW
-                </a>
+                <Link to="/products">
+                  <a href="#" className="shop-now-btn" tabindex="0">
+                    SHOP NOW
+                  </a>
+                </Link>
               </div>
             </div>
           </Card>
@@ -219,9 +225,11 @@ export default function BlogPosts() {
                 <h2 className="hero-text">
                   Beautiful <br /> CraftmenShip
                 </h2>
-                <a href="#" className="shop-now-btn" tabindex="0">
-                  SHOP NOW
-                </a>
+                <Link to="/products">
+                  <a href="#" className="shop-now-btn" tabindex="0">
+                    SHOP NOW
+                  </a>
+                </Link>
               </div>
             </div>
           </Card>
@@ -233,9 +241,11 @@ export default function BlogPosts() {
                 <h2 className="hero-text">
                   Green up <br /> Your Lifestyle
                 </h2>
-                <a href="#" className="shop-now-btn" tabindex="0">
-                  SHOP NOW
-                </a>
+                <Link to="/products">
+                  <a href="#" className="shop-now-btn" tabindex="0">
+                    SHOP NOW
+                  </a>
+                </Link>
               </div>
             </div>
           </Card>
@@ -424,10 +434,91 @@ export default function BlogPosts() {
         </div>
       </div>
       {/* --- */}
+      <div className="show-biz ">
+        <div className="carosule-container">
+          <Carousel
+            showArrows={false}
+            className="mb-4 mt-4 "
+            autoPlay={true}
+            infiniteLoop={true}
+          >
+            <Card small className="card-post card-post--1">
+              <img className="carousel-img" src={B1} alt="" />
+            </Card>
+            <Card small className="card-post card-post--1">
+              <img className="carousel-img" src={B2} alt="" />
+            </Card>
+            <Card small className="card-post card-post--1">
+              <img className="carousel-img" src={B3} alt="" />
+            </Card>
+          </Carousel>
+        </div>
+        <div className="number-container gradient-background">
+          <div className="parent-box">
+            <div className="home-box">
+              <h3 className="count-heading">
+                <CountUp end={166} duration={4} />+
+              </h3>
+              <p className="para-heading">Satisfied Customer</p>
+            </div>
+            <div className="home-box">
+              <h3 className="count-heading">
+                <CountUp end={1000} duration={4} />+
+              </h3>
+              <p className="para-heading">Custome designs</p>
+            </div>
+          </div>
+          <div className="parent-box">
+            <div className="home-box">
+              <h3 className="count-heading">
+                <CountUp end={166} duration={4} />+
+              </h3>
+              <p className="para-heading">
+                Our current team count, ​vulputate enim nulla aliquet
+              </p>
+            </div>
+            <div className="home-box">
+              <h3 className="count-heading">
+                <CountUp end={190} duration={4} />+
+              </h3>
+              <p className="para-heading">
+                Countries where OurApp is available
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* --------- */}
+      <div className="bottom-img-container">
+        <div className="left-img img-style-home">
+          <div className="text-container-bottom-img-container-left">
+            <h3 className="h3-bottom-img">
+              <b>Stylish </b>
+              <br />
+              In Living Space
+            </h3>
+            <Link to="/products">
+              <button className="shop-now-btn">Shop now</button>
+            </Link>
+          </div>
+        </div>
+        <div className="right-img img-style-home">
+          <div className="text-container-bottom-img-container-right">
+            <h3 className="h3-bottom-img">
+              <b>Mix {`&`} Match </b>
+              <br />
+              Your Style
+            </h3>
+            <Link to="/products">
+              <button className="shop-now-btn">Shop now</button>
+            </Link>
+          </div>
+        </div>
+      </div>
 
       {/* --- */}
       {/* Second Row of Posts */}
-      <Row>
+      {/* <Row>
         {PostsListTwo.map((post, idx) => (
           <Col lg="6" sm="12" className="mb-4" key={idx}>
             <Card small className="card-post card-post--aside card-post--1">
@@ -452,10 +543,10 @@ export default function BlogPosts() {
             </Card>
           </Col>
         ))}
-      </Row>
+      </Row> */}
 
       {/* Third Row of Posts */}
-      <Row>
+      {/* <Row>
         {PostsListThree.map((post, idx) => (
           <Col lg="4" key={idx}>
             <Card small className="card-post mb-4">
@@ -488,10 +579,10 @@ export default function BlogPosts() {
             </Card>
           </Col>
         ))}
-      </Row>
+      </Row> */}
 
       {/* Fourth Row of posts */}
-      <Row>
+      {/* <Row>
         {PostsListFour.map((post, idx) => (
           <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
             <Card small className="card-post h-100">
@@ -522,7 +613,7 @@ export default function BlogPosts() {
             </Card>
           </Col>
         ))}
-      </Row>
+      </Row> */}
     </Container>
   );
 }

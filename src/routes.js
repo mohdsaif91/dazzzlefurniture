@@ -19,6 +19,7 @@ import AddCategory from "./adminComponents/AddCategory";
 import Categories from "./components/Pages/Categories";
 import Products from "./components/Pages/Products";
 import ShowSingleproduct from "./components/Pages/ShowSingleProduct";
+import AboutUs from "./components/Pages/AboutUs";
 
 export default [
   {
@@ -61,11 +62,13 @@ export default [
   { path: "/adminHome/admin", layout: DefaultLayout, component: AdminHome },
   { path: "/addProduct/admin", layout: DefaultLayout, component: AddProduct },
   { path: "/addCategory/admin", layout: DefaultLayout, component: AddCategory },
-  { path: "/categories", layout: DefaultLayout, component: Categories },
+  // { path: "/categories", layout: DefaultLayout, component: Categories },
   { path: "/products", layout: DefaultLayout, component: Products },
   {
     path: "/singleProduct/:id",
     layout: DefaultLayout,
     component: ShowSingleproduct,
   },
+  { path: "/aboutUS", layout: DefaultLayout, component: AboutUs },
+  { path: "/contactUS", layout: DefaultLayout, component: AboutUs },
 ];

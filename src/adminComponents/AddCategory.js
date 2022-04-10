@@ -291,7 +291,7 @@ export default function AddCategory() {
                 <div
                   className="card-post__image"
                   style={{
-                    backgroundImage: `url('https://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/category/${imageName}')`,
+                    backgroundImage: `url('https://furniture-razik-world-1.s3.ap-south-1.amazonaws.com/category/${imageName}')`,
                   }}
                 ></div>
                 <CardBody>

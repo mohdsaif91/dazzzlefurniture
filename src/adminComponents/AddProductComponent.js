@@ -243,7 +243,8 @@ export default function AddProductComponent() {
                           <div
                             className="card-post__image"
                             style={{
-                              backgroundImage: `url('https://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${edit.editImageDisplay}')`,
+                              // https://furniture-razik-world.s3.ap-south-1.amazonaws.com/product/566493a3-162f-4a6e-8a37-148f6e325eb9.jpg
+                              backgroundImage: `url('https://furniture-razik-world-1.s3.ap-south-1.amazonaws.com/category/${edit.editImageDisplay}')`,
                             }}
                           ></div>
                         ) : null}
@@ -345,7 +346,7 @@ export default function AddProductComponent() {
                     <div
                       className="card-post__image"
                       style={{
-                        backgroundImage: `url('http://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${productImageName}')`,
+                        backgroundImage: `url('https://furniture-razik-world-1.s3.ap-south-1.amazonaws.com/product/${productImageName}')`,
                       }}
                     >
                       <Badge pill className="card-post__category bg-info">

@@ -15,7 +15,6 @@ function ProductFilter() {
   const actualCategory = categoryCount === undefined ? [] : categoryCount;
 
   const getProductFromCategory = (category) => {
-    console.log(category);
     getAdminProduct(category);
   };
 

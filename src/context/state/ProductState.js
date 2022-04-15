@@ -48,7 +48,6 @@ export const ProductProvider = ({ children }) => {
       .then((res) => {
         stopLoadingMeth();
         if (res.status === 200) {
-          console.log(res.data, " API Data");
           dispatch(getProductSucessfull(res.data));
         } else {
           dispatch(getProductUnSucessfull(res.data));
@@ -77,7 +76,6 @@ export const ProductProvider = ({ children }) => {
       .then((res) => {
         stopLoadingMeth();
         if (res.status === 200) {
-          console.log(res.data, " API Data");
           dispatch(getProductSucessfull(res.data));
         } else {
           dispatch(getProductUnSucessfull(res.data));

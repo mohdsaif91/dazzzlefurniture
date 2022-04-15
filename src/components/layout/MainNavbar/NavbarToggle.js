@@ -11,7 +11,6 @@ function NavbarToggle() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(e);
     Dispatcher.dispatch({
       actionType: Constants.TOGGLE_SIDEBAR,
     });

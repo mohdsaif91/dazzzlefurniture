@@ -67,7 +67,6 @@ export default function AddProductComponent() {
   }, [product.selectedCategory]);
 
   const addProduct = () => {
-    console.log(product);
     addProductState(getFormData(product));
   };
 

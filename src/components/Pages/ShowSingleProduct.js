@@ -12,14 +12,13 @@ function ShowSingleProduct() {
   const { id } = useParams();
   useEffect(() => {
     if (!gotHotProduct) {
-      console.log("empty");
       getProductById(id);
     }
     return () => {
       doNotCallAgain();
     };
   }, [id]);
-  console.log("called Single");
+
   return (
     <Container fluid>
       <Row className="mt-4 mb-4">

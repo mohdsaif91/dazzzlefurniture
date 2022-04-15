@@ -7,7 +7,6 @@ function ProductTable() {
   const { addHotProduct, adminProduct } = useContext(AdminContext);
 
   const tableData = adminProduct ? adminProduct : [];
-  console.log(tableData);
 
   const addHotProductFun = (productId, hotFlag) => {
     const productIdObj = {

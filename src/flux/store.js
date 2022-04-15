@@ -31,7 +31,6 @@ class Store extends EventEmitter {
   }
 
   toggleSidebar() {
-    console.log("flux");
     _store.menuVisible = !_store.menuVisible;
     this.emit(Constants.CHANGE);
   }

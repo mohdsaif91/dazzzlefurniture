@@ -25,6 +25,7 @@ const initialData = {
 const editData = {
   editedcategoryName: "",
   imageName: "",
+  imageId: "",
   editEnable: true,
   editedImage: null,
   imageDisplay: "",
@@ -102,8 +103,8 @@ export default function AddCategory() {
     addMethodCategory(formDataKeyPair);
   };
 
-  const deleteCategoryMethod = (id, imageName, categoryName) => {
-    deleteCategory(id, imageName, categoryName.replace(/ /g, "_"));
+  const deleteCategoryMethod = (id, imageName, categoryName, imageId) => {
+    deleteCategory(id, imageName, categoryName.replace(/ /g, "_"), imageId);
   };
 
   const editCategory = (id) => {
@@ -113,6 +114,7 @@ export default function AddCategory() {
     setEditCategoryData({
       ...editcategoryData,
       imageName: edited.imageName,
+      imageId: edited.imageId,
       editedcategoryName: edited.categoryName,
       editEnable: false,
       categoryId: id,
@@ -283,44 +285,51 @@ export default function AddCategory() {
             )}
           </Col>
           <Col md="6">
-            {actualCategory.map(({ imageName, _id, categoryName }, index) => (
-              <Card
-                small
-                className="card-post mb-2 card-post--aside card-post--1"
-              >
-                <div
-                  className="card-post__image"
-                  style={{
-                    backgroundImage: `url('https://furniture-razik-world-1.s3.ap-south-1.amazonaws.com/category/${imageName}')`,
-                  }}
-                ></div>
-                <CardBody>
-                  <h5 className="card-title">
-                    <a className="text-fiord-blue" href="#">
-                      {categoryName} #{index + 1}
-                    </a>
-                  </h5>
-                  <div className="mt-5">
-                    <Button
-                      onClick={() =>
-                        deleteCategoryMethod(_id, imageName, categoryName)
-                      }
-                      theme="danger"
-                      className="mb-2 mr-1"
-                    >
-                      Delete
-                    </Button>
-                    <Button
-                      onClick={() => editCategory(_id)}
-                      theme="info"
-                      className="mb-2 mr-1"
-                    >
-                      Edit
-                    </Button>
-                  </div>
-                </CardBody>
-              </Card>
-            ))}
+            {actualCategory.map(
+              ({ imageName, _id, categoryName, imageId }, index) => (
+                <Card
+                  small
+                  className="card-post mb-2 card-post--aside card-post--1"
+                >
+                  <div
+                    className="card-post__image"
+                    style={{
+                      backgroundImage: `url('https://drive.google.com/uc?export=view&id=${imageId}')`,
+                    }}
+                  ></div>
+                  <CardBody>
+                    <h5 className="card-title">
+                      <a className="text-fiord-blue" href="#">
+                        {categoryName} #{index + 1}
+                      </a>
+                    </h5>
+                    <div className="mt-5">
+                      <Button
+                        onClick={() =>
+                          deleteCategoryMethod(
+                            _id,
+                            imageName,
+                            categoryName,
+                            imageId
+                          )
+                        }
+                        theme="danger"
+                        className="mb-2 mr-1"
+                      >
+                        Delete
+                      </Button>
+                      <Button
+                        onClick={() => editCategory(_id)}
+                        theme="info"
+                        className="mb-2 mr-1"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                  </CardBody>
+                </Card>
+              )
+            )}
           </Col>
         </Row>
       </ListGroupItem>

@@ -131,9 +131,9 @@ export const AdminProvider = ({ children }) => {
       .catch((error) => dispatch(updateCategoryUnSucess(error)));
   };
 
-  const deleteCategory = async (id, imageName, categoryName) => {
+  const deleteCategory = async (id, imageName, categoryName, imageId) => {
     startLoadingMeth();
-    await deleteCategoryById(id, imageName, categoryName)
+    await deleteCategoryById(id, imageName, categoryName, imageId)
       .then((res) => {
         stopLoadingMeth();
         if (res.status === 200) {

@@ -1,14 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardFooter,
-  Button,
-  Modal,
-} from "shards-react";
-import { ImageGroup, Image } from "react-fullscreen-image";
+import { Container, Row, Col, Card, CardFooter, Button } from "shards-react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import Select from "react-select";
 
@@ -49,14 +40,12 @@ export default function Products(props) {
       );
 
       setShowProduct([...filteredCategory]);
-      console.log(filteredCategory, " <>");
     } else {
       setShowProduct(allProduct);
     }
   }, [allProduct, selectedCategory]);
 
   const openImage = (image) => {
-    console.log(image);
     try {
       setModal({
         ...modal,
@@ -75,7 +64,6 @@ export default function Products(props) {
   };
 
   const actualProducts = allProduct ? allProduct : [];
-  console.log(showProduct, " SHOW product");
 
   const categoryOption = category.category
     ? category.category.map((m) => {

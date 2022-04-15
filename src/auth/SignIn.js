@@ -87,6 +87,7 @@ export default function SignIn() {
                 <Button theme="accent" size="md" onClick={() => authLogiIn()}>
                   {loading.login ? (
                     <img
+                      alt=""
                       className="loading-image"
                       src="https://www.mybloggerguides.com/wp-content/uploads/2016/07/Loading5.gif"
                     />

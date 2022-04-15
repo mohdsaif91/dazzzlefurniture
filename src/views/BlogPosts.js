@@ -1,21 +1,11 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useState, useEffect, useContext, useMemo } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardFooter,
-  Badge,
-  Button,
-} from "shards-react";
+import React, { useState, useEffect, useContext } from "react";
+import { Container, Row, Col, Card, Button } from "shards-react";
 import { Carousel } from "react-responsive-carousel";
 import CountUp from "react-countup";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import PageTitle from "../components/common/PageTitle";
 import { AdminContext } from "../context/state/AdminState";
 import { ProductContext } from "../context/state/ProductState";
 import { Link, useHistory } from "react-router-dom";
@@ -168,12 +158,8 @@ const initialData = {
 export default function BlogPosts() {
   const [data, setData] = useState({ ...initialData });
 
-  const { PostsListOne, PostsListTwo, PostsListThree, PostsListFour } = data;
-
   const { getCategoryCount, category } = useContext(AdminContext);
-  const { getProductState, gotHotProduct } = useContext(ProductContext);
-
-  console.log(gotHotProduct, " HOT PRODUCT !");
+  const { getProductState } = useContext(ProductContext);
 
   const history = useHistory();
 

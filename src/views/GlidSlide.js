@@ -49,7 +49,7 @@ function GlidSlide(props) {
                     // onClick={() => viewCategory()}
                     className="card-post__image card-image"
                     style={{
-                      backgroundImage: `url(http://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${m.productImageName})`,
+                      backgroundImage: `url('https://drive.google.com/uc?export=view&id=${m.productImageName}')`,
                     }}
                   >
                     <Badge

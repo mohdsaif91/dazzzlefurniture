@@ -95,7 +95,7 @@ export default function Products(props) {
               <div
                 className="card-post__image"
                 style={{
-                  backgroundImage: `url('http://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${m.productImageName}')`,
+                  backgroundImage: `url('https://drive.google.com/uc?export=view&id=${m.productImageName}')`,
                 }}
               />
               <CardFooter className="border-top d-flex">
@@ -113,7 +113,7 @@ export default function Products(props) {
                     theme="primary"
                     onClick={() =>
                       openImage(
-                        `http://dazzlefurnitureworld.s3.ap-south-1.amazonaws.com/product/${m.productImageName}`
+                        `https://drive.google.com/uc?export=view&id=${m.productImageName}`
                       )
                     }
                   >

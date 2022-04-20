@@ -169,8 +169,6 @@ export default function BlogPosts() {
     }
   }, [category]);
 
-  const viewCategory = () => {};
-
   const getProduct = (e) => {
     getProductState(e.target.id);
     history.push({

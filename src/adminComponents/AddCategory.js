@@ -205,7 +205,7 @@ export default function AddCategory() {
                         <div
                           className="card-post__image"
                           style={{
-                            backgroundImage: `url('http://dazzlefurniture.s3.ap-south-1.amazonaws.com/categories/${editcategoryData.imageName}')`,
+                            backgroundImage: `url('https://drive.google.com/uc?export=view&id=${editcategoryData.imageName}')`,
                           }}
                         ></div>
                       ) : null}

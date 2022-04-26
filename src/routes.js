@@ -20,6 +20,7 @@ import Categories from "./components/Pages/Categories";
 import Products from "./components/Pages/Products";
 import ShowSingleproduct from "./components/Pages/ShowSingleProduct";
 import AboutUs from "./components/Pages/AboutUs";
+import ContactUs from "./components/Pages/ContactUs";
 
 export default [
   {
@@ -70,5 +71,5 @@ export default [
     component: ShowSingleproduct,
   },
   { path: "/aboutUS", layout: DefaultLayout, component: AboutUs },
-  { path: "/contactUS", layout: DefaultLayout, component: AboutUs },
+  { path: "/contactUS", layout: DefaultLayout, component: ContactUs },
 ];

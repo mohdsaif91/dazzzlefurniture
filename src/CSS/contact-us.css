@@ -1,0 +1,39 @@
+.contact-us-hero {
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+  background-image: url("../images/contactUs.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 12em !important;
+  padding-bottom: 12em !important;
+  background-position: 50% 50%;
+}
+.h1-title {
+  text-align: center;
+  color: #fff;
+  font-size: 32px;
+}
+.above-main-contact-us {
+  text-align: center;
+  padding: 64px 0;
+}
+.main-text-contact {
+  font-size: 32px;
+}
+.sub-text-contact {
+  font-size: 24px;
+}
+.main-contact-us {
+  display: flex;
+  margin: 64px;
+  width: 100%;
+}
+.pallet {
+  background-color: #3e2093;
+  border-radius: 10px;
+  color: #ffffff;
+}
+.contact-us-form {
+  background-color: #ffffff;
+}

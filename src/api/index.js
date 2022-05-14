@@ -6,6 +6,11 @@ const url = "https://dazzlefurniture.herokuapp.com";
 //Admin
 export const AuthLogin = (data) => Axios.post(`${url}/v1/login`, data);
 export const SignupAPI = (data) => Axios.post(`${url}/v1/signUp`, data);
+export const sendEnqueryAPI = (data) =>
+  Axios.post(`${url}/v1/login/send`, data);
+export const sendBusniessInfoAPI = (data) =>
+  Axios.post(`${url}/v1/sendBusniessInfo`, data);
+export const getBusniessInfoAPI = () => Axios.get(`${url}/v1/sendBusniessInfo`);
 
 //category
 export const AddCategory = (data) => Axios.post(`${url}/v1/category/add`, data);

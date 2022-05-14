@@ -9,6 +9,9 @@ import {
   deleteCategoryById,
   getProductApi,
   addHotProductAPI,
+  sendEnqueryAPI,
+  sendBusniessInfoAPI,
+  getBusniessInfoAPI,
 } from "../../api";
 import {
   adminLoginAction,
@@ -26,6 +29,12 @@ import {
   getAdminProductSuccess,
   addhotProductSuccess,
   addhotProductFail,
+  sendEnquerySucces,
+  sendEnqueryUnSuccess,
+  sendBusniessInfoSuccess,
+  sendBusniessInfoUnSuccess,
+  getBusniessInfoSuccess,
+  getBusniessInfoUnSuccess,
 } from "../actions/adminActions";
 
 import { startLoading, stopLoading } from "../actions/LoadingAction";
@@ -49,6 +58,51 @@ export const AdminProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AdminReducer, initialState);
   const { startLoadingMeth, stopLoadingMeth } = useContext(LoadingContex);
   //Actions
+
+  const getBusniessInfo = async () => {
+    dispatch(startLoading());
+    await getBusniessInfoAPI()
+      .then((res) => {
+        dispatch(stopLoading());
+        if (res.status === 200) {
+          dispatch(getBusniessInfoSuccess(res.data));
+        } else {
+          dispatch(getBusniessInfoUnSuccess());
+        }
+      })
+      .catch((err) => dispatch(getBusniessInfoSuccess(err)));
+  };
+
+  const sendBusniessInfo = async (data) => {
+    dispatch(startLoading());
+    await sendBusniessInfoAPI(data)
+      .then((res) => {
+        dispatch(stopLoading());
+        if (res.status === 200) {
+          dispatch(sendBusniessInfoSuccess(res.data));
+        } else {
+          dispatch(sendBusniessInfoUnSuccess(res.data));
+        }
+      })
+      .catch((err) => {
+        dispatch(sendBusniessInfoUnSuccess(err));
+      });
+  };
+
+  const sendEnquery = async (data) => {
+    console.log(data, "Admin state");
+    dispatch(startLoading());
+    await sendEnqueryAPI(data)
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(sendEnquerySucces());
+        } else {
+          dispatch(sendEnqueryUnSuccess());
+        }
+      })
+      .catch((err) => dispatch(dispatch(sendEnqueryUnSuccess())));
+  };
+
   const adminLogin = async (data) => {
     dispatch(startLoading());
     await AuthLogin(data)
@@ -190,6 +244,7 @@ export const AdminProvider = ({ children }) => {
         showLoading: state.showLoading,
         categoryCount: state.categoryCount,
         productCount: state.productCount,
+        busniessInfo: state.busniessInfo,
         addHotProduct,
         adminLogin,
         adminLogOut,
@@ -199,6 +254,9 @@ export const AdminProvider = ({ children }) => {
         getCategoryCount,
         updateEditCategory,
         deleteCategory,
+        sendEnquery,
+        sendBusniessInfo,
+        getBusniessInfo,
       }}
     >
       {children}

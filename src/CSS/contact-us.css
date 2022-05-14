@@ -16,24 +16,118 @@
 }
 .above-main-contact-us {
   text-align: center;
-  padding: 64px 0;
+  padding: 64px 0 32px 0;
 }
 .main-text-contact {
   font-size: 32px;
 }
 .sub-text-contact {
   font-size: 24px;
+  text-align: center;
+  color: #fff;
 }
 .main-contact-us {
   display: flex;
-  margin: 64px;
-  width: 100%;
+  margin: 32px;
+  justify-content: center;
+  align-items: center;
 }
 .pallet {
   background-color: #3e2093;
   border-radius: 10px;
   color: #ffffff;
+  text-align: left;
+  padding: 40px;
+  width: 510px;
+}
+/* .text-container-contact-us{
+  padding
+} */
+.sub-text-contact {
+  font-size: 20px;
+  margin-top: 24px;
+  opacity: 0.8;
+  font-weight: 300 !important;
+}
+.contact-info-container {
+  margin: 32px 0;
+}
+.contact-icon {
+  height: 30px;
+  width: 30px;
+  margin-right: 32px;
+  color: pink;
+}
+.icon-text {
+  margin: 12px 0;
+}
+.outter-container-fb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* border-radius: 50%; */
+}
+
+.outter-container-fb:hover {
+  cursor: pointer;
+  /* background-color: #fa949d; */
+}
+.socila-media-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .contact-us-form {
+  width: 510px;
   background-color: #ffffff;
+}
+.phone-text {
+  text-decoration: none;
+  opacity: 0.8;
+  color: #ffffff;
+  line-height: 2.9;
+  font-size: 18px;
+}
+.address-text {
+  font-size: 12px !important;
+  line-height: 2 !important;
+}
+.form-control-contact-us {
+  display: flex;
+  padding: 96px 64px;
+  flex-direction: column;
+}
+.input-tag {
+  padding: 8px;
+  margin-bottom: 32px;
+  border: none;
+  border-bottom: 1px solid #3e2093;
+}
+.btn-container-contact-us {
+  display: flex;
+  justify-content: space-around;
+}
+.btn {
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #ffffff;
+}
+.danger {
+  background-color: red;
+}
+.primary {
+  background-color: #3e2093;
+}
+
+.no-link-style {
+  text-decoration: none;
+  color: inherit;
+}
+
+.no-link-style:hover {
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,21 +1,23 @@
 import React from "react";
 
 import bulbImage from "../../images/bulb-img.png";
+import Location from "../../images/location-dot-solid.svg";
 
 function AboutUs() {
   return (
     <div className="about-us-container">
       <div className="hero-section-aboutus">
         <div className="about-us-heading">
-          Ready
+          Getting
           <br />
-          to work
-          <br /> with us ?
+          better and
+          <br />
+          better together
         </div>
       </div>
       <div className="section-2-about-us">
         <div className="container-text">
-          <h4 class="heading">Design Trends</h4>
+          <h4 class="heading">Experience new way of designing</h4>
           <p class="heading-para">
             Sample text. Click to select the text box. Click again or double
             click to start editing the text.&nbsp;Excepteur sint occaecat
@@ -24,7 +26,7 @@ function AboutUs() {
           </p>
         </div>
         <div className="container-text">
-          <h4 class="heading">Sustainable designs</h4>
+          <h4 class="heading">Experience the shop</h4>
           <p class="heading-para">
             Sample text. Click to select the text box. Click again or double
             click to start editing the text.&nbsp;Excepteur sint occaecat
@@ -33,7 +35,7 @@ function AboutUs() {
           </p>
         </div>
         <div className="container-text">
-          <h4 class="heading">Recycled Materials</h4>
+          <h4 class="heading">Experience wood-work items</h4>
           <p class="heading-para">
             Sample text. Click to select the text box. Click again or double
             click to start editing the text.&nbsp;Excepteur sint occaecat
@@ -57,7 +59,7 @@ function AboutUs() {
           <div className="item-1 extra-margin-64">
             <img className="item-1-img" src={bulbImage} alt="" />
             <div>
-              <h4 className="item-heading">STRATEGY</h4>
+              <h4 className="item-heading">Simple Creative</h4>
               <p className="item-para">
                 Duis aute irure dolor in reprehenderit in voluptate velit esse
                 cillum dolore eu fugiat nulla pariatur
@@ -67,7 +69,7 @@ function AboutUs() {
           <div className="item-1 extra-margin-96">
             <img className="item-1-img" src={bulbImage} alt="" />
             <div>
-              <h4 className="item-heading">STRATEGY</h4>
+              <h4 className="item-heading">Design Quaility</h4>
               <p className="item-para">
                 Duis aute irure dolor in reprehenderit in voluptate velit esse
                 cillum dolore eu fugiat nulla pariatur
@@ -79,6 +81,20 @@ function AboutUs() {
               we make life exciting with our designs
             </div>
             <button className="contact-us-btn">contact us</button>
+          </div>
+        </div>
+      </div>
+      <div className="section-4-about-us">
+        <div className="section-4-heading">Visit Our Store</div>
+        <div className="address-section-4">
+          <div className="icon-container-about-us">
+            <img alt="" src={Location} className="location-icon" />
+            <div className="icon-container-about-us-text">
+              <div className="icon-container-about-us-city">Mumbai</div>
+              <div className="icon-container-about-us-address">
+                4 Copley Place, 7th Floor, Boston, MA 6
+              </div>
+            </div>
           </div>
         </div>
       </div>

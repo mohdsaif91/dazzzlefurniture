@@ -16,7 +16,52 @@ export const adminActions = {
   ADD_CATEGORY_UNSUCESS: "ADD_CATEGORY_UNSUCESS",
   UPDATED_CATEGORY_SUCESS: "UPDATED_CATEGORY_SUCESS",
   UPDATED_CATEGORY_UNSUCESS: "UPDATED_CATEGORY_UNSUCESS",
+  SEND_ENQUERY_SUCCESS: "SEND_ENQUERY_SUCCESS",
+  SEND_ENQUERY_UNSUCCESS: "SEND_ENQUERY_UNSUCCESS",
+  SEND_BUSNIESS_INFO_SUCCESS: "SEND_BUSNIESS_INFO_SUCCESS",
+  SEND_BUSNIESS_INFO_UNSUCCESS: "SEND_BUSNIESS_INFO_UNSUCCESS",
+  GET_BUSNIESS_INFO_SUCCESS: "GET_BUSNIESS_INFO_SUCCESS",
+  GET_BUSNIESS_INFO_UNSUCCESS: "GET_BUSNIESS_INFO_UNSUCCESS",
 };
+
+export function getBusniessInfoSuccess(data) {
+  return {
+    type: adminActions.GET_BUSNIESS_INFO_SUCCESS,
+    data,
+  };
+}
+
+export function getBusniessInfoUnSuccess() {
+  return {
+    type: adminActions.GET_BUSNIESS_INFO_UNSUCCESS,
+  };
+}
+
+export function sendBusniessInfoSuccess(data) {
+  return {
+    type: adminActions.SEND_BUSNIESS_INFO_SUCCESS,
+    data,
+  };
+}
+
+export function sendBusniessInfoUnSuccess() {
+  return {
+    type: adminActions.SEND_BUSNIESS_INFO_UNSUCCESS,
+  };
+}
+export function sendEnquerySucces() {
+  return {
+    type: adminActions.SEND_ENQUERY_SUCCESS,
+    data: "Email Send !",
+  };
+}
+
+export function sendEnqueryUnSuccess() {
+  return {
+    type: adminActions.SEND_ENQUERY_UNSUCCESS,
+    data: "Email send Unsuccessfull",
+  };
+}
 
 export function addhotProductSuccess(data) {
   return {

@@ -15,5 +15,10 @@ export default function () {
       htmlBefore: '<i class="material-icons">note_add</i>',
       to: "/addProduct/admin",
     },
+    {
+      title: "Busniess-Info",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      to: "/Contact-Info/admin",
+    },
   ];
 }

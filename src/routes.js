@@ -21,6 +21,7 @@ import Products from "./components/Pages/Products";
 import ShowSingleproduct from "./components/Pages/ShowSingleProduct";
 import AboutUs from "./components/Pages/AboutUs";
 import ContactUs from "./components/Pages/ContactUs";
+import ContactUsInfo from "./components/Pages/ContactUsInfo";
 
 export default [
   {
@@ -72,4 +73,9 @@ export default [
   },
   { path: "/aboutUS", layout: DefaultLayout, component: AboutUs },
   { path: "/contactUS", layout: DefaultLayout, component: ContactUs },
+  {
+    path: "/Contact-Info/admin",
+    layout: DefaultLayout,
+    component: ContactUsInfo,
+  },
 ];

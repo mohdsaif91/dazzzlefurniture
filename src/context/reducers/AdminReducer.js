@@ -72,7 +72,31 @@ export default (state, action) => {
         ...state,
         error: true,
       };
+    case adminActions.SEND_ENQUERY_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        message: action.data,
+      };
+    case adminActions.SEND_ENQUERY_UNSUCCESS:
+      return {
+        ...state,
+        error: true,
+        message: action.data,
+      };
     case adminActions.DELETE_UNSUCESSFULL:
+      return {};
+    case adminActions.GET_BUSNIESS_INFO_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        busniessInfo: action.data,
+      };
+    case adminActions.GET_BUSNIESS_INFO_UNSUCCESS:
+      return {
+        ...state,
+        error: true,
+      };
     default:
       return state;
   }

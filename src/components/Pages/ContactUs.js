@@ -51,6 +51,15 @@ function ContactUs() {
     setMessage({ ...initialStata });
   };
 
+  const openSocial = (data) => {
+    console.log("a");
+    window.open(data, "_blank");
+  };
+
+  const openWA = (data) => {
+    window.open(`whatsapp://send?phone=+91${data}`, "_blank");
+  };
+
   console.log(busniessInfoData);
 
   return (
@@ -99,13 +108,28 @@ function ContactUs() {
           </div>
           <div className="socila-media-container">
             <div className="outter-container-fb">
-              <img alt="" src={Facebook} className="contact-icon" />
+              <img
+                alt=""
+                onClick={() => openSocial(busniessInfoData.facebookUrl)}
+                src={Facebook}
+                className="contact-icon"
+              />
             </div>
             <div className="outter-container-fb">
-              <img alt="" src={Instagram} className="contact-icon" />
+              <img
+                alt=""
+                onClick={() => openSocial(busniessInfoData.instagramUrl)}
+                src={Instagram}
+                className="contact-icon"
+              />
             </div>
             <div className="outter-container-fb">
-              <img alt="" src={WhatsApp} className="contact-icon" />
+              <img
+                alt=""
+                onClick={() => openWA(busniessInfoData.whatsAppUrl)}
+                src={WhatsApp}
+                className="contact-icon"
+              />
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ ul.menu {
 }
 .widget_nav_menu.widget_menu_horizontal ul li {
   display: inline-block;
-  margin-right: 40px;
+  margin-right: 28px;
 }
 .footer-top a,
 .footer-bottom a {
@@ -28,4 +28,11 @@ ul.menu {
 }
 .logo-text {
   font-size: 20px;
+}
+
+@media (min-width: 310px) and (max-width: 450px) {
+  .widget_nav_menu.widget_menu_horizontal ul menu {
+    margin-right: 0;
+    justify-content: space-around;
+  }
 }

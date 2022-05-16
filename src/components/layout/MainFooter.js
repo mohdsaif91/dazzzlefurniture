@@ -1,11 +1,50 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Container, Row, Nav, NavItem, NavLink } from "shards-react";
-import { Link } from "react-router-dom";
+
+import { Store } from "../../flux";
+import { AdminContext } from "../../context/state/AdminState";
 
 import Logo from "../../images/shards-dashboards-logo.svg";
+import Facebook from "../../images/facebook-brands.svg";
+import Instagram from "../../images/instagram-brands.svg";
+import WhatsApp from "../../images/whatsapp-brands.svg";
+
+const initialBusniessStata = {
+  mobileNumber: "",
+  emailId: "",
+  address: "",
+  facebookUrl: "",
+  instagramUrl: "",
+  whatsAppUrl: "",
+};
 
 const MainFooter = ({ contained, menuItems, copyright }) => {
+  const [busniessInfoData, setBusniessInfoData] = useState({
+    ...initialBusniessStata,
+  });
+
+  const sideBar = Store.getSidebarItems();
+
+  const { getBusniessInfo, busniessInfo } = useContext(AdminContext);
+
+  useEffect(() => {
+    if (!busniessInfo) {
+      getBusniessInfo();
+    }
+    if (busniessInfo) {
+      setBusniessInfoData(busniessInfo);
+    }
+  }, [busniessInfo]);
+
+  const openSocial = (data) => {
+    console.log("a");
+    window.open(data, "_blank");
+  };
+
+  const openWA = (data) => {
+    window.open(`whatsapp://send?phone=+91${data}`, "_blank");
+  };
+
   return (
     <footer id="colophon" className=" site-footer">
       <div className="footer-top">
@@ -17,18 +56,11 @@ const MainFooter = ({ contained, menuItems, copyright }) => {
                   <div className="widget-inner">
                     <div className="menu--container">
                       <ul className="menu">
-                        <li>
-                          <a href="/pages/about-1">About Us</a>
-                        </li>
-                        <li>
-                          <a href="#">Policy</a>
-                        </li>
-                        <li>
-                          <a href="#">Term</a>
-                        </li>
-                        <li>
-                          <a href="/pages/contact-us">Contact</a>
-                        </li>
+                        {sideBar.map((m) => (
+                          <li>
+                            <a href={`${m.to}`}>{m.title}</a>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -57,50 +89,49 @@ const MainFooter = ({ contained, menuItems, copyright }) => {
             </div>
             <div className="footer-column col-xs-12 col-sm-4 col-md-4">
               <div className="footer-column-inner">
-                <div className="text-right widget widget_text">
+                <div className="text-center widget widget_text">
                   <div className="textwidget">
-                    <div className="social-media-link style-default pull-right">
-                      <label>Follow Us On Social</label>
-
-                      <a
-                        href="#"
-                        className="facebook"
-                        title="Facebook"
-                        target="_blank"
-                        rel="nofollow"
-                      >
-                        <i class="fa fa-facebook"></i>
-                      </a>
-
-                      <a
-                        href="#"
-                        className="twitter"
-                        title="Twitter"
-                        target="_blank"
-                        rel="nofollow"
-                      >
-                        <i class="fa fa-twitter"></i>
-                      </a>
-
-                      <a
-                        href="#"
-                        className="pinterest"
-                        title="Pinterest"
-                        target="_blank"
-                        rel="nofollow"
-                      >
-                        <i class="fa fa-pinterest-p"></i>
-                      </a>
-
-                      <a
-                        href="#"
-                        className="instagram"
-                        title="Instagram"
-                        target="_blank"
-                        rel="nofollow"
-                      >
-                        <i class="fa fa-instagram"></i>
-                      </a>
+                    {/* pull-right */}
+                    <div className="style-default">
+                      <p>Follow Us On Social</p>
+                      <div className="socila-media-container">
+                        <div className="circle-social">
+                          <div className="outter-container-fb">
+                            <img
+                              alt=""
+                              onClick={() =>
+                                openSocial(busniessInfoData.facebookUrl)
+                              }
+                              src={Facebook}
+                              className="contact-icon footer-icon"
+                            />
+                          </div>
+                        </div>
+                        <div className="circle-social">
+                          <div className="outter-container-fb">
+                            <img
+                              alt=""
+                              onClick={() =>
+                                openSocial(busniessInfoData.instagramUrl)
+                              }
+                              src={Instagram}
+                              className="contact-icon footer-icon"
+                            />
+                          </div>
+                        </div>
+                        <div className="circle-social">
+                          <div className="outter-container-fb">
+                            <img
+                              alt=""
+                              onClick={() =>
+                                openWA(busniessInfoData.whatsAppUrl)
+                              }
+                              src={WhatsApp}
+                              className="contact-icon footer-icon"
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -112,23 +143,6 @@ const MainFooter = ({ contained, menuItems, copyright }) => {
     </footer>
   );
 };
-// <footer className="main-footer d-flex p-2 px-3 bg-white border-top">
-//   <Container fluid={contained}>
-//     <Row>
-//       <Nav>
-//         {menuItems.map((item, idx) => (
-//           <NavItem key={idx}>
-//             <NavLink tag={Link} to={item.to}>
-//               {item.title}
-//             </NavLink>
-//           </NavItem>
-//         ))}
-//       </Nav>
-//       <span className="copyright ml-auto my-auto mr-2">{copyright}</span>
-//     </Row>
-//   </Container>
-// </footer>
-// );
 
 MainFooter.propTypes = {
   /**

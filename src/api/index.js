@@ -1,7 +1,7 @@
 import Axios from "axios";
 
-const url = "https://dazzlefurniture.herokuapp.com";
-// const url = "http://localhost:5000";
+// const url = "https://dazzlefurniture.herokuapp.com";
+const url = "http://localhost:5000";
 
 //Admin
 export const AuthLogin = (data) => Axios.post(`${url}/v1/login`, data);

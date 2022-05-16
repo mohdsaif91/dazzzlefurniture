@@ -91,7 +91,7 @@
   font-size: 18px;
 }
 .address-text {
-  font-size: 12px !important;
+  font-size: 14px !important;
   line-height: 2 !important;
 }
 .form-control-contact-us {
@@ -130,4 +130,44 @@
 .no-link-style:hover {
   text-decoration: none;
   color: inherit;
+}
+
+.circle-social {
+  padding: 8px;
+  border-radius: 50%;
+  background-color: #007bff;
+  margin-right: 24px;
+}
+.footer-icon {
+  margin: 0 !important;
+}
+
+@media (min-width: 310px) and (max-width: 450px) {
+  .main-contact-us {
+    flex-direction: column-reverse;
+    margin: 0;
+  }
+  .form-control-contact-us {
+    padding: 32px 16px;
+  }
+  .contact-us-form {
+    width: 100%;
+  }
+  .pallet {
+    width: 100%;
+  }
+  .icon-text {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .main-text-contact {
+    font-size: 28px;
+    text-align: center;
+  }
+  .sub-text-contact {
+    margin-top: 0;
+    font-size: 15px;
+  }
 }

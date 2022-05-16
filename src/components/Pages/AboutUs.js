@@ -1,9 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import bulbImage from "../../images/bulb-img.png";
 import Location from "../../images/location-dot-solid.svg";
 
 function AboutUs() {
+  const history = useHistory();
+
   return (
     <div className="about-us-container">
       <div className="hero-section-aboutus">
@@ -80,7 +83,12 @@ function AboutUs() {
             <div className="main-heading">
               we make life exciting with our designs
             </div>
-            <button className="contact-us-btn">contact us</button>
+            <button
+              className="contact-us-btn"
+              onClick={() => history.push("/contactus")}
+            >
+              contact us
+            </button>
           </div>
         </div>
       </div>

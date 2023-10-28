@@ -1,0 +1,23 @@
+@import "../../variable.scss";
+
+.adminSideBarContainer {
+  padding: 32px 0;
+  background-color: $primaryBackgroundColor;
+  height: 100vh;
+  width: 15%;
+  .listContainer {
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+    .listItem {
+      font-size: 24px;
+      padding: 24px 0;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .active {
+      background-color: black;
+      color: $whiteColor;
+    }
+  }
+}

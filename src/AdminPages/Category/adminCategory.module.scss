@@ -1,0 +1,115 @@
+@import "../../variable.scss";
+
+.categoryContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  .container {
+    flex: 0.5;
+    margin-right: 16px;
+    border: 1px solid $blackColor;
+    border-radius: 8px;
+    .categoryHeading {
+      margin: 16px 0;
+      text-align: center;
+      font-size: 24px;
+    }
+    :last-child {
+      margin-right: 0;
+    }
+    .categoryForm {
+      padding: 32px;
+    }
+    .categoryBox {
+      .categoryList {
+        list-style: none;
+        .categoryListItem {
+          margin: 16px !important;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          // align-items: center;
+          padding: 16px 24px;
+          border: 1px solid $blackColor;
+          border-radius: 8px;
+          .primaryContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .nameAndImage {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: flex-start;
+              .categoryName {
+                font-weight: 600;
+                font-size: 24px;
+                margin-right: 16px;
+              }
+              .categoryImage {
+                height: 90px;
+                width: 90px;
+                border-radius: 8px;
+                cursor: pointer;
+              }
+            }
+            .categoryImageAction {
+              height: 30px;
+              width: 30px;
+              border-radius: 8px;
+              cursor: pointer;
+              margin-right: 16px;
+              :last-child {
+                margin-right: 0;
+              }
+            }
+          }
+          .secondaryContainer {
+            border-top: 1px solid $blackColor;
+            padding-top: 16px;
+            margin-top: 16px;
+            .editImage {
+              display: flex;
+              justify-content: space-between;
+              .categoryImage {
+                height: 90px;
+                width: 90px;
+                border-radius: 8px;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.submitBtn {
+  margin-top: 32px;
+  color: $whiteColor;
+  background-color: $blackColor;
+}
+
+.editBtnContainer {
+  display: flex;
+  flex-direction: row;
+  .editButton {
+    font-size: 20px !important;
+    margin-top: 32px;
+    color: $whiteColor;
+    background-color: $blackColor;
+    margin-right: 16px;
+  }
+  .cancleButton {
+    font-size: 20px !important;
+    margin-top: 32px;
+    color: $redcolor;
+    background-color: $primaryBackgroundColor;
+    border: 1px solid $blackColor;
+  }
+}
+
+.opacity {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

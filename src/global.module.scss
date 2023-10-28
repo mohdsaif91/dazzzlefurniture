@@ -1,0 +1,89 @@
+@import "./variable.scss";
+
+* {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.input {
+  border-radius: 6px;
+  padding-left: 4px;
+  height: 32px;
+  width: 240px;
+  outline: none;
+  border: 1px solid;
+  background-color: $primaryBackgroundColor;
+}
+.errorText {
+  color: red;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+}
+
+.pagePadding {
+  padding: 32px;
+}
+
+.btn {
+  padding: 16px 24px;
+  border-radius: 6px;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+// spinner
+.loadingContainer {
+  background-color: $primaryBackgroundColor;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+}
+.ringContainer {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+.lds_ring {
+  width: 80px;
+  height: 80px;
+}
+.lds_ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid $blackColor;
+  border-radius: 50%;
+  animation: lds_ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $blackColor transparent transparent transparent;
+}
+.lds_ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds_ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds_ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds_ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

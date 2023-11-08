@@ -21,6 +21,17 @@ export const getCategory = createAsyncThunk("category/getCategory", () => {
   return onAuthenticated(payload);
 });
 
+export const getCategoryName = createAsyncThunk(
+  "category/getCategoryName",
+  () => {
+    const payload = {
+      url: apiList.getCategoryName,
+      method: "get",
+    };
+    return onAuthenticated(payload);
+  }
+);
+
 export const updateCategory = createAsyncThunk(
   "category/updateCategory",
   (data) => {
@@ -52,6 +63,7 @@ const categorySlice = createSlice({
     category: null,
     error: null,
     loading: false,
+    categoryName: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -78,6 +90,18 @@ const categorySlice = createSlice({
       state.error = payload;
       state.loading = false;
     });
+
+    builder.addCase(getCategoryName.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.categoryName = payload.data;
+      state.loading = false;
+    });
+    builder.addCase(getCategoryName.rejected, (state, { payload }) => {
+      state.error = payload;
+      state.loading = false;
+    });
+
+    // getCategoryName
   },
 });
 

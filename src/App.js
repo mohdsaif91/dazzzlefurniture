@@ -1,14 +1,15 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Loading from "./util/Loading";
 import Header from "./Components/Header/Header";
 import AdminSideBar from "./AdminPages/AdminSideBar/AdminSideBar";
+import MobileSideBar from "./Components/MobileSideBar/MobileSideBar";
 
 import style from "./global.module.scss";
 import PrivateRoute from "./util/PrivateRoute";
 
-const LoginPage = React.lazy(() => import("./AdminPages/Login/Login"));
+const LoginPage = React.lazy(() => import("./Pages/Login/Login"));
 const AdminHome = React.lazy(() => import("./AdminPages/Home/AdminHome"));
 const AdminCategory = React.lazy(() =>
   import("./AdminPages/Category/AdminCategory")
@@ -18,14 +19,24 @@ const AdminPeoduct = React.lazy(() =>
 );
 
 function App() {
+  const [openSideBar, setOpenSideBar] = useState(false);
+
   const location = useLocation();
 
   console.log(location.pathname);
   return (
     <div className={style.mainApp}>
-      <Header />
+      <Header openFlag={openSideBar} onOpen={(flag) => setOpenSideBar(flag)} />
+      {openSideBar && (
+        <MobileSideBar
+          onClose={(flag) => setOpenSideBar(flag)}
+          openFlag={openSideBar}
+        />
+      )}
       <div className={style.pageContainer}>
-        {location.pathname.includes("admin") && <AdminSideBar />}
+        {location.pathname.includes("admin") && window.screen.width > 440 && (
+          <AdminSideBar />
+        )}
         <Routes>
           <Route
             path="/"

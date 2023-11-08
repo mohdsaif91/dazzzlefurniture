@@ -11,4 +11,5 @@ export const adminRoutes = [
     label: "Product",
     path: "/adminProduct",
   },
+  { id: "3", name: "logout", label: "Logout", path: "/" },
 ];

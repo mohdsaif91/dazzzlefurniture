@@ -1,1 +1,71 @@
 @import "../../variable.scss";
+
+.parentContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  @include mobile {
+    width: 100%;
+    padding: 32px 8px;
+    flex-direction: column;
+  }
+  width: 85%;
+  .container {
+    flex: 0.5;
+    margin-right: 16px;
+    border: 1px solid $blackColor;
+    border-radius: 8px;
+    .productHeading {
+      text-align: center;
+      font-size: 30px;
+      padding: 16px 0;
+    }
+    .formContainer {
+      padding: 32px;
+      .submitBtn {
+        margin-top: 32px;
+        color: $whiteColor;
+        background-color: $blackColor;
+      }
+      .currentlImage {
+        margin: 24px;
+        .editProductImage {
+          height: 80px;
+        }
+      }
+    }
+    .productList {
+      list-style: none;
+      padding: 16px;
+      .productListItem {
+        border-radius: 8px;
+        border: 1px solid #333;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .productImage {
+          height: 80px;
+        }
+        .productNameCat {
+          .productName {
+            font-size: 24px;
+            font-weight: 700;
+          }
+          .productCat {
+            font-size: 20px;
+          }
+        }
+        .productAction {
+          .categoryImageAction {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.error {
+  color: red;
+}

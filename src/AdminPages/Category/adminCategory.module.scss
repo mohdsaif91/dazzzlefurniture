@@ -3,35 +3,55 @@
 .categoryContainer {
   display: flex;
   justify-content: space-between;
+  @include mobile {
+    width: 100%;
+    padding: 32px 8px;
+    flex-direction: column;
+  }
   width: 85%;
   .container {
     flex: 0.5;
     margin-right: 16px;
     border: 1px solid $blackColor;
     border-radius: 8px;
+
     .categoryHeading {
       margin: 16px 0;
       text-align: center;
       font-size: 24px;
+      @include mobile {
+        margin: 8px 0;
+        font-size: 16px;
+      }
     }
     :last-child {
       margin-right: 0;
     }
     .categoryForm {
       padding: 32px;
+      @include mobile {
+        margin: 8px 0;
+        font-size: 16px;
+        padding: 16px;
+      }
     }
     .categoryBox {
       .categoryList {
         list-style: none;
+        @include mobile {
+          padding-left: 0;
+        }
         .categoryListItem {
           margin: 16px !important;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          // align-items: center;
           padding: 16px 24px;
           border: 1px solid $blackColor;
           border-radius: 8px;
+          @include mobile {
+            padding: 8px;
+          }
           .primaryContainer {
             display: flex;
             justify-content: space-between;
@@ -113,3 +133,6 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+// @media (min-width: 750px) and (max-width: 770px) {
+// }

@@ -1,0 +1,18 @@
+@import "../../variable.scss";
+
+.contactSideBarParent {
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  .contactSideBar {
+    margin-right: 24px;
+    width: 25%;
+    background-color: rgb(75, 80, 78);
+  }
+}

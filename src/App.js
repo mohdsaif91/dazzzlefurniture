@@ -5,9 +5,11 @@ import Loading from "./util/Loading";
 import Header from "./Components/Header/Header";
 import AdminSideBar from "./AdminPages/AdminSideBar/AdminSideBar";
 import MobileSideBar from "./Components/MobileSideBar/MobileSideBar";
+import ContactSideBarCompo from "./Components/ContactSideBar/ContactSideBarCompo";
+import Footer from "./Components/Footer/Footer";
+import PrivateRoute from "./util/PrivateRoute";
 
 import style from "./global.module.scss";
-import PrivateRoute from "./util/PrivateRoute";
 
 const LoginPage = React.lazy(() => import("./Pages/Login/Login"));
 const AdminHome = React.lazy(() => import("./AdminPages/Home/AdminHome"));
@@ -17,32 +19,73 @@ const AdminCategory = React.lazy(() =>
 const AdminPeoduct = React.lazy(() =>
   import("./AdminPages/Product/AdminProduct")
 );
+const Home = React.lazy(() => import("./Pages/Home/Home"));
+const About = React.lazy(() => import("./Pages/About/About"));
+const Shop = React.lazy(() => import("./Pages/Shop/Shop"));
 
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false);
+  const [contactSideBar, setContaSideBar] = useState(false);
 
   const location = useLocation();
 
-  console.log(location.pathname);
   return (
     <div className={style.mainApp}>
-      <Header openFlag={openSideBar} onOpen={(flag) => setOpenSideBar(flag)} />
+      <Header
+        openFlag={openSideBar}
+        onOpen={(flag) => setOpenSideBar(flag)}
+        openContactBar={contactSideBar}
+        onOpenContact={(flag) => setContaSideBar(flag)}
+      />
       {openSideBar && (
         <MobileSideBar
           onClose={(flag) => setOpenSideBar(flag)}
           openFlag={openSideBar}
         />
       )}
-      <div className={style.pageContainer}>
+      {contactSideBar && (
+        <ContactSideBarCompo closeContactBar={() => setContaSideBar(false)} />
+      )}
+      <div
+        className={
+          location.pathname.includes("admin")
+            ? style.adminPageContainer
+            : style.pageContainer
+        }
+      >
         {location.pathname.includes("admin") && window.screen.width > 440 && (
           <AdminSideBar />
         )}
         <Routes>
           <Route
-            path="/"
+            path="/login"
             element={
               <Suspense fallback={<Loading />}>
                 <LoginPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Suspense>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/shop"
+            element={
+              <Suspense>
+                <Shop />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Suspense>
+                <About />
               </Suspense>
             }
           />
@@ -80,6 +123,7 @@ function App() {
           {/* end admin routes */}
         </Routes>
       </div>
+      {!location.pathname.includes("admin") && <Footer />}
     </div>
   );
 }

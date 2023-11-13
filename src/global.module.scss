@@ -18,7 +18,7 @@
   color: red;
 }
 
-.pageContainer {
+.adminPageContainer {
   display: flex;
   flex-direction: row;
   display: -webkit-box;
@@ -86,6 +86,9 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.uiContainer {
 }
 
 // mobile side bar

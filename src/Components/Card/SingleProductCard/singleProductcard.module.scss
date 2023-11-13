@@ -1,0 +1,32 @@
+@import "../../../variable.scss";
+
+.Productcard {
+  cursor: pointer;
+  margin: 40px;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  .productName {
+    margin-left: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 16px;
+  }
+  .productPrice {
+    margin-left: 12px;
+    color: $redcolor;
+    font-size: 18px;
+    margin-top: 8px;
+  }
+  .productImage {
+    height: 260px;
+    width: 220px;
+  }
+  .topProductImg {
+    height: 410px;
+    width: 370px;
+  }
+}

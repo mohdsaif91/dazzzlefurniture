@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 99;
   .primaryContainer {
     width: 15%;
     display: flex;
@@ -33,6 +34,94 @@
     padding-right: 40px;
     .adminIcon {
       cursor: pointer;
+    }
+  }
+  .linkContainer {
+    width: 32%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .linkItme {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .active {
+      font-weight: 700;
+    }
+  }
+  .searchContainer {
+    margin-right: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .searchIcon {
+      cursor: pointer;
+      height: 40px;
+      margin-right: 24px;
+    }
+    .navLines {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: pointer;
+      .lineOne {
+        height: 3px;
+        width: 24px;
+        background-color: black;
+        margin-bottom: 6px;
+      }
+      .lineTwo {
+        height: 3px;
+        width: 32px;
+        background-color: black;
+        margin-bottom: 6px;
+      }
+      .lineThree {
+        height: 3px;
+        width: 40px;
+        background-color: black;
+        margin-bottom: 6px;
+      }
+    }
+  }
+  .searchContainerMain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0%;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $whiteColor;
+
+    .iconContainer {
+      margin: 40px;
+      display: flex;
+      justify-content: flex-end;
+      .closedIcon {
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+    .mainContainer {
+      height: 100%;
+      display: flex;
+      margin-top: 10%;
+      justify-content: center;
+      height: 64px;
+      .searchInput {
+        width: 640px;
+        border-radius: 4px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        font-size: 24px;
+        font-weight: 700;
+        &:focus {
+          outline: none;
+        }
+      }
     }
   }
 }
